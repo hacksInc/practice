@@ -1,0 +1,255 @@
+@charset "UTF-8";
+
+html,body {
+	width: 100%;
+	height:100%;
+	font-size: 14px;
+	-webkit-text-size-adjust: 100%;
+	font-family:  sans-serif ,Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
+}
+.clearfix:after,.bx-pager:after {
+	content: ".";
+	height: 0;
+	font-size: 0;
+	clear: both;
+	display: block;
+	visibility: hidden;
+}
+
+#portalBackground {
+	width:100%;
+	color:#fff;
+	overflow: hidden;
+	position: relative;
+}
+#backgroundImg{
+	display: block;
+}
+#contentFrame {
+	position: absolute;
+	top:11%;
+	left: 7%;
+	width:86%;
+}
+#contentTitle{
+	position: absolute;
+	top:0.5%;
+	left:2%;
+	width:25%;
+	font-size: 50%;
+	text-align: center;
+	font-weight: bold;
+	font-style: oblique;
+	color: #000;
+}
+#contentText{
+	position: absolute;
+	top:7%;
+	left:2%;
+	width:93%;
+	height:80%;
+	overflow: auto;
+}
+#contentText h2 {
+	color: rgba(100,255,225,0.9);
+}
+#contentText p {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 4%;
+	font-size: 90%;
+}
+
+/*********************
+   header
+*********************/
+header{
+	position: absolute;
+	width:100%;
+	top:0%;
+	left:0%;
+	z-index: 111;
+}
+
+	#headerTitleFrame{
+		width:58%;
+	}
+	#mark{
+		position: absolute;
+		top:12%;
+		left:1.5%;
+		-moz-animation: psychoMark 4s linear 1s infinite;
+		-webkit-animation: psychoMark 4s linear 1s infinite;
+	}
+	@-moz-keyframes psychoMark {
+		0% {
+			-moz-transform: rotateY(0deg);
+		}
+		20% {
+			-moz-transform: rotateY(180deg);
+		}
+		40% {
+			-moz-transform: rotateY(0deg);
+		}
+	}
+	@-webkit-keyframes psychoMark {
+		0% {
+			-webkit-transform: rotateY(0deg);
+		}
+		20% {
+			-webkit-transform: rotateY(180deg);
+		}
+		40% {
+			-webkit-transform: rotateY(0deg);
+		}
+	}
+	#votePtFrame{
+		position: absolute;
+		top:15%;
+		right: 22.5%;
+		width:20%;
+	}
+	#portalPtFrame{
+		position: absolute;
+		top:50%;
+		right: 22.5%;
+		width:20%;
+	}
+	#toGame{
+		float:right;
+		width:23%;
+	}
+	#headerTitle{
+		position: absolute;
+		top:22%;
+		left:17%;
+		width:34%;
+		font-weight: bold;
+		font-style: oblique;
+		font-size: 160%;
+		text-align: center;
+	}
+	#userNumber{
+		position: absolute;
+		bottom:0%;
+		left:42%;
+		font-size: 50%;
+	}
+	#votePt{
+		position: absolute;
+		top:22%;
+		right: 25%;
+		font-size: 60%;
+	}
+	#portalPt{
+		position: absolute;
+		top:58%;
+		right: 25%;
+		font-size: 60%;
+	}
+
+
+/*****************
+  footer
+*****************/
+footer{
+	position: absolute;
+	width:100%;
+	bottom:0%;
+	left:0%;
+	z-index: 111;
+}
+
+#btnFrame{
+	width:100%;
+}
+#btn{
+	position: absolute;
+	top:14%;
+	left:1.2%;
+	width:96%;
+}
+#btn li {
+	float:left;
+	width:19%;
+	margin-left: 1%;
+	list-style: none;
+}
+
+/*****************
+ ポップアップ（ポイントゲット）
+*****************/
+
+div#modal-content{
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	position:fixed;
+	left:25%;
+	top:30%;
+	width:50%;
+	padding:10px;
+	background-color:rgba(0,0,0,0.56);
+	display:none;
+	color: #fff;
+	z-index:99;
+	border: 1px solid rgba(1,255,225,0.8);
+}
+
+#modal-overlay{
+   z-index:98;
+   display:none;
+   position:fixed;
+   top:0;
+   left:0;
+   width:100%;
+   height:120%;
+   background-color:rgba(0,0,0,0.75);
+}
+
+.button-link{
+   color:#ff3399;
+   text-decoration:underline;
+}
+ 
+.button-link:hover{
+   cursor:pointer;
+   color:#f00;
+}
+/*****************
+  スクロールバー
+*****************/
+.nicescroll-cursors{
+	width: 3px !important;
+	border:none !important;
+	border-radius: none !important;
+	background-color: #eee !important;
+}
+
+/*****************
+  フォントサイズ
+*****************/
+
+@media screen and (min-width: 500px) {
+	html, body {
+		font-size: 130%;
+	}
+}
+
+@media screen and (min-width: 700px) {
+	html, body {
+		font-size: 140%;
+	}
+}
+@media screen and (min-width: 900px) {
+	html, body {
+		font-size: 150%;
+	}
+}
+#btn-back{
+	position: absolute;
+	top:9%;
+	left: 1%;
+}
+#btn-back img{
+	width:70%;
+}

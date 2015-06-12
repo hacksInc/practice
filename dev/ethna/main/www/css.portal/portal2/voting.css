@@ -1,0 +1,798 @@
+
+#voting_background {
+	position: absolute;
+	top: 11%;
+	left: 7%;
+	width: 86%;
+	z-index:555;
+}
+#voting_title {
+	position: absolute;
+	top:0.5%;
+	left:5%;
+	width: 90%;
+	text-align: center;
+	color: #fff;
+	z-index: 666;
+	font-weight: bold;
+}
+#content{
+	position: absolute;
+	top:6%;
+	right: 1.5%;
+	width: 96.5%;
+	height: 93%;
+	overflow: auto;
+}
+img#voting_banner {
+	width: 97%;
+}
+
+#announce {
+	padding: 3% 0;
+	margin: 0 auto;
+	width: 90%;
+	text-align: center;
+	color: #fff;
+	font-size: 0.7rem;
+	line-height: 1;
+}
+
+#announce2 {
+	padding-bottom: 3%;
+	margin: 0 auto;
+	width: 94%;
+	text-align: center;
+	color: #eab602;
+	font-size: 0.7rem;
+	line-height: 1;
+}
+
+div#voting_list1 {
+	margin: 0 auto;
+	width: 80%;
+    color: #fff;
+    position: relative;
+    margin-bottom: 3%;
+	font-weight: bold;
+}
+div#voting_list2 {
+	margin: 0 auto;
+	width: 80%;
+    color: #fff;
+    position: relative;
+    margin-bottom: 3%;
+	font-weight: bold;
+}
+div#voting_list3 {
+	float: right;
+	width: 43%;
+	margin-right: 2%;
+    position: relative;
+    text-align: center;
+	font-weight: bold;
+}
+div#voting_list4 {
+	width: 99%;
+    background-color: rgba(0,0,0,1);
+    border: 1px solid #21a876;
+    border-radius: 1px;
+    text-align: center;
+	font-weight: bold;
+}
+div#voting_list5 {
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+}
+div#voting_list6 {
+	width: 43%;
+	float: left;
+	margin-left: 3%;
+    position: relative;
+    text-align: center;
+	font-weight: bold;
+}
+
+#listItem{
+	margin-bottom: -2px;
+	width: 40%;
+}
+#listItem2 {
+	margin-bottom: -3px;
+	width: 40%;
+}
+.member{
+	position: absolute;
+	top:1%;
+	left:0%;
+	font-size: 70%;
+	text-align: center;
+	width: 35%;
+}
+.member2{
+	position: absolute;
+	top:1%;
+	left:0%;
+	font-size: 70%;
+	text-align: center;
+	width: 35%;
+}
+.myname {
+	float: left;
+	width: 82%;
+    background-color: rgba(0,0,0,1);
+    border: 1px solid #21a876;
+    border-radius: 1px;
+    padding:2%;
+    text-align: center;
+}
+.cross{
+	position: absolute;
+	bottom: 10%;
+	right: 2%;
+	width: 8%;
+}
+
+.cross2{
+	position: absolute;
+	bottom: 12%;
+	left: 47%;
+	width: 6%;
+}
+
+#ppp {
+	float:left;
+	width: 40%;
+	background: #21a876;
+	color:#fff;
+	font-size: 70%;
+	border: 1px solid #000;
+	text-align: center;
+    padding:1.5% 0;
+}
+#myPt {
+	float: right;
+	width:56.5%;
+	border-left:1px solid #21a876;
+	font-size: 75%;
+	text-align: center;
+	color: #fff;
+    padding:2% 0;
+}
+
+
+.name_list {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    width: 100%;
+    background-image: url('../img/voting/list_btn.png');
+    background-size: 15% 90%;
+    background-repeat: no-repeat;
+    background-position: 1% center;
+    color: #fff;
+    background-color: rgba(0,0,0,1);
+    border: 1px solid #21a876;
+    border-radius: 1px;
+    padding: 2% 0 2% 35%;
+	text-align: center;
+}
+.point_list {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    width: 100%;
+    background-image: url('../img/voting/list_btn.png');
+    background-size: 25% 90%;
+    background-repeat: no-repeat;
+    background-position: 1% center;
+    color: #fff;
+    background-color: rgba(0,0,0,1);
+    border: 1px solid #21a876;
+    border-radius: 1px;
+    padding: 3% 0 3% 35%;
+	text-align: center;
+}
+#vote_btn {
+	position: absolute;
+	bottom:2%;
+	right:0%;
+	display: block;
+	width: 52%;
+}
+div#rank_list {
+	position: relative;
+	width: 97%;
+}
+
+#ranking_btn {
+	position: absolute;
+	top:0%;
+	right:0%;
+	width:52%;
+}
+div#rank_list ul {
+	position: absolute;
+	bottom: 2%;
+	left: 1%;
+	width: 98%;
+	height: 85%;
+}
+div#rank_list ul li {
+	position: relative;
+	height: 31%;
+	width: 100%;
+}
+div#rank_list ul li:first-child {
+	height: 37%;
+}
+	div#rank_list  .rank {
+		position: absolute;
+		bottom: 10%;
+		left: 0%;
+		width: 9%;
+	}
+	div#rank_list  .rank>span{
+		font-size: 110%;
+	}
+	div#rank_list  .image {
+		position: absolute;
+		bottom: 5%;
+		left: 15%;
+		width: 11%;
+		border: 1px solid #21a876;
+	}
+	div#rank_list  .image2 {
+		position: absolute;
+		bottom: 5%;
+		left: 27%;
+		width: 11%;
+		border: 1px solid #21a876;
+	}
+	div#rank_list  ul li:first-child .image {
+		position: absolute;
+		bottom: 5%;
+		left: 10.5%;
+		width: 13%;
+	}
+	div#rank_list  ul li:first-child .image2 {
+		position: absolute;
+		bottom: 5%;
+		left: 25%;
+		width: 13%;
+	}
+	div#rank_list  ul li .border {
+		position: absolute;
+		bottom: 0%;
+		right: 1%;
+		width: 85%;
+		border-bottom: 1px solid #fff;
+		overflow: hidden;
+	}
+	div#rank_list  ul li:first-child .border {
+		position: absolute;
+		bottom: 0%;
+		right: 1%;
+		width: 90%;
+		border-bottom: 1px solid #fff;
+		overflow: hidden;
+	}
+		div#rank_list  .rank_name {
+			float: right;
+			width: 68%;
+			text-align: left;
+		}
+		div#rank_list  ul li:first-child .rank_name {
+			float: right;
+			width: 65%;
+			text-align: left;
+		}
+		div#rank_list  .rank_point {
+			float: right;
+			width: 65%;
+			text-align: right;
+		}
+#overlay {
+	display:none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.7;
+    z-index: 777;
+}
+#sns{
+	position: absolute;
+	bottom: 13%;
+	left:1%;
+	width: 25%;
+}
+#sns img {
+	width: 48%;
+	float: right;
+}
+#sns img:first-child{
+	float:left;
+}
+#timeLimit{
+	position: absolute;
+	bottom: 13%;
+	right:1%;
+	width:45%;
+	border:1px solid #21a876;
+	background: rgba(0,0,0,0.7);
+	padding:2%;
+	float:right;
+	font-size:90%;
+}
+#backBtn{
+	display:block;
+	position:absolute;
+	bottom:13%;
+	left:27%;
+	width:21%;
+	z-index:10;
+}
+/***********************************/
+/********* popup_confirm ***********/
+/***********************************/
+
+div#popup_confirm {
+	width: 80%;
+	height: 55%;
+	position: fixed;
+	top: 15%;
+	left: 10%;
+	display: none;
+	z-index: 999;
+	border: 1px solid #21a876;
+	background: #000;
+}
+div#popup_confirm #name {
+	position: absolute;
+	top: 10%;
+	left: 15%;
+	width: 70%;
+	font-size: 1.5rem;
+	border-bottom: 2px solid #fff;
+}
+div#popup_confirm #name1{
+	float:left;
+	width:45%;
+	text-align: center;
+}
+div#popup_confirm #name2{
+	float:right;
+	width:45%;
+	text-align: center;
+}
+div#popup_confirm .point {
+	position: absolute;
+	top: 25%;
+	left: 10%;
+	width: 80%;
+	text-align: center;
+	font-weight: bold;
+}
+#votingPoint {
+	position: absolute;
+	top:37%;
+	left:5%;
+	width:90%;
+	border: 1px solid #21a876;
+}
+#ppt{
+	float:left;
+	background: #21a876;
+	border: 1px solid #000;
+	width:30%;
+	text-align: center;
+	padding:0.8% 0 0.4%;
+}
+#beforePt {
+	float:left;
+	border-left:1px solid #21a876;
+	text-align: center;
+	width:30%;
+	padding:1% 0;
+}
+#afterPt {
+	float:right;
+	text-align: center;
+	width:30%;
+	padding:1% 0;
+}
+div#popup_confirm .accept {
+	position: absolute;
+	top: 70%;
+	left: 25%;
+	width: 50%;
+}
+div#popup_confirm .accept a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+	background: #21a876;
+	font-weight: bold;
+	padding:1% 0;
+}
+div#popup_confirm .cancel {
+	position: absolute;
+	top: 85%;
+	left: 25%;
+	width: 50%;
+}
+div#popup_confirm .cancel a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+	background: #21a876;
+	font-weight: bold;
+	padding:1% 0;
+}
+
+/***********************************/
+/********* popup_finish ***********/
+/***********************************/
+
+div#popup_finish {
+	width: 80%;
+	height: 55%;
+	position: fixed;
+	top: 15%;
+	left: 10%;
+	display: none;
+	z-index: 999;
+	border: 1px solid #21a876;
+	background: #000;
+}
+div#popup_finish #name {
+	position: absolute;
+	top: 10%;
+	left: 15%;
+	width: 70%;
+	font-size: 1.5rem;
+	border-bottom: 2px solid #fff;
+}
+div#popup_finish #name1{
+	float:left;
+	width:45%;
+	text-align: center;
+}
+div#popup_finish #name2{
+	float:right;
+	width:45%;
+	text-align: center;
+}
+div#popup_finish .point {
+	position: absolute;
+	top: 28%;
+	left: 10%;
+	width: 80%;
+	text-align: center;
+	font-weight: bold;
+}
+div#popup_finish .close {
+	position: absolute;
+	top: 82%;
+	left: 25%;
+	width: 50%;
+}
+div#popup_finish .close a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+	background: #21a876;
+	font-weight: bold;
+	padding: 2% 0;
+}
+#result_shere {
+	position: absolute;
+	top: 45%;
+	left: 20%;
+	width: 60%;
+	text-align: center;
+	color: rgba(1,224,255,1);
+	font-size:110%;
+}
+#result_sns {
+	position: absolute;
+	top: 55%;
+	left: 30%;
+	width: 40%;
+}
+/***********************************/
+/*********** popup_alert ***********/
+/***********************************/
+div#popup_alert {
+	width: 80%;
+	height: 40%;
+	position: fixed;
+	top: 30%;
+	left: 10%;
+	display: none;
+	z-index: 888;
+	border: 1px solid #21a876;
+	background: #000;
+}
+div#popup_alert .cancel {
+	position: absolute;
+	top: 75%;
+	left: 25%;
+	width: 50%;
+}
+div#popup_alert .cancel a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 2% 0;
+	text-align: center;
+	color: #fff;
+	background: #21a876;
+	font-weight: bold;
+}
+div.alert {
+	position: absolute;
+	top: 30%;
+	left: 8%;
+	width: 85%;
+	color:#eab602;
+	font-size:110%;
+	font-weight: bold;
+}
+
+/***********************************/
+/********* popup_ranking ***********/
+/***********************************/
+
+div#popup_ranking {
+	display: none;
+	width: 85%;
+	position: fixed;
+	top: 15%;
+	left: 7.5%;
+	z-index: 999;
+}
+div#popup_ranking ul {
+	position: absolute;
+	top: 5%;
+	left: 1%;
+	width: 98%;
+	height: 94%;
+	overflow: auto;
+}
+div#popup_ranking ul li {
+	position: relative;
+	height: 12%;
+	width: 100%;
+}
+	div#popup_ranking ul li:first-child {
+		height: 15%;
+	}
+	div#popup_ranking ul li:nth-child(2) {
+		height: 13%;
+	}
+	div#popup_ranking ul li:nth-child(3) {
+		height: 13%;
+	}
+	div#popup_ranking ul li .rank {
+		position: absolute;
+		bottom: 30%;
+		left: 0%;
+		width: 9%;
+	}
+	div#popup_ranking ul li .image {
+		position: absolute;
+		bottom: 5%;
+		left: 15%;
+		width: 11%;
+		border: 1px solid #21a876;
+	}
+	div#popup_ranking ul li .image2 {
+		position: absolute;
+		bottom: 5%;
+		left: 27%;
+		width: 11%;
+		border: 1px solid #21a876;
+	}
+	div#popup_ranking ul li:first-child .image {
+		position: absolute;
+		bottom: 5%;
+		left: 11%;
+		width: 13%;
+	}
+	div#popup_ranking ul li:first-child .image2 {
+		position: absolute;
+		bottom: 5%;
+		left: 25%;
+		width: 13%;
+	}
+	div#popup_ranking ul li:nth-child(2) .image {
+		position: absolute;
+		bottom: 5%;
+		left: 13%;
+		width: 12%
+	}
+	div#popup_ranking ul li:nth-child(2) .image2 {
+		position: absolute;
+		bottom: 5%;
+		left: 26%;
+		width: 12%;
+	}
+	div#popup_ranking ul li:nth-child(3) .image {
+		position: absolute;
+		bottom: 5%;
+		left: 13%;
+		width: 12%
+	}
+	div#popup_ranking ul li:nth-child(3) .image2 {
+		position: absolute;
+		bottom: 5%;
+		left: 26%;
+		width: 12%;
+	}
+	div#popup_ranking ul li .border {
+		position: absolute;
+		bottom: 0%;
+		right: 5%;
+		width: 80%;
+		border-bottom: 1px solid #fff;
+		overflow: hidden;
+	}
+	div#popup_ranking ul li:first-child .border {
+		width: 85%;
+	}
+	div#popup_ranking ul li:nth-child(2) .border {
+		width: 83%;
+	}
+	div#popup_ranking ul li:nth-child(3) .border {
+		width: 83%;
+	}
+		div#popup_ranking ul li .rank_name {
+			float: right;
+			width: 68%;
+			text-align: left;
+		}
+		div#popup_ranking ul li:first-child .rank_name {
+			width: 63%;
+		}
+		div#popup_ranking ul li:nth-child(2) .rank_name {
+			width: 65%;
+		}
+		div#popup_ranking ul li:nth-child(3) .rank_name {
+			width: 65%;
+		}
+		div#popup_ranking ul li .rank_point {
+			float: right;
+			width: 65%;
+			text-align: right;
+		}
+
+/***********************************/
+/********** votingresult ***********/
+/***********************************/
+
+div#result_rank {
+	position: absolute;
+	top: 23%;
+	left: 2%;
+	width: 96%;
+}
+
+div#result_rank ul {
+	position: absolute;
+	bottom: 2%;
+	left: 1%;
+	width: 98%;
+	height: 85%;
+}
+div#result_rank ul li {
+	position: relative;
+	height: 29%;
+	width: 100%;
+}
+div#result_rank ul li:first-child {
+	height: 40%;
+}
+	div#result_rank .rank {
+		position: absolute;
+		bottom: 10%;
+		left: 0%;
+		width: 9%;
+	}
+	div#result_rank .rank>span{
+		font-size: 110%;
+	}
+	div#result_rank .image {
+		position: absolute;
+		bottom: 5%;
+		left: 15%;
+		width: 11%;
+		border: 1px solid #21a876;
+	}
+	div#result_rank .image2 {
+		position: absolute;
+		bottom: 5%;
+		left: 27%;
+		width: 11%;
+		border: 1px solid #21a876;
+	}
+	div#result_rank ul li:first-child .image {
+		position: absolute;
+		bottom: 5%;
+		left: 10.5%;
+		width: 13%;
+	}
+	div#result_rank ul li:first-child .image2 {
+		position: absolute;
+		bottom: 5%;
+		left: 25%;
+		width: 13%;
+	}
+	div#result_rank ul li .border {
+		position: absolute;
+		bottom: 0%;
+		right: 1%;
+		width: 85%;
+		border-bottom: 1px solid #fff;
+		overflow: hidden;
+	}
+	div#result_rank ul li:first-child .border {
+		position: absolute;
+		bottom: 0%;
+		right: 1%;
+		width: 90%;
+		border-bottom: 1px solid #fff;
+		overflow: hidden;
+	}
+		div#result_rank .rank_name {
+			float: right;
+			width: 68%;
+			text-align: left;
+		}
+		div#result_rank ul li:first-child .rank_name {
+			float: right;
+			width: 65%;
+			text-align: left;
+		}
+		div#result_rank .rank_point {
+			float: right;
+			width: 65%;
+			text-align: right;
+		}
+
+#result_rank_btn {
+	position: absolute;
+	top: 23%;
+	right: 2%;
+	z-index: 100;
+}
+#result_announce {
+	position: absolute;
+	top: 68%;
+	left: 5%;
+	width: 90%;
+	text-align: center;
+	color: #fff;
+	line-height: 1;	
+}
+
+/*******************************
+   スクロールバー
+*******************************/
+
+
+.nicescroll-cursors{
+	border:none !important;
+	border-radius: none !important;
+	background-color: #21a876 !important;
+}

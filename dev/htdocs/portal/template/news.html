@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>アニメ「PSYCHO-PASS サイコパス」</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="format-detection" content="telephone=no, email=no">
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/news.css">
+<link rel="stylesheet" href="./css/theme/<?php echo( $user_info['theme_name'] ); ?>.css">
+<script src="./js/jquery.js"></script>
+<script src="./js/common.js"></script>
+</head>
+<body>
+
+<div id="wrapper">
+
+<div id="background">
+<img id="area" src="./img/common/area.png" alt="" width="80" height="80">
+<img id="character" class="theme" src="./img/theme/<?php echo( $user_info['theme_name'] ); ?>/chara.png" alt="" width="651" height="804">
+</div><!-- /background -->
+
+<header id="windowHeader" class="newsList">
+<h1><img class="theme" src="./img/theme/<?php echo( $user_info['theme_name'] ); ?>/tabNewsList.png" alt="NEWS LIST" width="139" height="33"></h1>
+</header>
+
+<div id="window2">
+<article id="contents">
+<?php
+foreach ( $news as $row ) {
+    echo( '<section class="oneNews list">' );
+    if ( $row['ar_flag'] == 1 ) {
+        echo( '<h2 class="newsTitle2"><a class="read" onClick="Unity.call(\'https://' . SERVER_DOMAIN . '/psychopass_portal/newsDetail.php?id=' . $row['id'] . '&ustr=' . $header['UserIdEncode'] . '\');">' . $row['news_title'] . '</a>' );
+    } else {
+        echo( '<h2 class="newsTitle"><a onClick="Unity.call(\'https://' . SERVER_DOMAIN . '/psychopass_portal/newsDetail.php?id=' . $row['id'] . '&ustr=' . $header['UserIdEncode'] . '\');">' . $row['news_title'] . '</a>' );
+    }
+    if ( $row['new_flag'] == 1 ) {
+        echo( '<br/><img class="newImage" src="img/news/new.png" width="30" height="13" style="margin-left:2px;">' );
+    }
+    echo( '</h2>' );
+    echo( '<p class="date">' . sprintf( "%s-%s-%s", substr( $row['disp_date'], 0, 4 ), substr( $row['disp_date'], 4, 2 ), substr( $row['disp_date'], 6, 2 ) ) . '</p>' );
+    echo( '</section>' );
+    echo( '<hr>' );
+}
+?>
+</article>
+</div>
+
+<!-- /wrapper --></div>
+
+<footer>
+
+    <div id="sns">
+        
+        <a onClick="Unity.call('https://twitter.com/share?text=「PSYCHO-PASS サイコパス公式アプリ」好評配信中!!　相棒投票開催中(～3/13 23:59)　http://psycho-pass.cave.co.jp/lp/　#pp4sp #サイコパス);"><img src="./img/common/twitter.png" alt=""></a>
+        <a onClick="Unity.call('https://www.facebook.com/sharer/sharer.php?app_id=309437425817038&u=http%3A%2F%2Fpsycho-pass.cave.co.jp%2F&display=popup&ref=plugin');"><img src="./img/common/facebook.png" alt=""></a>        
+        
+    </div>
+    
+    <div id="Pt">
+        所持ポイント：<span><?php echo( $user_info['point'] ); ?>0</span>pt
+    </div>
+
+</footer>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>エントリー | ケイブシステムズ</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, email=no">
+<link rel="stylesheet" href="../../css/reset.css" media="all">
+<link rel="stylesheet" href="../../css/common.css" media="all">
+<link rel="stylesheet" href="../../css/entry.css" media="all">
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="../../js/common.js"></script>
+</head>
+<body>
+<div id="header" class="clearfix" >
+	<div class="wrapper">
+		<div class="logo">
+			<a href="/" alt="topに戻る"><img src="../../images/logo.png" width="100%"></a>
+		</div>
+		<h1></h1>
+		<ul class="menu">
+			<li><a href="../../news" alt="ニュース">ニュース</a></li>
+			<li><a href="../../service" alt="サービス">サービス</a></li>
+			<li><a href="../../company" alt="会社概要">会社概要</a></li>
+			<li><a href="../../recruit" alt="採用情報">採用情報</a></li>
+			<li><a href="../../contact" alt="お問い合わせ">お問い合わせ</a></li>
+		</ul>
+	</div>
+<!-- header --></div>
+<div id="topimage">
+	<img src="../../images/topimage7.png" alt="topImage" width="100%">
+	<p class="topText">エントリー<span> - entry -</span></p>
+</div>
+<div id="main" class="clearfix">
+<div class="wrapper">
+	<ol class="breadcrumb clearfix">
+		<li><a href="/">トップ</a></li>
+		<li><a href="../">採用情報</a></li>
+		<li>エントリー</li>
+	</ol>
+	<div id="sidebar">
+		<ul>
+			<li><a href="../">採用情報</a></li>
+			<li><a href="../jobs.html">募集職種</a></li>
+			<li><a href="../../contact">お問い合わせ</a></li>
+		</ul>
+		<div class="entry">
+			<a href="./entry.html">エントリーはこちら</a>
+		</div>
+	</div>
+	<div id="mainContent" class="clearfix">
+		<h2>エントリー<span>- entry -</span></h2>
+		<div class="entryform">
+			<form method="post" action="confirm.php">
+			<table>
+				<tr>
+					<th>希望職種</th>
+					<td>
+						<select name="jobType" id="jobType">
+							<option value="" selected="selected">選択してください</option>
+							<option value="php">PHPエンジニア</option>
+							<option value="php">Unityエンジニア</option>
+							<option value="php">フロントエンドエンジニア</option>
+							<option value="php">UIデザイナー</option>
+							<option value="php">イラストレーター</option>
+							<option value="php">プロジェクトマネージャー</option>
+							<option value="php">ディレクター</option>
+							<option value="php">プランナー</option>
+							<option value="php">カスタマーサポート</option>
+							<option value="php">デバッガー</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>氏名</th>
+					<td><input type="text" name="name" placeholder="山田　太郎" required="required"></td>
+				</tr>
+				<tr>
+					<th>氏名（カナ）</th>
+					<td><input type="text" name="name_kana" placeholder="ヤマダ　タロウ" required="required"></td>
+				</tr>
+				<tr>
+					<th>性別</th>
+					<td>
+						<input type="radio" name="sex" value="man" checked="checked">男性
+						<input type="radio" name="sex" value="woman">女性
+					</td>
+				</tr>
+				<tr>
+					<th>生年月日</th>
+					<td>
+						<input type="text" name="year" id="year" maxlength="4" required="required">年 
+						<input type="text" name="month" id="month" maxlength="2" required="required">月 
+						<input type="text" name="day" id="day" maxlength="2" required="required">日 
+					</td>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<td>
+						<input type="mail" name="email" id="email" placeholder="example@example.co.jp" required="required"><br>
+						<input type="mail" name="emailConfirm" id="emailConfirm" placeholder="example@example.co.jp" required="required">
+						<span class="note">※確認のためにもう一度入力してください。</span>
+					</td>
+				</tr>
+				<tr>
+					<th>電話番号</th>
+					<td><input type="tel" name="tel" placeholder="080-1234-5678"></td>
+				</tr>
+				<tr>
+					<th>志望理由<br />（500文字以内）</th>
+					<td><textarea name="reason" id="reason" maxlength="500" rows="8"></textarea></td>
+				</tr>
+				<tr>
+					<th>備考</th>
+					<td><textarea name="other" id="other" rows="8"></textarea></td>
+				</tr>
+			</table>
+			<div class="SubmitForm">
+				<input  class="submit" type="submit" value="確認画面へ進む"/>
+			</div>
+		</form>
+		<!-- entryBox --></div>
+	<!-- mainContent --></div>
+<!-- wrapper --></div>
+<!-- main --></div>
+<div id="facebookArea">
+<!-- facebookArea --></div>
+<div id="footer">
+	<ul class="wrapper">
+		<li><a href="../../sitemap" alt="サイトマップ">サイトマップ</a></li>
+		<li><a href="../../privacy" alt="プライバシーポリシー">プライバシーポリシー</a></li>
+		<li><a href="../../contact"　alt="お問い合わせ">お問い合わせ</a></li>
+		<li>Copyright ©Cave Systems 2015 All Rights Reserved.</li>
+	</ul>
+</div>
+</body>
+</html>

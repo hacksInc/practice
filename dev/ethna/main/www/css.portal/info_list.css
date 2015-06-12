@@ -1,0 +1,110 @@
+html,body {
+	font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+	-webkit-text-size-adjust: 100%;
+	font-size: 13px;
+	width: 100%;
+	height: 100%;
+}
+#wrapper {
+	width: 100%;
+	padding: 2% 0;
+	height: 98%;
+	background: black;
+}
+.content {
+	width: 98%;
+	max-height: 100%;
+	margin-left: 2%;
+	overflow: hidden;
+}
+	.list {
+		width: 92%;
+		margin-top: 3%;
+	}
+	.frame1 {
+		width: 95%;
+		padding: 2% 2% 1% 3%;
+		background-image: url("/psychopass_portal/img/common/frame.png");
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+	}
+	.frame2 {
+		width: 100%;
+		padding-top: 0.5%;
+		background-image: url("/psychopass_portal/img/common/frame2.png");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		position: relative;
+	}
+	.green1 {
+		background-image: url("/psychopass_portal/img/common/green_frame.png");
+	}
+	.green2 {
+		background-image: url("/psychopass_portal/img/common/green_frame2.png");
+	}
+	h2 {
+		width: 80%;
+		padding-left: 6%;
+		padding-right: 14%;
+		color: #fff;
+		background-image: url("/psychopass_portal/img/common/title.png");
+		background-size: 100% 100%;
+	}
+	.text {
+		width: 99%;
+		height: 96%;
+		color: #fff;
+		padding-left: 1%;
+		padding-top: 2%;
+		padding-bottom: 2%;
+	}
+	.banner {
+		margin: 0 auto;
+		width: 80%;
+	}
+	.banner_image {
+		width: 100%;
+		height: 100%;
+	}
+	.date {
+		position: absolute;
+		bottom: 5%;
+		right: 25%;
+		width: 50%;
+		color: #fff;
+	}
+	.detail {
+		float: right;
+		width: 24.8%;
+		height: 6%;
+		border-radius: 5px;
+	}
+	.list:after, .frame2:after {
+		content: ".";
+		display: block; 
+		height: 0; 
+		font-size: 0;	
+		clear: both; 
+		visibility: hidden;
+	}
+
+	#mCSB_1_container {
+	}
+	.mCSB_dragger_bar {
+		background-image: url("/psychopass_portal/img/common/scrollbar.png"); 
+	}
+
+
+/********** タブレット用CSS ***************/
+
+@media screen and (min-width: 500px) {
+	html, body {
+		font-size: 18px;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	html, body {
+		font-size: 32px;
+	}
+}

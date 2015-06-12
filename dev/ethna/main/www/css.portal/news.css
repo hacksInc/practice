@@ -1,0 +1,17 @@
+div#window article#contents section.oneNews img.newImage　{
+	margin-left:10px;vertical-align:text-bottom
+}
+
+div#window article#contents section.oneNews.list　{
+	margin:0
+}
+
+h2.newsTitle,h2.newsTitle2{
+	margin:0 0 5px 0;padding:0 0 0 8px;
+}
+div#window article#contents section.oneNews p.date{
+	margin:0 0 1em 0
+}
+div#window article#contents hr{
+	margin:0 0 1em 0;border-top:1px solid #b1b1b1
+}

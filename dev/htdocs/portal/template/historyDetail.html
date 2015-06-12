@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>アニメ「PSYCHO-PASS サイコパス」</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, email=no">
+<link rel="stylesheet" href="./css/reset.css" media="all">
+<link rel="stylesheet" href="./css/common.css" media="all">
+<link rel="stylesheet" href="./css/content.css" media="all">
+<link rel="stylesheet" href="./css/theme/<?php echo( $user_info['theme_name'] ); ?>.css" media="all">
+<script src="./js/jquery.js"></script>
+<script src="./js/common.js"></script>
+</head>
+<body>
+
+<div id="wrapper">
+
+<div id="background">
+<img id="area" src="./img/common/area.png" alt="" width="80" height="80">
+<img id="character" class="theme" src="./img/theme/<?php echo( $user_info['theme_name'] ); ?>/chara.png" alt="" width="651" height="804">
+</div><!-- /background -->
+
+<!--戻るボタン-->
+        <a id="btn-back" onClick="Unity.call('https://<?php echo( SERVER_DOMAIN ); ?>/psychopass_portal/history.php');"><img src="./img/common/btn_back.png" style="width:80px;height:auto;"></a>
+<!--/戻るボタン-->
+
+<header id="windowHeader" class="newsList">
+<style>
+header#windowHeader.newsList:before{
+	clip:auto;
+}
+</style>
+<h1 style="visibility:hidden;"><img class="theme" src="./img/theme/<?php echo( $user_info['theme_name'] ); ?>/tabRecord.png" alt="NEWS LIST" width="139" height="33"></h1>
+</header>
+
+<div id="window">
+<article id="contents" class="historyDetail">
+<div style="text-align:center;"><?php echo( $event['title'] );?></div>
+<p class="date">2014.12.26 - 2015.02.15</p><br />
+<?php echo( $event['description'] );?><br />
+</article>
+</div>
+<div class="historyDetail"><a class="transparentButtonEvent" onClick="Unity.call('https://<?php echo( SERVER_DOMAIN );?>/psychopass_portal/img/wallpaper/<?php if ( $user_info['user_agent'] == 1 ) {echo( 'iphone' );} else {echo( 'android' );}?>/event/wallpaper1.jpg');">特典を入手</a></div>
+<!-- /wrapper --></div>
+
+</body>
+</html>

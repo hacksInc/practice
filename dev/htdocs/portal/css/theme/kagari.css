@@ -1,0 +1,43 @@
+a{color:#eab602;text-decoration:none}
+div#twitter{border-top:solid 1px #eab602;border-bottom:solid 1px #eab602;background:no-repeat 15px 50% url(../../img/theme/kagari/twitterIcon.png) #2a2206;background-size:18px 15px}
+div#twitter div#marquee p{color:#eab602}
+img#character{position:fixed;bottom:0;width:auto;height:90%}
+div#opening{position:absolute;width:100%;height:100%;padding-left:100px}
+div#opening img#character{position:static}
+header#windowHeader:before{border-bottom:1px solid #eab602}
+div#window{border:1px solid #eab602;border-top:none}
+div#window article#contents section.oneNews h2{color:#eab602}
+div#window article#contents section.oneNews h2.newsTitle{border-left:6px solid #eab602}
+div#window2{border:1px solid #eab602;border-top:none}
+div#window2 article#contents section.oneNews h2{color:#eab602}
+div#window2 article#contents section.oneNews h2.newsTitle{border-left:6px solid #eab602}
+div#informationArea div.youtubeArea{border:2px solid #eab602}
+div#profileWindow{border:1px solid #eab602;border-top:none}
+div#profileWindow div#profileArea div#profile p#name{color:#eab602}
+div#profileWindow div#profileArea div#profile table th{border:1px solid #eab602;background-color:#eab602}
+div#profileWindow div#profileArea div#profile table td{border:1px solid #eab602}
+div#profileWindow div#profileArea div#profile table td#id{color:#eab602}
+div#controlBox a.transparentButton{margin-bottom:20px;border:1px solid #eab602}
+div#pointArea table{border:1px solid #eab602}
+div#pointArea table td{border:1px solid #eab602;background-color:#eab602}
+div#themeNote{border:1px solid #eab602}
+div.onePaper{border:1px solid #eab602}
+div#modal-content{border: 1px solid #eab602;}
+div#footerPoint{border: 1px solid #eab602;}
+footer #Pt{border:solid 1px #eab602;}
+h2.newsTitle2{border-left:6px solid #8c6d01}
+a.read{color:#8c6d01;text-decoration:none}
+div#controlBoxRecord a.transparentButton{margin-bottom:0;border:1px solid #eab602}
+div#controlBox a.transparentButtonEvent{border:1px solid #eab602}
+div.historyDetail{border:1px solid #eab602;}
+div.eventDetail{border:1px solid #eab602;}
+#cap-back{border:1px solid #eab602;}
+div#pr_movie{border: 1.5px solid #eab602;}
+#changeName{border: 1px solid #eab602;}
+#title{border-bottom: 1px solid #eab602; color:#eab602;}
+#nickname{border: 1px solid #eab602;}
+#ruby{border: 1px solid #eab602;}
+#finish{color:#eab602;}
+.changeNamebtn{border: 1px solid #eab602;}
+div#changeNameresult{border: 1px solid #eab602;}
+div#changeNameresult>#finish{color:#eab602;}

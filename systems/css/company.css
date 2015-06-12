@@ -1,0 +1,77 @@
+
+#sidebar {
+	width: 20%;
+	float:left;
+	margin: 0 auto;
+}
+#sidebar ul{
+	border-top: 1px dashed #bbb;
+}
+#sidebar ul li{
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px dashed #bbb;
+}
+#sidebar ul li a{
+	padding: 7% 0;
+	font-weight: bold;
+}
+#sidebar ul li a:hover {
+	color: orange;
+	background: rgba(250,250,250,1);
+}
+#mainContent {
+	float:right;
+	width: 75%;
+}
+h2{
+	border-left: 3px solid rgba(0,120,205,1);
+	padding-left: 3%;
+	margin-right: 5%;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+h2 span {
+	margin-left: 2%;
+	font-size: 80%;
+	color: #bbb;
+}
+table {
+	width: 100%;
+}
+tr {
+	border-bottom: 1px solid #ccc;
+}
+tr:last-child{
+	border-bottom:none;
+}
+th {
+	width: 25%;
+	text-align: center;
+	padding: 10px 0;
+	border-right: 1px solid #ccc;
+	background: rgba(200,200,220,0.3);
+	vertical-align: middle;
+}
+td {
+	width: 75%;
+	text-align: left;
+	padding: 10px 0;
+	padding-left: 3%;
+	vertical-align: middle;
+}
+#company {
+	width: 95%;
+	border: 1px solid #ccc;
+	box-shadow: 0px 0px 10px #ccc;
+	margin-bottom: 60px;
+}
+#service p {
+	margin-bottom: 10px;
+}
+#service p span {
+	display: block;
+	font-weight: bold;
+	font-size: 110%;
+	color: rgba(0,120,205,1);
+}

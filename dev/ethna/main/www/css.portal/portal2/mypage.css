@@ -1,0 +1,102 @@
+#profileArea{
+	position: absolute;
+	top: 15%;
+	left:3%;
+	width: 94%;
+}
+
+#profileImg{
+	display: block;
+	position: absolute;
+	top:18%;
+	left:5%;
+	width:27%;
+}
+
+#nameDecoration{
+	position: absolute;
+	top: 15%;
+	left: 38%;
+	width: 5%;
+}
+#name {
+	position: absolute;
+	top:15%;
+	left:42%;
+	min-width: 35%;
+	border-bottom: 1px solid #fff;
+	padding-left: 3%;
+}
+
+table{
+	position: absolute;
+	top: 30%;
+	left: 38%;
+	width: 60%;
+	font-size: 80%;
+}
+
+th{
+	font-weight: normal;
+	padding: 2% 0;
+	width: 37%;
+}
+th p {
+	border-left: 2px solid #fff;
+	padding-left: 3%;
+	text-align: left;
+}
+td{
+	width: 65%;
+	padding: 2% 0;
+}
+
+#toPage{
+	position: absolute;
+	top: 42%;
+	left: 5%;
+	width:90%;
+}
+#chara1{
+	position: absolute;
+	bottom: 20%;
+	right: 0%;
+	width: 38%;
+	z-index:90;
+}
+#chara2{
+	position: absolute;
+	bottom: 20%;
+	left: 31%;
+	width: 38%;
+	z-index:90;
+}
+#chara3{
+	position: absolute;
+	bottom: 20%;
+	left: 0%;
+	width: 38%;
+	z-index:90;
+}
+
+#chara1_shadow {
+	position: absolute;
+	bottom: 20%;
+	right:11.5%;
+	width:15%;
+	z-index:10;
+}
+#chara2_shadow {
+	position: absolute;
+	bottom: 20%;
+	left:42%;
+	width:15%;
+	z-index:10;
+}
+#chara3_shadow {
+	position: absolute;
+	bottom: 20%;
+	left:11.5%;
+	width:15%;
+	z-index:10;
+}

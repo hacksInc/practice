@@ -1,0 +1,17 @@
+iframe {
+	display: block;
+}
+#pr_movie {
+	position: fixed;
+	top: 7%;
+	left: 3%;
+	color: #fff;
+	border: 1.5px solid #0c95ff;
+}
+.twitter-timeline {
+	position: fixed !important;
+	bottom: 10% !important;
+	left: 5% !important;
+	border: 1.5px solid #0c95ff !important;
+	border-radius: 6px !important;
+}

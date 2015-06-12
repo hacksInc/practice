@@ -1,0 +1,1044 @@
+<?php
+/**
+ *	Pp_ShopManager.php
+ *
+ *	@author 	{$author}
+ *	@package	Pp
+ *	@version	$Id$
+ */
+
+/**
+ *	Pp_ShopManager
+ *
+ *	@author 	{$author}
+ *	@access 	public
+ *	@package	Pp
+ */
+class Pp_ShopManager extends Ethna_AppManager
+{
+	/** プラットフォームID：Apple (AppStore) */
+	const PLATFORM_APPLE = 1;
+
+	/** プラットフォームID：Google (Google Play) */
+	const PLATFORM_GOOGLE = 2;
+
+	/** 魔法のメダルをあらわすダミーのitem_id */
+	const MEDAL_DUMMY_ITEM_ID = -1;
+
+	/** ガチャの種類： */
+	const GACHA_TYPE_BRONZE  = 1;//ブロンズガチャ
+	const GACHA_TYPE_GOLD	 = 2;//ゴールドガチャ
+	const GACHA_TYPE_MEDAL	 = 3;//マジカルメダルガチャ
+	const GACHA_TYPE_EVENT	 = 4;//イベントガチャ
+	const GACHA_TYPE_MEDAL11 = 5;//マジカルメダル11連ガチャ
+	const GACHA_TYPE_EVENT11 = 6;//イベント11連ガチャ
+
+	/** ガチャの消費物： */
+	const GACHA_USE_TYPE_BRONZE_TICKET = 1;//ブロンズチケット
+	const GACHA_USE_TYPE_GOLD_TICKET   = 2;//ゴールドチケット
+	const GACHA_USE_TYPE_MAGICAL_MEDAL = 3;//マジカルメダル
+
+	/** 消費タイプ：（番号はm_consume_price.consume_idと揃える） */
+	const CONSUME_TYPE_CONTINUE 		  = 2; //コンテニュー
+	const CONSUME_TYPE_RECOVER_STAMINA	  = 3; //体力回復
+	const CONSUME_TYPE_EXPAND_MONSTER_BOX = 4; //モンスターボックス拡張
+	const CONSUME_TYPE_EXPAND_FRIEND_MAX  = 5; //フレンド拡張
+	const CONSUME_TYPE_CONTINUE_RAID      = 6; //レイドコンティニュー
+	const CONSUME_TYPE_RECOVER_RAID_POINT = 7; //レイドポイント回復
+
+	public $gacha_use_types = array(
+		self::GACHA_TYPE_BRONZE  => self::GACHA_USE_TYPE_BRONZE_TICKET,
+		self::GACHA_TYPE_GOLD	 => self::GACHA_USE_TYPE_GOLD_TICKET  ,
+		self::GACHA_TYPE_MEDAL	 => self::GACHA_USE_TYPE_MAGICAL_MEDAL,
+		self::GACHA_TYPE_EVENT	 => self::GACHA_USE_TYPE_MAGICAL_MEDAL,
+		self::GACHA_TYPE_MEDAL11 => self::GACHA_USE_TYPE_MAGICAL_MEDAL,
+		self::GACHA_TYPE_EVENT11 => self::GACHA_USE_TYPE_MAGICAL_MEDAL,
+	);
+
+	/** ガチャ表示ステータス：通常 */
+	const GACHA_DISP_STS_NORMAL = 0;
+
+	/** ガチャ表示ステータス：表示テスト */
+	const GACHA_DISP_STS_TEST	= 1;
+
+	/** ガチャ表示ステータス：表示一時停止 */
+	const GACHA_DISP_STS_PAUSE	= 2;
+
+	/** ガチャ表示ステータス：表示終了 */
+	const GACHA_DISP_STS_END	= 3;
+
+	/** ガチャバナーの遷移先Type：なし */
+	const GACHA_BANNER_TYPE_NONE = 0;
+	
+	/** ガチャバナーの遷移先Type：クエストマップ */
+	const GACHA_BANNER_TYPE_QUEST_MAP = 1;
+
+	/** ガチャバナーの遷移先Type：イベントクエスト */
+	const GACHA_BANNER_TYPE_EVENT_QUEST = 2;
+
+	/** ガチャバナーの遷移先Type：ショップ（ガチャ） */
+	const GACHA_BANNER_TYPE_SHOP_GACHA = 3;
+
+	/** ガチャバナーの遷移先Type：ショップ（アイテム） */
+	const GACHA_BANNER_TYPE_SHOP_ITEM = 4;
+
+	/** ガチャバナーの遷移先Type：ショップ（マジカルメダル） */
+	const GACHA_BANNER_TYPE_SHOP_MEDAL = 5;
+
+	/** ガチャバナーの遷移先Type：勲章 */
+	const GACHA_BANNER_TYPE_ACHIEVEMENT = 6;
+
+	/** ガチャバナーの遷移先Type：ランキング */
+	const GACHA_BANNER_TYPE_RANKING = 7;
+
+	/** ガチャバナーの遷移先Type：URL */
+	const GACHA_BANNER_TYPE_URL = 8;
+
+	/** ガチャバナーの遷移先Type：WEBVIEW */
+	const GACHA_BANNER_TYPE_WEBVIEW = 9;
+
+	/**
+	 * app_idからプラットフォームIDを取得する
+	 *
+	 * @param int $app_id ケイブ決済サーバapp_id
+	 * @return int プラットフォームID（self::PLATFORM_～の値）
+	 */
+	function getPlatformIdFromAppId($app_id)
+	{
+		$user_m = $this->backend->getManager('User');
+
+		foreach (array(
+			Pp_UserManager::OS_IPHONE => self::PLATFORM_APPLE,
+			Pp_UserManager::OS_ANDROID => self::PLATFORM_GOOGLE
+		) as $ua => $platform) {
+			if ($user_m->getPaymentServerAppIdFromUserAgent($ua) == $app_id) {
+				return $platform;
+			}
+		}
+	}
+
+	/**
+	 * User-Agent種別からプラットフォームIDを取得する
+	 *
+	 * @param int $ua User-Agent種別
+	 * @return int プラットフォームID（self::PLATFORM_～の値）
+	 */
+	function getPlatformIdFromUa($ua)
+	{
+		$user_m = $this->backend->getManager('User');
+
+		foreach (array(
+			Pp_UserManager::OS_IPHONE => self::PLATFORM_APPLE,
+			Pp_UserManager::OS_ANDROID => self::PLATFORM_GOOGLE
+		) as $tmp_ua => $platform) {
+			if ($tmp_ua == $ua) {
+				return $platform;
+			}
+		}
+	}
+
+	/**
+	 * ショップ情報一覧の連想配列を取得する
+	 *
+	 * @param int $platform_id プラットフォームID
+	 * @return array ショップ情報一覧（ショップIDがキー）
+	 */
+	function getMasterShopAssoc($platform_id)
+	{
+		static $pool = array();
+
+		if (!isset($pool[$platform_id])) {
+			$date = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+			$sql = "SELECT s.shop_id AS id, s.shop_id,"
+				 . " s.shop_type, s.buy_limit_num, s.item_id,"
+				 . " s.name_ja, s.name_en, s.name_es, p.date_start, p.date_end"
+				 . " FROM m_shop s, m_shop_platform p"
+				 . " WHERE s.shop_id = p.shop_id"
+				 . " AND p.platform_id = ?"
+				 . " AND p.date_start <= ? AND ? < p.date_end"
+				 . " ORDER BY s.sort_list";
+			$param = array($platform_id, $date, $date);
+			$pool[$platform_id] = $this->db_r->db->GetAssoc($sql, $param);
+		}
+
+		return $pool[$platform_id];
+	}
+
+	/**
+	 * API応答用のショップ情報一覧を取得する
+	 *
+	 * @param int $platform_id プラットフォームID
+	 * @param int $shop_id ショップID
+	 * @return array ショップ情報一覧（APIの戻り値と同じフォーマット）
+	 */
+	function getMasterShopListForApiResponse($platform_id, $shop_id = null)
+	{
+		$list = array();
+		foreach ($this->getMasterShopAssoc($platform_id) as $key => $row) {
+			if ($shop_id && ($shop_id != $row['shop_id'])) {
+				continue;
+			}
+
+			$list[] = $row;
+		}
+
+		return $list;
+	}
+
+	/**
+	 * プロダクトIDからマジカルメダル販売用情報を取得する
+	 *
+	 * @param string $product_id プロダクトID
+	 * @return array マジカルメダル販売用情報（m_toll_medalテーブルのカラム名がキー）
+	 */
+	function getMasterTollMedalByProductId($product_id)
+	{
+		static $cache = array();
+ 		if (!isset($cache[$product_id])) {
+			$param = array($product_id);
+			$sql = "SELECT * FROM m_toll_medal WHERE product_id = ?";
+			$cache[$product_id] = $this->db_r->GetRow($sql, $param);
+		}
+
+		return $cache[$product_id];
+	}
+
+	/**
+	 * API応答用のマジカルメダル販売用リストを取得する
+	 *
+	 * @param int $ua User-Agent種別
+	 * @return array マジカルメダル販売用リスト（APIの戻り値と同じフォーマット）
+	 */
+	function getMasterTollMedalListForApiResponse($ua)
+	{
+		$now = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+		$param = array($ua, $now, $now);
+		$sql = "SELECT *"
+			 . " FROM m_toll_medal"
+			 . " WHERE ua = ?"
+			 . " AND start_date <= ?"
+			 . " AND ? < end_date"
+			 . " ORDER BY sort, toll_medal_id";
+
+		return $this->db_r->GetAll($sql, $param);
+	}
+
+	/**
+	 * ショップ詳細情報一覧を取得する
+	 *
+	 * @param int $platform_id プラットフォームID
+	 * @return array ショップ詳細情報一覧
+	 */
+	function getMasterShopDetailList($platform_id)
+	{
+		static $pool = array();
+
+		if (!isset($pool[$platform_id])) {
+			$date = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+			$sql = "SELECT d.shop_id, d.item_id,"
+				 . " i.name_ja, i.name_en, i.name_es,"
+				 . " i.description_ja, i.description_en, i.description_es,"
+				 . " d.num, d.price, d.date_start, d.date_end"
+				 . " FROM m_shop_detail d LEFT OUTER JOIN m_item i"
+				 . " ON d.item_id = i.item_id"
+				 . " WHERE d.platform_id = ?"
+				 . " AND d.date_start <= ? AND ? < d.date_end"
+				 . " ORDER BY d.shop_id, d.item_id, d.num";
+			$param = array($platform_id, $date, $date);
+			$pool[$platform_id] = $this->db_r->GetAll($sql, $param);
+		}
+
+		return $pool[$platform_id];
+	}
+
+	/**
+	 * API応答用のショップ詳細情報一覧を取得する
+	 *
+	 * @param int $platform_id プラットフォームID
+	 * @return array ショップ詳細情報一覧（APIの戻り値と同じフォーマット）
+	 */
+	function getMasterShopDetailListForApiResponse($platform_id)
+	{
+		$list = array();
+		$prev = null;
+		foreach ($this->getMasterShopDetailList($platform_id) as $row) {
+			if ($row['item_id'] == self::MEDAL_DUMMY_ITEM_ID) {
+				$row['name_ja'] = 'マジカルメダル';
+			} else if ($prev &&
+				($prev['shop_id'] == $row['shop_id']) &&
+				($prev['item_id'] == $row['item_id'])
+			) {
+				// 魔法のメダル以外のアイテムは、最初の1件しか取得しない。
+				// DB上での単価の調整や、買える個数を飛び番にする事はできなくなったので注意。
+				// (2013/3/26)
+				continue;
+			}
+
+			$list[] = $row;
+			$prev = $row;
+		}
+
+		return $list;
+	}
+
+	/**
+	 * 有効なショップ詳細情報か？
+	 *
+	 * 引数で指定されたショップ詳細情報の組み合わせが現時点で有効かチェックする
+	 * @param int $platform_id
+	 * @param int $shop_id
+	 * @param int $item_id
+	 * @param int $num
+	 * @param int $price
+	 * @return boolean 真偽
+	 */
+	function isValidShopDetail($shop_id, $platform_id, $item_id, $num, $price)
+	{
+		$list = $this->getMasterShopDetailList($platform_id);
+		foreach ($list as $row) {
+			if (($row['shop_id'] == $shop_id) &&
+				($row['item_id'] == $item_id) &&
+				($row['num']	 == $num) &&
+				($row['price']	 == $price)
+			) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * ユーザーの魔法のメダル消費情報を記録する
+	 *
+	 * @param int $user_id
+	 * @param int $shop_id ショップID
+	 * @param int $item_id アイテムID
+	 * @param int $num 個数
+	 * @param int $price 価格
+	 * @return bool|object 成功時:true, 失敗時:Ethnaエラーオブジェクト
+	 */
+/*
+	function logUserShop($user_id, $shop_id, $item_id, $num, $price)
+	{
+		$date_use = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+		$param = array($date_use, $user_id, $shop_id, $item_id, $num, $price);
+		$sql = "INSERT INTO log_user_shop(date_use, user_id, shop_id, item_id, num, price)"
+			 . " VALUES(?, ?, ?, ?, ?, ?)";
+
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+					$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+
+		return true;
+	}
+*/
+
+	/**
+	 * 開催中のガチャ一覧を取得する
+	 * 
+	 * @param string $date 現在日時(Y-m-d H:i:s)
+	 * @param int $ua User-Agent種別(const Pp_UserManager::OS_～～)
+	 * @return array
+	 */
+	function getGachaList($date, $ua = null)
+	{
+		$param = array($date, $date);
+		$sql = "SELECT * FROM m_gacha_list"
+			 . " WHERE date_start <= ? AND date_end > ?";
+		
+		if ($ua !== null) {
+			$user_m = $this->backend->getManager('User');
+		
+			$param[] = $ua;
+			$sql .= " AND (ua = " . Pp_UserManager::OS_IPHONE_ANDROID . " OR ua = ?)";
+		}
+		
+		$sql .= " ORDER BY sort_list";
+
+		return $this->db_r->GetAll($sql, $param);
+	}
+
+	/**
+	 * 開催中のガチャ一覧を取得する（クライアント側アプリAPI用）
+	 *
+	 * @param string $date 現在日時(Y-m-d H:i:s)
+	 * @param int $ua User-Agent種別(const Pp_UserManager::OS_～～)
+	 * @return array
+	 */
+	function getGachaListForApi($date, $ua = null)
+	{
+		$all = $this->getGachaList($date, $ua);
+		if (!is_array($all)) {
+			return $all;
+		}
+
+		$list = array();
+		foreach ($all as $row) {
+			if ($this->isGachaDataAvailable($row, $date, array(self::GACHA_DISP_STS_NORMAL))) {
+				$list[] = array(
+					'gacha_id'	 => $row['gacha_id'],
+					'type'		 => $row['type'],
+					'price' 	 => $row['price'],
+					'comment'	 => $row['comment'],
+					'url_ja'	 => $row['url_ja'],
+					'url_en'	 => $row['url_en'],
+					'url_es'	 => $row['url_es'],
+					'sort_list'  => $row['sort_list'],
+					'date_start' => $row['date_start'],
+					'date_end'	 => $row['date_end'],
+					'banner_type' => $row['banner_type'],
+					'banner_url' => $row['banner_url'],
+					'width' 	 => $row['width'],
+					'height'	 => $row['height'],
+					'position_y' => $row['position_y'],
+					'position_x' => $row['position_x'],
+				);
+			}
+		}
+
+		return $list;
+	}
+
+	/**
+	 * ガチャID指定で1件取得する
+	 */
+	function getGachaListId($gacha_id)
+	{
+		$param = array($gacha_id);
+		$sql = "SELECT * FROM m_gacha_list"
+			 . " WHERE gacha_id = ?";
+
+		return $this->db->GetRow($sql, $param);
+	}
+
+	/**
+	 * ガチャバナー画像に使用可能なガチャIDか
+	 *
+	 * @param int $gacha_id ガチャID
+	 * @param string $date 現在日時(Y-m-d H:i:s) 省略可
+	 * @return bool 真否
+	 */
+	function isGachabannerGachaIdAvailable($gacha_id, $date = null)
+	{
+		if (!$date) {
+			$date = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+		}
+
+		//指定されたガチャID
+		$gacha_data = $this->getGachaListId($gacha_id);
+		if (!is_array($gacha_data)) {
+			return false;
+		}
+
+		//公開期間中か？
+		return $this->isGachaDataAvailable($gacha_data, $date, array(self::GACHA_DISP_STS_NORMAL));
+	}
+
+	/**
+	 * 使用可能なガチャデータか？
+	 *
+	 * 公開期間や表示ステータスをチェックして、表示してよいガチャデータか判別する
+	 * @param array $gacha_data ガチャデータ（m_gacha_listテーブルの1行分のデータ（m_gacha_listテーブルのカラム名がキー））
+	 * @param string $date 現在日時(Y-m-d H:i:s) 省略可
+	 * @param array $disp_sts_arr 許可する表示ステータスの配列
+	 * @param int $ua User-Agent種別(const Pp_UserManager::OS_～～)
+	 * @return boolean
+	 */
+	function isGachaDataAvailable($gacha_data, $date = null, $disp_sts_arr = null, $ua = null)
+	{
+		if (!$date) {
+			$date = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+		}
+
+		if (!is_array($gacha_data)) {
+			return false;
+		}
+
+		//公開期間中か？
+		if (strcmp($gacha_data['date_start'], $date) == 1 || strcmp($gacha_data['date_end'], $date) == -1) {
+			return false;
+		}
+
+		//表示して良い表示ステータスか？
+		if (is_array($disp_sts_arr) && (count($disp_sts_arr) > 0)) {
+			if (!in_array($gacha_data['disp_sts'], $disp_sts_arr)) {
+				return false;
+			}
+		}
+
+		//User-Agent種別が適正か？
+		$user_m = $this->backend->getManager('User');
+		if ($ua !== null) {
+			if (($gacha_data['ua'] != Pp_UserManager::OS_IPHONE_ANDROID) && 
+				($gacha_data['ua'] != $ua)
+			) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
+	/**
+	 * ガチャID指定でガチャのカテゴリ一覧を取得する
+	 */
+	function getGachaCatgoryList($gacha_id)
+	{
+		$param = array($gacha_id);
+		$sql = "SELECT rarity, weight FROM m_gacha_category"
+			 . " WHERE gacha_id = ?"
+			 . " ORDER BY rarity";
+
+		return $this->db_r->GetAll($sql, $param);
+	}
+
+	/**
+	 * ガチャID指定でおまけガチャのカテゴリ一覧を取得する
+	 */
+	function getGachaExtraCatgoryList($gacha_id)
+	{
+		$param = array($gacha_id);
+		$sql = "SELECT rarity, weight FROM m_gacha_extra_category"
+			 . " WHERE gacha_id = ?"
+			 . " ORDER BY rarity";
+
+		return $this->db_r->GetAll($sql, $param);
+	}
+
+	/**
+	 * ガチャID指定でガチャのアイテムリスト一覧を取得する
+	 */
+	function getGachaItemList($gacha_id)
+	{
+		$param = array($gacha_id);
+		$sql = "SELECT rarity, monster_id, monster_lv, weight FROM m_gacha_itemlist"
+			 . " WHERE gacha_id = ?"
+			 . " ORDER BY rarity, monster_id, monster_lv";
+
+		return $this->db_r->GetAll($sql, $param);
+	}
+
+	/**
+	 * ガチャID指定でおまけガチャのアイテムリスト一覧を取得する
+	 */
+	function getGachaExtraItemList($gacha_id)
+	{
+		$param = array($gacha_id);
+		$sql = "SELECT rarity, monster_id, monster_lv, weight FROM m_gacha_extra_itemlist"
+			 . " WHERE gacha_id = ?"
+			 . " ORDER BY rarity, monster_id, monster_lv";
+
+		return $this->db_r->GetAll($sql, $param);
+	}
+
+	/**
+	 * ガチャID・レアリティ指定でガチャのアイテムリスト一覧を取得する
+	 */
+	function getGachaItemListRare($gacha_id, $rarity)
+	{
+		$param = array($gacha_id, $rarity);
+		$sql = "SELECT monster_id, monster_lv, weight FROM m_gacha_itemlist"
+			 . " WHERE gacha_id = ? AND rarity = ?"
+			 . " ORDER BY monster_lv, monster_id";
+
+		return $this->db_r->GetAll($sql, $param);
+	}
+
+	/**
+	 * ガチャID・レアリティ指定でおまけガチャのアイテムリスト一覧を取得する
+	 */
+	function getGachaExtraItemListRare($gacha_id, $rarity)
+	{
+		$param = array($gacha_id, $rarity);
+		$sql = "SELECT monster_id, monster_lv, weight FROM m_gacha_extra_itemlist"
+			 . " WHERE gacha_id = ? AND rarity = ?"
+			 . " ORDER BY monster_lv, monster_id";
+
+		return $this->db_r->GetAll($sql, $param);
+	}
+
+	/**
+	 * ガチャID指定でガチャのオーダー情報を１件取得する
+	 */
+	function getGachaOrderInfo($gacha_id)
+	{
+		$param = array($gacha_id);
+		$sql = "SELECT * FROM t_gacha_order_info"
+			 . " WHERE gacha_id = ?";
+
+		return $this->db->GetRow($sql, $param);
+	}
+	function getGachaOrderInfo4Update($gacha_id)
+	{
+		$param = array($gacha_id);
+		$sql = "SELECT * FROM t_gacha_order_info"
+			 . " WHERE gacha_id = ? FOR UPDATE";
+
+		return $this->db->GetRow($sql, $param);
+	}
+
+	/**
+	 * ガチャのオーダー情報を更新する
+	 */
+	function setGachaOrderInfo($columns)
+	{
+		$affected_rows = 0;
+		// UPDATE実行
+		$param = array_values($columns);
+		$param[] = $columns['gacha_id'];
+		$sql = "UPDATE t_gacha_order_info SET "
+			 . implode("=?,", array_keys($columns)) . "=? "
+			 . " WHERE gacha_id = ?";
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		// 影響した行数を確認
+		$affected_rows = $this->db->db->affected_rows();
+		if ($affected_rows > 1) {
+			return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+		}
+		if ($affected_rows == 0) {
+			// INSERT実行
+			$param = array($columns['gacha_id'], $columns['active_order_id'], $columns['created_order_id'], $columns['list_idx']);
+			$sql = "INSERT INTO t_gacha_order_info(gacha_id,active_order_id,created_order_id,list_idx,date_created)"
+				 . " VALUES(?, ?, ?, ?, NOW())";
+			$this->backend->logger->log(LOG_DEBUG, "INSERT INTO t_gacha_order_info=".print_r($param,true));
+			if (!$this->db->execute($sql, $param)) {
+				return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+					$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * ガチャのオーダー情報をインクリメント更新する
+	 */
+	function incGachaOrderInfo($gacha_id)
+	{
+		$param = array($gacha_id);
+		$sql = "UPDATE t_gacha_order_info SET list_idx=list_idx+1, gacha_cnt=gacha_cnt+1"
+			 . " WHERE gacha_id = ?";
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		// 影響した行数を確認
+		$affected_rows = $this->db->db->affected_rows();
+		if ($affected_rows != 1) {
+			return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+		}
+		return true;
+	}
+
+	/**
+	 * ガチャIDとオーダーID指定でガチャのドローリストから未使用１件取得する
+	 */
+	function getGachaDraw($gacha_id, $order_id)
+	{
+		$param = array($gacha_id, $order_id);
+		$sql = "SELECT * FROM t_gacha_draw_list"
+			 . " WHERE gacha_id = ? AND order_id = ? AND date_draw IS NULL"
+			 . " ORDER BY list_id LIMIT 1";
+
+		return $this->db->GetRow($sql, $param);
+	}
+
+	/**
+	 * ガチャIDとオーダーIDとリストID指定でガチャのドローリストから１件取得する
+	 */
+	function getGachaDrawListId($gacha_id, $order_id, $list_id)
+	{
+		$param = array($gacha_id, $order_id, $list_id);
+		$sql = "SELECT * FROM t_gacha_draw_list"
+			 . " WHERE gacha_id = ? AND order_id = ? AND list_id = ? AND date_draw IS NULL";
+
+		return $this->db->GetRow($sql, $param);
+	}
+	function getGachaDrawListId4Update($gacha_id, $order_id, $list_id)
+	{
+		$param = array($gacha_id, $order_id, $list_id);
+		$sql = "SELECT * FROM t_gacha_draw_list"
+			 . " WHERE gacha_id = ? AND order_id = ? AND list_id = ? FOR UPDATE";
+
+		return $this->db->GetRow($sql, $param);
+	}
+
+	/**
+	 * ガチャのドローリストを更新する
+	 */
+	function setGachaDraw($columns)
+	{
+		$affected_rows = 0;
+		// UPDATE実行
+		$param = array_values($columns);
+		$param[] = $columns['gacha_id'];
+		$param[] = $columns['order_id'];
+		$param[] = $columns['list_id'];
+		$sql = "UPDATE t_gacha_draw_list SET "
+			 . implode("=?,", array_keys($columns)) . "=? "
+			 . " WHERE gacha_id = ? AND order_id = ? AND list_id = ?";
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		// 影響した行数を確認
+		$affected_rows = $this->db->db->affected_rows();
+		if ($affected_rows > 1) {
+			return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+		}
+		if ($affected_rows == 0) {
+			// INSERT実行
+			$param = array($columns['gacha_id'], $columns['order_id'], $columns['list_id'], $columns['rarity'], $columns['monster_id'], $columns['user_id'], $columns['date_draw']);
+			$sql = "INSERT INTO t_gacha_draw_list(gacha_id,order_id,list_id,rarity,monster_id,user_id,date_created,date_draw)"
+				 . " VALUES(?, ?, ?, ?, ?, ?, NOW(), ?)";
+			if (!$this->db->execute($sql, $param)) {
+				return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+					$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+			}
+		}
+		return true;
+	}
+
+
+	/**
+	 * ガチャのリストを生成する
+	 */
+	function makeGachaList($gacha_id, $deck)
+	{
+		//カテゴリ一覧を取得
+		$category = $this->getGachaCatgoryList($gacha_id);
+		//レアリティの数だけループ
+		$deck_one = array();
+		foreach($category as $ckey => $cval) {
+			$rarity = $cval['rarity'];
+			$cweight = $cval['weight'];
+			//レアリティ指定でアイテム一覧を取得
+			$item_rare = $this->getGachaItemListRare($gacha_id, $rarity);
+			//指定レアリティのアイテムの数だけループ
+			foreach($item_rare as $ikey => $ival) {
+				$monster_id = $ival['monster_id'];
+				$iweight = $ival['weight'];
+				//各ウェイトの分だけデッキに追加する
+				//(2013/11/6)ロジックの記述をなるべくまとめる為に、下記の計算と同じ処理を行う function computeNumberOfMonstersPerGachaItem を用意した。改修する機会があったら左記関数を呼ぶようにしても良いかも。
+				$total_wait = floor($iweight * $cweight / 10000);
+				for ($i = 0; $i < $total_wait; $i++) {
+					$data = array('rarity' => $rarity, 'monster_id' => $monster_id);
+					$deck_one[] = $data;
+				}
+			}
+		}
+		//指定されたデッキの数だけデータを加える
+		$deck_all = array();
+		for ($i = 0; $i < $deck; $i++) {
+			foreach($deck_one as $dkey => $dval) {
+				$deck_all[] = array('rarity' => $dval['rarity'], 'monster_id' => $dval['monster_id']);
+			}
+		}
+		//シャッフルする
+		shuffle($deck_all);
+
+		return $deck_all;
+	}
+
+	/**
+	 * ガチャアイテム毎のモンスター数（枚数）を計算する
+	 *
+	 * @param int $iweight ガチャアイテムのウェイト（m_gacha_itemlistテーブルのweightカラム）
+	 * @param int $cweight ガチャカテゴリのウェイト（m_gacha_categoryテーブルのweightカラム）
+	 * @return int モンスター数（枚数）
+	 */
+	function computeNumberOfMonstersPerGachaItem($iweight, $cweight)
+	{
+		return floor($iweight * $cweight / 10000);
+	}
+
+	/**
+	 * メダル消費量リストを取得する
+	 */
+	function getMasterConsumePriceList()
+	{
+		$cache_m =& Ethna_CacheManager::getInstance('memcache');
+		$cacheData = $cache_m->get('master_consume_price', 1800);
+
+		if ($cacheData && !Ethna::isError($cacheData)) {
+			return $cacheData;
+		}
+
+		$data = $this->db_r->GetAll("SELECT * FROM m_consume_price");
+		if ($data) {
+			$cache_m->set('master_consume_price', $data);
+		}
+		return $data;
+	}
+
+	/**
+	 * もし有効ならメダル消費量リストから1件取得する
+	 */
+	function getMasterConsumePriceIfAvailable($consume_id, $price = null)
+	{
+		$now = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+		$param = array($consume_id, $now, $now);
+		$sql = "SELECT * FROM m_consume_price WHERE consume_id = ? AND start_date <= ? AND ? < end_date";
+		$row = $this->db_r->GetRow($sql, $param);
+		if (!$row || Ethna::isError($row)) {
+			return $row;
+		}
+
+		if ($price !== null) {
+			if ($row['price'] != $price) {
+				return Ethna::raiseError("price mismatch.", E_USER_ERROR);
+			}
+		}
+
+		return $row;
+	}
+
+	/**
+	 * 年齢別の月額制限金額リストを取得する
+	 */
+	function getMasterAgeVerificationList()
+	{
+		return $this->db_r->GetAll("SELECT * FROM m_age_verification");
+	}
+
+	/**
+	 * 消費タイプに応じたKPIタグ送信を行う
+	 *
+	 * 体力回復の利用回数
+	 *	 Apple-jgm-stamina_recovery_count
+	 *	 Google-jgm-stamina_recovery_count
+	 * コンテニューの利用回数
+	 *	 Apple-jgm-continue_count
+	 *	 Google-jgm-continue_count
+	 * BOX拡張の利用回数
+	 *	 Apple-jgm-box_expansion_count
+	 *	 Google-jgm-box_expansion_count
+	 * 体力回復を有料マジカルメダルで購入した総額
+	 *	 Apple-jgm-stamina_recovery_medal
+	 *	 Google-jgm-stamina_recovery_medal
+	 * 体力回復を無料マジカルメダルで購入した総額
+	 *	 Apple-jgm-stamina_recovery_freemedal
+	 *	 Google-jgm-stamina_recovery_freemedal
+	 * コンテニューを有料マジカルメダルで購入した総額
+	 *	 Apple-jgm-continue_medal
+	 *	 Google-jgm-continue_medal
+	 * コンテニューを無料マジカルメダルで購入した総額
+	 *	 Apple-jgm-continue_freemedal
+	 *	 Google-jgm-continue_freemedal
+	 * BOX拡張を有料マジカルメダルで購入した総額
+	 *	 Apple-jgm-box_expansion_medal
+	 *	 Google-jgm-box_expansion_medal
+	 * BOX拡張を無料マジカルメダルで購入した総額
+	 *	 Apple-jgm-box_expansion_freemedal
+	 *	 Google-jgm-box_expansion_freemedal
+	 * @param int $user_id ユーザID
+	 * @param int $type 消費タイプ(const CONSUME_TYPE_～)
+	 * @param array $consumption 消費量 array('medal' => 有料分, 'service_point' => 無料分)
+	 */
+	function setConsumeTypeKpi($user_id, $type, $consumption = null)
+	{
+		$kpi_m = $this->backend->getManager('Kpi');
+
+		switch ($type) {
+			// typeが3（体力回復）の場合：
+			case self::CONSUME_TYPE_RECOVER_STAMINA:
+				$token = "-jgm-stamina_recovery_";
+				break;
+
+			// typeが2（コンテニュー）の場合
+			case self::CONSUME_TYPE_CONTINUE:
+				$token = "-jgm-continue_";
+				break;
+
+			// typeが4（モンスターボックス拡張）の場合
+			case self::CONSUME_TYPE_EXPAND_MONSTER_BOX:
+				$token = "-jgm-box_expansion_";
+				break;
+
+			// typeが5（フレンド拡張）の場合
+			case self::CONSUME_TYPE_EXPAND_FRIEND_MAX:
+				// KPIタグ無し
+				// OK
+				return;
+
+			default:
+				// ERROR
+				$this->backend->logger->log(LOG_WARNING, "Unknown type. [" . $type . "]");
+				return;
+		}
+
+		$platform = $kpi_m->getPlatform($user_id);
+
+		$kpi_m->log($platform . $token . "count", 2, 1, "", $user_id, "", "", "");
+
+		if (is_array($consumption)) foreach (array(
+			'medal' => 'medal',
+			'service_point' => 'freemedal',
+		) as $key => $tail) {
+			if (isset($consumption[$key]) && $consumption[$key]) {
+				$kpi_m->log($platform . $token . $tail, 1, 1, "", $user_id, $consumption[$key], "", "");
+			}
+		}
+	}
+
+	/**
+	 * ガチャの消費物に応じたKPIタグ送信を行う
+	 *
+	 * @param int $user_id ユーザID
+	 * @param int $use_type ガチャの消費物(const GACHA_USE_TYPE_～)
+	 */
+	function setGachaUseTypeKpi($user_id, $use_type)
+	{
+		$kpi_m = $this->backend->getManager('Kpi');
+
+		switch ($use_type) {
+			case self::GACHA_USE_TYPE_BRONZE_TICKET:
+				// ブロンズガチャの利用数
+				$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-bronze_gacha_count",2,1,"",$user_id,"","","");
+				break;
+
+			case self::GACHA_USE_TYPE_GOLD_TICKET:
+				// ゴールドガチャの利用数
+				$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-gold_gacha_count",2,1,"",$user_id,"","","");
+				break;
+
+			case self::GACHA_USE_TYPE_MAGICAL_MEDAL:
+				// マジカルメダルガチャの利用数
+				$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-magicalmedal_gacha_count",2,1,"",$user_id,"","","");
+				break;
+		}
+	}
+
+	/**
+	 * ガチャのマジカルメダル消費量に応じたKPIタグ送信を行う
+	 *
+	 * ガチャID3以降のガチャを有料マジカルメダルで購入した総額
+	 *	 Apple-jgm-magicalmedal_gacha_medal
+	 *	 Google-jgm-magicalmedal_gacha_medal
+	 * ガチャID3以降のガチャを無料マジカルメダルで購入した総額
+	 *	 Apple-jgm-magicalmedal_gacha_freemedal
+	 *	 Google-jgm-magicalmedal_gacha_freemedal
+	 * @param int $user_id ユーザID
+	 * @param int $gacha_id ガチャID
+	 * @param array $consumption 消費量 array('medal' => 有料分, 'service_point' => 無料分)
+	 */
+	function setGachaMedalConsumptionKpi($user_id, $gacha_id, $consumption)
+	{
+		$kpi_m = $this->backend->getManager('Kpi');
+
+		if ($gacha_id < 3) {
+			// OK
+			return;
+		}
+
+		if (!$consumption) {
+			// OK
+			return;
+		}
+
+		$platform = $kpi_m->getPlatform($user_id);
+
+		if (is_array($consumption)) foreach (array(
+			'medal' => 'medal',
+			'service_point' => 'freemedal',
+		) as $key => $tail) {
+			if (isset($consumption[$key]) && $consumption[$key]) {
+				$kpi_m->log($platform . '-jgm-magicalmedal_gacha_' . $tail, 1, 1, "", $user_id, $consumption[$key], "", "");
+			}
+		}
+	}
+
+	/**
+	 * プロダクトIDに応じたKPIタグ送信を行う
+	 *
+	 * @param int $user_id ユーザID
+	 * @param string $product_id プロダクトID（m_toll_medalテーブルのproduct_idカラムの内容）
+	 */
+	function setTollMedalKpi($user_id, $product_id)
+	{
+		$kpi_m = $this->backend->getManager('Kpi');
+
+		$master_toll_medal = $this->getMasterTollMedalByProductId($product_id);
+		if (!is_array($master_toll_medal)) {
+			return;
+		}
+
+		$point = $master_toll_medal['point_of_toll'] + $master_toll_medal['point_of_free'];
+		$price = $master_toll_medal['price'];
+
+		if (($point == 100) && ($price == 100)) {
+			// マジカルメダル100個(100円)購入数
+			$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-magicalmedal_sales_100",4,1,"",$user_id,$price,"","");
+		} else if (($point == 300) && ($price == 300)) {
+			// マジカルメダル300個(300円)購入数
+			$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-magicalmedal_sales_300",4,1,"",$user_id,$price,"","");
+		} else if (($point == 900) && ($price == 800)) {
+			// マジカルメダル900個(800円)購入数
+			$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-magicalmedal_sales_800",4,1,"",$user_id,$price,"","");
+		} else if (($point == 2100) && ($price == 1800)) {
+			// マジカルメダル2100個(1800円)購入数
+			$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-magicalmedal_sales_1800",4,1,"",$user_id,$price,"","");
+		} else if (($point == 4300) && ($price == 3600)) {
+			// マジカルメダル4300個(3600円)購入数
+			$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-magicalmedal_sales_3600",4,1,"",$user_id,$price,"","");
+		} else if (($point == 6000) && ($price == 4800)) {
+			// マジカルメダル6200個(5000円)購入数
+			// ※タグ名と$pointや$priceの値に不整合があるが、仕様
+			$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-magicalmedal_sales_5000",4,1,"",$user_id,$price,"","");
+		}
+
+		if ($master_toll_medal['point_of_toll'] > 0) {
+			// マジカルメダル(有料)の配布数
+			$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-magicalmedal_distribution",1,$master_toll_medal['point_of_toll'],"",$user_id,"","","");
+		}
+	}
+
+	/**
+	 * ガチャバナー画像のパスを取得
+	 *
+	 * サーバのファイルシステム上のパスを取得する。
+	 * @param int $gacha_id ガチャID
+	 * @return string パス
+	 */
+	function getGachaBannerPath($gacha_id)
+	{
+		$path = BASE . '/data/resource/image/gacha/gacha_banner_' . $gacha_id . '.png';
+
+		return $path;
+	}
+
+	/**
+	 * ガチャタイプからおまけガチャを持つタイプかどうかを調べる。
+	 *
+	 * @param int $gacha_id ガチャID
+	 * @return true:おまけガチャあり false:おまけガチャなし
+	 */
+	function isGachaExtraType($gacha_id)
+	{
+		$this->getGachaListId($gacha_id);
+		$gacha_data = $this->getGachaListId($gacha_id);
+		if(!is_array($gacha_data)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+
+		switch( $gacha_data['type'] )
+		{
+			case self::GACHA_TYPE_MEDAL11:
+			case self::GACHA_TYPE_EVENT11:
+				$ret = true;
+				break;
+			default:
+				$ret = false;
+				break;
+		}
+		return $ret;
+	}
+
+
+}
+?>

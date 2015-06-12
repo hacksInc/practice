@@ -1,0 +1,106 @@
+
+#other {
+	position: absolute;
+	bottom: 15%;
+	left: 3%;
+	width:60%;
+}
+#bannerArea {
+	position: absolute;
+	top:18%;
+	left:4.5%;
+	width: 90%;
+}
+.slider{
+	margin: 0 auto;
+	width:100%;
+	overflow: hidden;
+}
+#sns {
+	position: absolute;
+	bottom:10%;
+	left:4.5%;
+	width:90%;
+}
+#tweet{
+	float:left;
+	width:49%;
+}
+#share{
+	float:right;
+	width: 49%;
+}
+#chara {
+	display: block;
+	position: absolute;
+	bottom: 14%;
+	right: 2%;
+	width:33%;
+	z-index: 2;
+	-moz-animation: chara 1s ease-in;
+	-webkit-animation: chara 1s ease-in;
+}
+@-moz-keyframes chara {
+	0% {
+		-moz-transform: translateX(100%);
+	}
+	30% {
+		-moz-transform: translateX(0%);
+	}
+}
+@-webkit-keyframes chara {
+	0% {
+		-webkit-transform: translateX(100%);
+	}
+	30% {
+		-webkit-transform: translateX(0%);
+	}
+}
+#chara_shadow {
+	display: block;
+	position: absolute;
+	bottom: 12.5%;
+	right:10%;
+	width:18%;
+	z-index:1;
+	-moz-animation: shadow 1s ease-in;
+	-webkit-animation: shadow 1s ease-in;
+}
+@-moz-keyframes shadow {
+	0% {
+		-moz-transform: translateX(100%);
+	}
+	30% {
+		-moz-transform: translateX(0%);
+	}
+}
+@-webkit-keyframes shadow {
+	0% {
+		-webkit-transform: translateX(100%);
+	}
+	30% {
+		-webkit-transform: translateX(0%);
+	}
+}
+
+/*********************
+スライダー
+*********************/
+
+.bx-pager{
+	margin: 0 auto !important;
+	width:50% !important;
+	margin-top: 2% !important;
+	margin-bottom: 5% !important;
+}
+.bx-pager-item {
+	float:left;
+	margin-left: 4px;
+	text-align: center;
+}
+.bx-prev{
+	display: none;
+}
+.bx-next{
+	display: none;
+}

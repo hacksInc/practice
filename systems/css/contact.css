@@ -1,0 +1,99 @@
+.topText {
+	position: absolute;
+	top: 50%;
+	left: 15%;
+	width: 26%;
+}
+#contact {
+	margin-top: 30px;
+	padding-bottom: 20px;
+	border: 1px solid #ccc;
+	box-shadow: 0px 0px 10px #ccc;
+	margin-bottom: 60px;
+}
+
+#contact h2 {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	padding: 10px;
+	color: rgba(0,120,205,1);
+	background: #F2F2F2;
+}
+
+
+#contact table {
+	margin: 40px 0 0 40px;
+}
+
+#contact th {
+	width: 200px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #eee;
+	border-bottom: 1px solid white;
+	vertical-align: middle;
+
+}
+
+#contact td {
+	padding: 10px;
+	font-size: 13px;
+}
+
+#ContactEmail {
+	width: 300px;
+	margin-bottom: 10px;
+	border-radius: 2px;
+}
+
+#ContactName,
+#ContactCompanyName,
+#ContactEmailConfirm,
+#ContactTel {
+	width: 300px;
+	border-radius: 2px;
+}
+
+#ContactContents {
+	width: 540px;
+	border-radius: 2px;
+}
+
+.privacy {
+	height: 150px;
+	margin: 40px;
+	font-size: 10px;
+	overflow: auto;
+	border: 1px solid #ccc;
+	padding: 8px;
+}
+.privacy h3 {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.SubmitForm {
+  display: block;
+  margin: 0 auto;
+  width: 500px;
+  height: 100px;
+}
+.submit {
+	width: 100%;
+  padding: 30px;
+  font-size: 30px;
+  color: white;
+  line-height: 1;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: rgba(0,120,205,1);
+  box-shadow: 0px 0px 10px inset;
+}
+
+.submit:hover {
+	opacity: 0.8;
+}

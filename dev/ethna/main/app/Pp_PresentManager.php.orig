@@ -1,0 +1,646 @@
+<?php
+/**
+ *  Pp_PresentManager.php
+ *
+ *  @author     {$author}
+ *  @package    Pp
+ *  @version    $Id$
+ */
+
+/**
+ *  Pp_PresentManager
+ *
+ *  @author     {$author}
+ *  @access     public
+ *  @package    Pp
+ */
+class Pp_PresentManager extends Ethna_AppManager
+{
+	const TYPE_ITEM          = 1;	//通常アイテム
+	const TYPE_MONSTER       = 2;	//モンスター
+	const TYPE_BIKKURI_BALL  = 3;	//ビックリ玉
+	const TYPE_GACHA_POINT   = 4;	//ガチャポイント
+	const TYPE_MEDAL         = 5;	//合成メダル（コイン）
+	const TYPE_MAGICAL_MEDAL = 6;	//マジカルメダル
+	const TYPE_BADGE         = 7;	//バッジ（スフィア）
+	const TYPE_MATERIAL      = 8;	//素材
+	
+	const ID_NEW_PRESENT    = -1;	//プレゼント新規登録時に指定するプレゼントID
+	const USERID_FROM_ADMIN = -1;	//運営からプレゼントする際のユーザID
+	
+	const REWARD_TYPE_ITEM = 1;
+	const REWARD_TYPE_MONSTER = 3;
+
+	//status 0:新規 1:開封済 2:受取済 -1:削除済
+	//ユーザごと制限数
+	const MAX_NUMBER = 100;
+	//プレゼント受取期限　送信日時から
+	const LIMIT_RECEIVE_HOUR = 2400;	//非アクティブ判定日数×24時間
+	const STATUS_DELETE = -1;	//削除済み
+	const STATUS_NEW =     0;	//新規
+//	const STATUS_OPEN =    1;	//開封済み
+	const STATUS_RECEIVE = 2;	//受取済み
+	
+	//コメント定型文のID
+	const COMMENT_FREEWORD    = 0;	//自由文
+	const COMMENT_PRESENT     = 1;	//プレゼント
+	const COMMENT_LOGINBONUS  = 2;	//ログインボーナス
+	const COMMENT_APOLOGY     = 3;	//お詫び
+	const COMMENT_QUESTCLEAR  = 4;	//クエストクリア
+	const COMMENT_INVITE      = 5;	//招待特典
+	const COMMENT_SERIAL      = 6;	//シリアル特典
+	const COMMENT_RANKING     = 7;	//ランキング報酬
+	const COMMENT_MEDAGLIA    = 8;	//勲章獲得報酬
+	const COMMENT_INSTALL     = 9;	//アプリインストール
+	const COMMENT_RAID_MVP    = 10;	//レイドMVP報酬
+	const COMMENT_RAID_MASTER = 11;	//レイドパーティマスター初回＆２回目以降クリア報酬
+	const COMMENT_RAID_MEMBER = 12;	//レイドメンバークリア報酬
+	const COMMENT_RAID_DROP   = 13;	//レイドドロップ報酬
+	
+	const DIST_STATUS_START = 0;	//配布開始
+	const DIST_STATUS_STOP  = 1;	//配布中止
+	
+	const TARGET_TYPE_ALL    = 0;	//全ユーザー
+	const TARGET_TYPE_TERM   = 1;	//指定期間アクセスユーザー
+	const TARGET_TYPE_USERID = 2;	//ユーザーID指定
+	
+	const DIST_TYPE_MEDAL    = 0;	//マジカルメダル（無料）
+	const DIST_TYPE_COIN     = 1;	//合成メダル
+	const DIST_TYPE_G_TICKET = 2;	//ゴールドチケット
+	const DIST_TYPE_B_TICKET = 3;	//ブロンズチケット
+	const DIST_TYPE_MONSTER  = 4;	//モンスター
+	const DIST_TYPE_BADGE    = 5;	//バッジ
+	const DIST_TYPE_MATERIAL = 6;	//バッジ素材
+	const DIST_TYPE_B_EXPAND = 7;	//バッジ拡張
+	
+	var $DIST_TYPE_OPTIONS = array(
+		0 => 'マジカルメダル（無料）',
+		1 => '合成メダル',
+		2 => 'ゴールドチケット',
+		3 => 'ブロンズチケット',
+		4 => 'モンスター',
+		5 => 'バッジ',
+		6 => 'バッジ素材',
+		7 => 'バッジ拡張アイテム',
+	); 
+
+	var $COMMENT_ID_OPTIONS = array(
+		 0 => '自由文',
+		 1 => '運営からのプレゼントです',
+		 2 => 'ログインボーナスです',
+		 3 => '障害・不具合のお詫びです',
+		 4 => 'クエストクリアボーナスです',
+		 5 => '招待特典です',
+		 6 => 'シリアル特典です',
+		 7 => 'ランキングの報酬です',
+		 8 => '勲章獲得の報酬です',
+		 9 => 'アプリインストールの報酬です',
+		10 => 'ドンスターMVP報酬です',			// レイドMVP報酬
+		11 => 'ドンスタークリア報酬です',		// レイドパーティマスター初回＆２回目以降クリア報酬
+		12 => 'ドンスタークリア報酬です',		// レイドメンバークリア報酬
+		13 => 'ドンスター討伐報酬です',			// レイドドロップ報酬
+		14 => 'ドンスターランキング報酬です',	// レイドランキング報酬
+	);
+
+	/**
+	 * プレゼント情報を取得する
+	 * 
+	 * @param int $present_id
+	 * @return array
+	 */
+	function getUserPresent($present_id)
+	{
+		$param = array($present_id);
+		$sql = "SELECT * FROM t_user_present"
+		     . " WHERE present_id = ?";
+		
+		return $this->db->GetRow($sql, $param);
+	}
+	
+	/**
+	 * 指定されたプレゼント配布管理IDのプレゼント情報を取得する
+	 * 
+	 * @param int $present_id, $present_mng_id
+	 * @return array
+	 */
+	function getUserPresentmngid($user_id, $present_mng_id)
+	{
+		$param = array($user_id, $present_mng_id);
+		$sql = "SELECT * FROM t_user_present"
+		     . " WHERE user_id_to = ? AND present_mng_id = ?";
+		
+		return $this->db->GetRow($sql, $param);
+	}
+
+
+    /**
+     * 指定されたプレゼント配布管理IDのプレゼント情報を取得する(複数版)
+     *
+     * @param int $user_id ユーザーID
+     * @param array $present_mng_ids プレゼント管理IDのリスト
+     * @return array
+     */
+    function getUserPresentmngids($user_id, $present_mng_ids)
+    {
+        $param = array($user_id);
+        $where_present_msg_id_in = array();
+
+        // present_mng_ids配列から個数分 IN クエリ用配列を作成
+        foreach ($present_mng_ids as $id)
+        {
+            $param[] = $id;
+            $where_present_msg_id_in[] = '?';
+        }
+
+        // クエリ作成
+        $sql = 'SELECT * FROM t_user_present'
+                . ' WHERE user_id_to = ? AND present_mng_id IN (' . implode(',', $where_present_msg_id_in) . ')';
+
+        // 実行
+        return $this->db->GetAll($sql, $param);
+    }
+
+    /**
+     * 期間超過したプレゼントを削除する
+     *
+     * @param int $user_id
+     * @param int $limit
+     * @return array
+     */
+    function deleteExpiredUserPresent($user_id)
+    {
+
+        //受取制限時間を超えたものは削除フラグを立てる
+        //分は無視。時のみで計算
+        $date_limit = date( 'Y-m-d H:59:59', strtotime('-' . self::LIMIT_RECEIVE_HOUR . ' hours', strtotime(date('Y-m-d H:0:0'))) );
+        $param = array($user_id, $date_limit, self::STATUS_NEW );
+        $sql = "SELECT present_id, type, item_id, number, lv, status FROM t_user_present WHERE user_id_to = ? AND date_created <= ? AND status = ?";
+        $result = $this->db->execute( $sql, $param );
+        if ( !$result ) {
+            return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+                $this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+        }
+
+        //削除フラグ対象となる場合は削除フラグ立てる
+        $logs='';
+        if ( $result->RecordCount() > 0 ){
+            $logs = $result->GetArray();
+            $ids = array();
+            foreach( $logs as $value ){
+                $ids[] = $value['present_id'];
+            }
+            $param = array(self::STATUS_DELETE);
+            $sql = "UPDATE t_user_present SET status = ? WHERE present_id IN (". implode(",", $ids ) .")";
+            if ( !$this->db->execute( $sql, $param ) ) {
+                return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+                    $this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+            }
+        }
+
+        return $logs;
+    }
+
+    /**
+     * プレゼント保持最大数を超過したプレゼントを削除する
+     *
+     * @param int $user_id
+     * @return array
+     */
+    function deleteMaxOverUserPresent($user_id)
+    {
+        $offset = 0;
+        $limit = self::MAX_NUMBER;
+
+        //件数取得
+        $param = array($user_id, self::STATUS_NEW);
+        $sql = "SELECT present_id, type, item_id, number, lv, status FROM t_user_present WHERE user_id_to = ? AND status = ? ORDER BY present_id";
+        $ret = $this->db->GetAll( $sql, $param );
+        if ($ret === false){
+            return false;
+        }
+        $present_count = count($ret);
+
+        if ($present_count > $limit) {
+            $delete_count = $present_count - $limit;
+            $param = array(self::STATUS_DELETE, $user_id, self::STATUS_NEW, ($present_count - $limit));
+            $sql = "UPDATE t_user_present SET status = ? WHERE user_id_to = ? AND status = ? ORDER BY present_id LIMIT ?";
+            if ( !$this->db->execute( $sql, $param ) ) {
+                return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+                    $this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+            }
+            $delete_present_data = '';
+            $cnt=0;
+            foreach ($ret as $k => $v) {
+                $delete_present_data[] = $v;
+                $cnt++;
+                if($cnt >= $delete_count){
+                    break;
+                }
+            }
+        }
+
+        return $delete_present_data;
+
+    }
+
+    /**
+     * プレゼント一覧を取得する
+     * 
+     * @param int $user_id
+     * @param int $limit
+     * @return array
+     */
+    function getUserPresentList($user_id)	//, $offset = 0, $limit = 15)
+    {
+        $offset = 0;
+        $limit = self::MAX_NUMBER;
+
+        $unit_m = $this->backend->getManager('Unit');
+        $unit = $unit_m->cacheGetUnitFromUserId($user_id);
+
+        //受取リスト
+        $param = array( self::STATUS_NEW, $user_id, $offset, $limit );
+        $sql = "SELECT p.*, u.name"
+            . " FROM t_user_present p LEFT JOIN t_user_base u ON p.user_id_from = u.user_id"
+            . " WHERE p.status = ? AND p.user_id_to = ?"
+            . " ORDER BY p.present_id DESC LIMIT ?, ?";
+
+        $unit_m->getAllSpecificUnit($sql, $param, $unit, false);
+
+        return $this->db->GetAll($sql, $param);
+    }
+
+	/**
+	 * ユーザーごと未受け取り数
+	 * 
+	 * @param string $user_id  ユーザID
+	 * @return int $count    件数
+	 */
+	public function newPresentCount( $user_id ){
+		$param = array( $user_id, self::STATUS_NEW );
+		$sql = "SELECT COUNT(present_id) FROM t_user_present WHERE user_id_to = ? AND status = ?";
+		$newCount = $this->db->GetOne($sql, $param);
+		if($newCount === false){
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		return $newCount;
+	}
+	
+	/**
+	 * プレゼントステータス変更
+	 * 
+	 * @param int $present_id  プレゼントID
+	 * @param int $status  ステータス
+	 * @param int $unit  アクセス対象ユニット(指定がない場合はカレントユニット)
+	 * @return array
+	 */
+	public function changePresentStatus ( $present_id, $status, $unit = null ) {
+		$param = array( $status, $present_id );
+		$sql = "UPDATE t_user_present SET status = ? WHERE present_id = ?";
+		if (is_null($unit) === false) {
+			$unit_m = $this->backend->getManager('Unit');
+			$res = $unit_m->executeForUnit($unit, $sql, $param, false);
+			if ($res->ErrorNo) {
+				return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+					$res->ErrorNo, $res->ErrorMsg, __FILE__, __LINE__);
+			}
+		} else {
+			if (!$this->db->execute($sql, $param)) {
+				return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+					$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+			}
+		}
+		return true;
+	}
+	
+    /**
+     * プレゼント配布情報をセットする
+     *
+     * @param int $user_id
+     * @param int $present_id
+     * @param array $columns セットする情報の連想配列
+	 * @param int $unit  アクセス対象ユニット(指定がない場合はカレントユニット)
+     * @return bool|object 成功時:true, 失敗時:Ethna_Errorオブジェクト
+     */
+    function setUserPresent($user_id, $present_id, $columns, $unit = null)
+    {
+        if (!isset($columns['present_mng_id'])) {
+            $columns['present_mng_id'] = -1;
+        }
+
+        $param = array(
+            $columns['present_mng_id'],
+            $user_id,
+            $columns['user_id_to'],
+            $columns['comment_id'],
+            $columns['comment'],
+            $columns['type'],
+            $columns['item_id'],
+            $columns['lv'],
+            $columns['badge_expand'],
+            $columns['badges'],
+            $columns['number'],
+            self::STATUS_NEW,
+            date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME'])
+        );
+        $sql = "INSERT INTO t_user_present(present_mng_id, user_id_from, user_id_to, comment_id, comment, type, item_id, lv, badge_expand, badges, number, status, date_created)"
+             . " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        if (is_null($unit) === false) {
+            $unit_m = $this->backend->getManager('Unit');
+            $res = $unit_m->executeForUnit($unit, $sql, $param, false);
+            if ($res->ErrorNo) {
+                return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+                    $res->ErrorNo, $res->ErrorMsg, __FILE__, __LINE__);
+            }
+            return $res->insert_id;
+        } else {
+            $res = $this->db->execute($sql, $param);
+            if ($res === false) {
+                return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+                    $this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+            }
+            return $this->db->db->Insert_ID();
+        }
+//        return true;
+    }
+
+    /**
+     * プレゼント受取情報をセットする
+     *
+     * @param int $user_id
+     * @param int $present_id
+     * @param array $columns セットする情報の連想配列
+     * @return bool|object 成功時:true, 失敗時:Ethna_Errorオブジェクト
+     */
+    function setReceiptUserPresent($user_id, $present_id, $columns)
+    {
+        $affected_rows = 0;
+        // UPDATE実行
+        $param = array_values($columns);
+        $param[] = $present_id;
+        $sql = "UPDATE t_user_present SET "
+             . implode("=?,", array_keys($columns)) . "=? "
+             . " WHERE present_id = ?";
+        if (!$this->db->execute($sql, $param)) {
+            return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+                $this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+        }
+
+        // 影響した行数を確認
+        //  present_idはPKなので、この判定はありえない
+/*        $affected_rows = $this->db->db->affected_rows();
+        if ($affected_rows > 1) {
+            return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+        }*/
+
+        return true;
+
+    }
+	
+	/**
+	 * プレゼント情報を削除する
+	 * 
+	 * @param int $present_id
+	 * @param int $user_id_to
+	 * @return bool|object 成功時:true, 失敗時:Ethna_Errorオブジェクト
+	 */
+	function deleteUserPresent($present_id, $user_id_to = null)
+	{
+		$param = array($present_id);
+		$sql = "DELETE FROM t_user_present"
+		     . " WHERE present_id = ?";
+		
+		if ($user_id_to) {
+			$param[] = $user_id_to;
+			$sql .= " AND user_id_to = ?";
+		}
+
+//error_log('DEBUG:' . basename(__FILE__) . ':' . __LINE__ . ':' . implode(",", $param));
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		$affected_rows = $this->db->db->affected_rows();
+		if ($affected_rows != 1) {
+			return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+		}
+
+		return true;
+	}
+	
+	/**
+	 * 指定ユーザのプレゼントを全て削除状態にする
+	 * 
+	 * @param int $user_id
+	 * @return bool|object 成功時:true, 失敗時:Ethna_Errorオブジェクト
+	 */
+	function deleteUserAllPresentStatus($user_id)
+	{
+		$param = array(self::STATUS_DELETE, $user_id);
+		$sql = "UPDATE t_user_present SET status = ? "
+		     . " WHERE user_id = ?";
+		
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		$affected_rows = $this->db->db->affected_rows();
+		if ($affected_rows != 1) {
+			return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+		}
+		return true;
+	}
+	
+	/**
+	 * プレゼント配布管理情報を取得する
+	 * 
+	 * @param int $present_mng_id
+	 * @return array
+	 */
+	function getPresentMng($present_mng_id)
+	{
+		$param = array($present_mng_id);
+		$sql = "SELECT * FROM t_present_distribution"
+		     . " WHERE present_mng_id = ?";
+		
+		return $this->db->GetRow($sql, $param);
+	}
+	/**
+	 * 配布待ちステータスのプレゼント配布管理情報を取得する
+	 * 
+	 * @return array
+	 */
+	function getPresentMngWait()
+	{
+		$param = array(self::DIST_STATUS_START, date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']));
+		$sql = "SELECT * FROM t_present_distribution"
+		     . " WHERE status = ? AND date_dist_start <= ? ORDER BY date_dist_start ASC";
+		
+		return $this->db->GetRow($sql, $param);
+	}
+	
+	/**
+	 * プレゼント配布管理情報一覧を取得する
+	 * 
+	 * @return array
+	 */
+	function getPresentMngList( $offset = 0, $limit = 10)
+	{
+		$param = array( $offset, $limit );
+		$sql = "SELECT * FROM t_present_distribution ORDER BY present_mng_id DESC LIMIT ?, ?";
+		$result = $this->db->execute( $sql, $param );
+		if ( !$result ) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		return $this->db->GetAll($sql, $param);
+	}
+	
+	/**
+	 * 期間内でstatus=0のプレゼント配布管理情報一覧を取得する
+	 * 
+	 * @return array
+	 */
+	function getPresentMngListTerm( )
+	{
+		$param = array(self::DIST_STATUS_START, date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']), date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']) );
+		$sql = "SELECT * FROM t_present_distribution WHERE status = ? AND date_dist_start <= ? AND date_dist_end > ? ORDER BY present_mng_id ASC";
+		$result = $this->db->execute( $sql, $param );
+		if ( !$result ) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		return $this->db->GetAll($sql, $param);
+	}
+	
+	/**
+	 * プレゼント配布管理情報をセットする
+	 * 
+	 * @param int $present_mng_id
+	 * @param array $columns セットする情報の連想配列
+	 * @return bool|object 成功時:true, 失敗時:Ethna_Errorオブジェクト
+	 */
+	function setPresentMng($present_mng_id, $columns)
+	{
+		$affected_rows = 0;
+		// UPDATE実行
+		$param = array_values($columns);
+		$param[] = $present_mng_id;
+		$sql = "UPDATE t_present_distribution SET "
+			 . implode("=?,", array_keys($columns)) . "=? "
+			 . " WHERE present_mng_id = ?";
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		// 影響した行数を確認
+		$affected_rows = $this->db->db->affected_rows();
+		if ($affected_rows > 1) {
+			return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+		}
+		if ($affected_rows == 0) {
+			// INSERT実行
+			$param = array($columns['target_type'], $columns['date_start'], $columns['date_end'], $columns['user_id_to'], $columns['comment_id'], $columns['comment'], $columns['dist_type'], $columns['item_id'], $columns['lv'], $columns['badge_expand'], $columns['badges'], $columns['number'], $columns['status'], $columns['dist_user_cnt'], $columns['date_dist_start'], $columns['date_dist_end'], $columns['account_reg'], $columns['account_upd'], date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']) );
+			$sql = "INSERT INTO t_present_distribution(target_type, date_start, date_end, user_id_to, comment_id, comment, dist_type, item_id, lv, badge_expand, badges, number, status, dist_user_cnt, date_dist_start, date_dist_end, account_reg, account_upd, date_created)"
+				 . " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			if (!$this->db->execute($sql, $param)) {
+				return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+					$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+			}
+		}
+		return true;
+	}
+	function insertPresentMng($present_mng_id, $columns)
+	{
+		// INSERT実行
+		$param = array($columns['target_type'], $columns['date_start'], $columns['date_end'], $columns['user_id_to'], $columns['comment_id'], $columns['comment'], $columns['dist_type'], $columns['item_id'], $columns['lv'], $columns['badge_expand'], $columns['badges'], $columns['number'], $columns['status'], $columns['dist_user_cnt'], $columns['date_dist_start'], $columns['date_dist_end'], $columns['account_reg'], $columns['account_upd'], date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']) );
+		$sql = "INSERT INTO t_present_distribution(target_type, date_start, date_end, user_id_to, comment_id, comment, dist_type, item_id, lv, badge_expand, badges, number, status, dist_user_cnt, date_dist_start, date_dist_end, account_reg, account_upd, date_created)"
+			 . " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		return true;
+	}
+	function updatePresentMng($present_mng_id, $columns)
+	{
+		$affected_rows = 0;
+		// UPDATE実行
+		$param = array_values($columns);
+		$param[] = $present_mng_id;
+		$sql = "UPDATE t_present_distribution SET "
+			 . implode("=?,", array_keys($columns)) . "=? "
+			 . " WHERE present_mng_id = ?";
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		// 影響した行数を確認
+		$affected_rows = $this->db->db->affected_rows();
+		if ($affected_rows > 1) {
+			return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+		}
+		return true;
+	}
+	function incPresentMngCnt($present_mng_id)
+	{
+		$affected_rows = 0;
+		// UPDATE実行
+		$param = array($present_mng_id);
+		$sql = "UPDATE t_present_distribution SET dist_user_cnt=dist_user_cnt+1"
+			 . " WHERE present_mng_id = ?";
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR, 
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		return true;
+	}
+
+
+	//配布データをプレゼントデータに変換する
+	function convDist2Present( $dist_type, $item_id, $lv )
+	{
+		$item_m = $this->backend->getManager('Item');
+		switch ($dist_type) {
+			case self::DIST_TYPE_MEDAL:
+				$type = self::TYPE_MAGICAL_MEDAL;
+				$item_id = 0;
+				$lv = 0;
+				break;
+			case self::DIST_TYPE_COIN:
+				$type = self::TYPE_MEDAL;
+				$item_id = 0;
+				$lv = 0;
+				break;
+			case self::DIST_TYPE_G_TICKET:
+				$type = self::TYPE_ITEM;
+				$item_id = Pp_ItemManager::ITEM_TICKET_GACHA_RARE;
+				$lv = 0;
+				break;
+			case self::DIST_TYPE_B_TICKET:
+				$type = self::TYPE_ITEM;
+				$item_id = Pp_ItemManager::ITEM_TICKET_GACHA_FREE;
+				$lv = 0;
+				break;
+			case self::DIST_TYPE_MONSTER:
+				$type = self::TYPE_MONSTER;
+				break;
+			case self::DIST_TYPE_BADGE:
+				$type = self::TYPE_BADGE;
+				$lv = 0;
+				break;
+			case self::DIST_TYPE_MATERIAL:
+				$type = self::TYPE_MATERIAL;
+				$lv = 0;
+				break;
+			case self::DIST_TYPE_B_EXPAND:
+				$type = self::TYPE_ITEM;
+				$item_id = Pp_ItemManager::ITEM_BADGE_EXPAND;
+				$lv = 0;
+				break;
+		}
+		return (array($type, $item_id, $lv));
+	}
+
+}

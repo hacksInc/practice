@@ -1,0 +1,27 @@
+@charset "utf-8";
+// スマホ、タブレット用CSS
+// モバイルファースト
+
+
+
+
+@media screen and (min-width: 480px) and (max-device-width: 640px) {
+	html,body{
+		font-size: 14px;
+	}
+
+}
+
+// タブレット
+@media screen and (min-width: 641px) and (max-device-width: 768px) {
+	html,body{
+		font-size: 16px;
+	}
+}
+
+// PC
+@media screen and (min-width: 769px)  {
+	html,body{
+		font-size: 18px;
+	}
+}

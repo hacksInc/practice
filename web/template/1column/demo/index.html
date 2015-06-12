@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!-- スマホ用に作る場合viewport指定。ただし、webviewの場合はwidthとheightを指定しない。 -->
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- スマホで英数字を電話番号やアドレスとして認識させない（タップさせない） -->
+<meta name="format-detection" content="telephone=no, email=no">
+<link rel="stylesheet" href="css/index.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="js/common.js"></script>
+
+<!--レスポンシブではなくブラウザ判定で振り分ける場合 -->
+<!--<script>
+    if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+        location.href = 'スマホ用のテンプレPATH';
+    }
+</script>-->
+
+<!-- IE8以下の対応 -->
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<header>
+	<div class="wrapper">
+		<h1>DEMO</h1>
+		<ul class="menu">
+			<li>
+				<a href="">ニュース</a>
+				<a href="">サービス</a>
+				<a href="">会社概要</a>
+				<a href="">採用情報</a>
+				<a href="">お問い合わせ</a>
+			</li>
+		</ul>
+	</div>
+</header>
+<div id="topimage"><img src="" alt=""></div>
+<main>
+	<article>
+		<section class="section1 wrapper">
+			<h2></h2>
+			<div class="content1"></div>
+		</section>
+	</article>
+	<article>
+		<section class="section2 wrapper">
+			<h2></h2>
+			<div class="content2"></div>
+		</section>
+	</article>
+	<article>
+		<section class="section3 wrapper">
+			<h2></h2>
+			<div class="content3"></div>
+		</section>
+	</article>
+</main>
+<footer>
+	<div class="wrapper">
+		<ul class="footermenu">
+			<li><a href="">demo1</a></li>
+			<li><a href="">demo2</a></li>
+			<li><a href="">demo3</a></li>
+		</ul>
+		<p class="copylight">Copyright ©hogehoge 2015 All Rights Reserved.</p>
+	</div>
+</footer>
+<!-- EMMETを使用した場合 -->
+<!--
+header(div.wrapper(h1{DEMO}+ul.menu>li(a{ニュース}+a{サービス}+a{会社概要}+a{採用情報}+a{お問い合わせ})))
+div#topimage>img
+main(art*3(sect.section$.wrapper(h2+div.content$)))
+footer(div.wrapper(ul.footermenu(li*3>a{demo$})+p.copylight{Copyright ©hogehoge 2015 All Rights Reserved.}))
+-->
+</body>
+</html>

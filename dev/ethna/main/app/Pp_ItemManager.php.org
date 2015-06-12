@@ -1,0 +1,415 @@
+<?php
+/**
+ *  Pp_ItemManager.php
+ *
+ *  @author     {$author}
+ *  @package    Pp
+ *  @version    $Id$
+ */
+
+/**
+ *  Pp_ItemManager
+ *
+ *  @author     {$author}
+ *  @access     public
+ *  @package    Pp
+ */
+class Pp_ItemManager extends Ethna_AppManager
+{
+	const ITEM_BIKKURI_BALL         = 1000;	//ビックリ玉
+	const ITEM_RARE_MEDAL1          = 1001;	//進化（レア）メダル1
+	const ITEM_RARE_MEDAL2          = 1002;	//進化（レア）メダル2
+	const ITEM_RARE_MEDAL3          = 1003;	//進化（レア）メダル3
+	const ITEM_RARE_MEDAL4          = 1004;	//進化（レア）メダル4
+	const ITEM_RARE_MEDAL5          = 1005;	//進化（レア）メダル5
+	const ITEM_KEY_WEEKLY           = 1006;	//ｳｨｰｸﾘｰｸｴｽﾄ用鍵
+	const ITEM_KEY_FRIEND           = 1007;	//ﾌﾚﾝﾄﾞｸｴｽﾄ用鍵のｶｹﾗ
+	const ITEM_TICKET_GACHA_FREE    = 1100;	//無料ｶﾞﾁｬﾁｹｯﾄ
+	const ITEM_TICKET_GACHA_RARE    = 1101;	//有料(ﾚｱ)ｶﾞﾁｬﾁｹｯﾄ
+	const ITEM_TICKET_QUEST         = 1102;	//ｸｴｽﾄﾁｹｯﾄ
+	const ITEM_TICKET_CONTINUE      = 1103;	//ｺﾝﾃｨﾆｭｰﾁｹｯﾄ
+	const ITEM_TICKET_EXPAND_FRIEND = 1104;	//ﾌﾚﾝﾄﾞ上限+1ﾁｹｯﾄ
+	const ITEM_BADGE_EXPAND         = 1200;	//バッジ枠拡張
+	const ITEM_RECOVER_STAMINA      = 2000;	//回復剤
+	const ITEM_EXPAND_MONSTER_BOX   = 2001;	//ﾓﾝｽﾀｰBox拡張（即時効果）
+	const ITEM_EXPAND_FRIEND_MAX    = 2002;	//ﾌﾚﾝﾄﾞ上限拡張（即時効果）
+	const ITEM_GACHA_RARE           = 2100;	//有料(ﾚｱ)ｶﾞﾁｬ（即時効果）
+	const ITEM_MEDAL_MAGICAL        = 9000;	//マジカルメダル
+	const ITEM_MEDAL_SYNTHESIS      = 9001;	//合成メダル
+
+	/** ガチャの種類： */
+	const GACHA_TYPE_FREE_POINT  = 0;//無料ポイント
+	const GACHA_TYPE_FREE_TICKET = 1;//無料チケット
+	const GACHA_TYPE_RARE_POINT  = 2;//有料(レア)ポイント
+	const GACHA_TYPE_RARE_TICKET = 3;//有料(レア)チケット
+
+	const USE_GACHA_FREE_POINT  = 20;//無料ポイント
+	const USE_GACHA_RARE_POINT  = 400;//有料(レア)ポイント
+
+	/**
+	 * アイテムマスタ（一覧または1件）を取得する
+	 *
+	 * @param int $item_id アイテムID（指定すると1件取得。省略すると全件取得）
+	 * @return array
+	 */
+	function getMasterItem($item_id = null)
+	{
+		if ($item_id === null) {
+			$cache_m =& Ethna_CacheManager::getInstance('memcache');
+			$cacheData = $cache_m->get('master_item', 1800);
+
+			if ($cacheData && !Ethna::isError($cacheData)) {
+				return $cacheData;
+			}
+
+			$sql = "SELECT * FROM m_item"
+			     . " ORDER BY item_id";
+			$data = $this->db_r->GetAll($sql);
+			if ($data) {
+				$cache_m->set('master_item', $data);
+			}
+			return $data;
+		} else {
+			$sql = "SELECT * FROM m_item"
+			     . " WHERE item_id = ?";
+			return $this->db_r->GetRow($sql, array($item_id));
+		}
+	}
+
+	/**
+	 * アイテム情報を取得する
+	 *
+	 * @param int $user_id
+	 * @param int $item_id
+	 * @return array
+	 */
+	function getUserItem($user_id, $item_id)
+	{
+		$param = array($user_id, $item_id);
+		$sql = "SELECT * FROM t_user_item"
+		     . " WHERE user_id = ? AND item_id = ?";
+
+		return $this->db->GetRow($sql, $param);
+	}
+	function getUserItemWithMaster($user_id, $item_id)
+	{
+		$param = array($user_id, $item_id);
+		$sql = "SELECT ui.item_id, ui.num, im.icon, im.limit_num, im.present_flag, im.use_flag FROM t_user_item ui, m_item im"
+		     . " WHERE ui.user_id = ? AND ui.item_id = ? AND ui.item_id = im.item_id";
+
+		return $this->db->GetRow($sql, $param);
+	}
+
+	/**
+	 * アイテム所持数が上限を超えるか？
+	 *
+	 * @param int $user_id
+	 * @param int $item_id
+	 * @param int $num_add 増やす個数
+	 * @return book 真偽
+	 */
+	function isUserItemNumOutbalance($user_id, $item_id, $num_add = 0)
+	{
+		$user_item = $this->getUserItem($user_id, $item_id);
+		$num = $user_item ? $user_item['num'] : 0;
+
+		if ($num_add) {
+			$num += $num_add;
+		}
+
+		$master_item = $this->getMasterItem($item_id);
+
+		return ($num > $master_item['limit_num']);
+	}
+
+	/**
+	 * アイテム一覧を取得する
+	 *
+	 * @param int $user_id
+	 * @return array
+	 */
+	function getUserItemList($user_id)
+	{
+		$param = array($user_id);
+		$sql = "SELECT ui.item_id, ui.num, im.icon, im.limit_num, im.present_flag, im.use_flag FROM t_user_item ui, m_item im"
+		     . " WHERE ui.user_id = ? AND ui.item_id = im.item_id AND ui.num > 0"
+		     . " ORDER BY im.item_id";
+		return $this->db->GetAll($sql, $param);
+	}
+
+	/**
+	 * アイテムID一覧を取得する
+	 *
+	 * @param int $user_id
+	 * @return array
+	 */
+	function getUserItemIdList($user_id)
+	{
+		$param = array($user_id);
+		$sql = "SELECT item_id FROM t_user_item"
+		     . " WHERE user_id = ?"
+		     . " ORDER BY item_id";
+		return $this->db->GetCol($sql, $param);
+	}
+
+	/**
+	 * アイテムを増減させる
+	 *
+	 * @param int $user_id
+	 * @param int $item_id
+	 * @param int $num 増減値
+	 * @param array $tracking_columns トラッキング情報（省略可）
+	 *                                 $tracking_columns[カラム名] = 値
+	 *                                 ※カラム名はlog_trackingテーブルのカラム名と同じにすること。（"how"等）
+	 * @param bool $kpi_flg KPIタグを送信するか
+	 * @return array
+	 */
+	function addUserItem($user_id, $item_id, $num, $tracking_columns = null, $kpi_flg = false)
+	{
+		if (!$tracking_columns) {
+			$tracking_columns = array();
+		}
+
+		// 増減しない場合
+		if ($num == 0) {
+			return true;
+		}
+
+		$item_data = $this->getUserItem(
+			$user_id,
+			$item_id
+		);
+		$num_new = $num;
+		//データがある
+		if ($item_data) {
+			$num_new = $item_data['num'] + $num;
+
+			$tracking_columns['num_before'] = $item_data['num'];
+		}
+		$ret = $this->setUserItem($user_id, $item_id, array('num' => $num_new), $tracking_columns);
+
+		if ($kpi_flg && ($num > 0)) {
+			$this->setUserItemIncreaseKpi($user_id, $item_id, $num);
+		}
+
+		return($ret);
+	}
+
+	/**
+	 *
+	 *
+	 * 所持上限までしか増やさない
+	 * @param array $tracking_columns トラッキング情報（省略可）
+	 *                                 $tracking_columns[カラム名] = 値
+	 *                                 ※カラム名はlog_trackingテーブルのカラム名と同じにすること。（"how"等）
+	 * @param bool $kpi_flg KPIタグを送信するか
+	 */
+	function addUserItemUpperLimit($user_id, $item_id, $num, $tracking_columns = null, $kpi_flg = false)
+	{
+		if (!$tracking_columns) {
+			$tracking_columns = array();
+		}
+
+		$item_data = $this->getUserItemWithMaster(
+			$user_id,
+			$item_id
+		);
+		$num_new = $num;
+		$num_old = 0;
+		//データがある
+		if ($item_data) {
+			$num_old = $item_data['num'];
+			$num_new = $num_old + $num;
+			if ($num_new > $item_data['limit_num']) $num_new = $item_data['limit_num'];
+			if ($num_new < 0) $num_new = 0;
+		}
+		if ($num_new != $num_old) {
+			if (!isset($tracking_columns['num_before'])) {
+				$tracking_columns['num_before'] = $num_old;
+			}
+
+			$ret = $this->setUserItem($user_id, $item_id, array('num' => $num_new), $tracking_columns);
+
+			if ($kpi_flg && ($num > 0)) {
+				$this->setUserItemIncreaseKpi($user_id, $item_id, $num_new - $num_old);
+			}
+
+		} else $ret = true;
+		return($ret);
+	}
+
+	/**
+	 * アイテム増加用のKPIタグをセットする
+	 *
+	 * @param int $user_id ユーザID
+	 * @param int $item_id アイテムID
+	 * @param int $abs_value 増加値（絶対値）
+	 */
+	function setUserItemIncreaseKpi($user_id, $item_id, $abs_value)
+	{
+		$kpi_m = $this->backend->getManager('Kpi');
+
+		switch ($item_id) {
+			case self::ITEM_TICKET_GACHA_FREE:
+				$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-bronze_gacha_ticket_distribution",1,$abs_value,"",$user_id,"","","");
+				break;
+
+			case self::ITEM_TICKET_GACHA_RARE:
+				$kpi_m->log($kpi_m->getPlatform($user_id)."-jgm-gold_gacha_ticket_distribution",1,$abs_value,"",$user_id,"","","");
+				break;
+		}
+	}
+
+	/**
+	 * アイテム情報をセットする
+	 *
+	 * @param int $user_id
+	 * @param int $item_id
+	 * @param array $columns セットする情報の連想配列
+	 * @param array $tracking_columns トラッキング情報（省略可）
+	 *                                 $tracking_columns[カラム名] = 値
+	 *                                 ※カラム名はlog_trackingテーブルのカラム名と同じにすること。（"how"等）
+	 * @return bool|object 成功時:true, 失敗時:Ethna_Errorオブジェクト
+	 */
+	function setUserItem($user_id, $item_id, $columns, $tracking_columns = null)
+	{
+		if (!$tracking_columns) {
+			$tracking_columns = array();
+		}
+
+		//個数が未指定
+		if (!isset($columns['num'])) {
+			return Ethna::raiseError("item num none", E_USER_ERROR);
+		}
+		//個数がマイナス
+		if ($columns['num']<0) {
+			return Ethna::raiseError("item num minus", E_USER_ERROR);
+		}
+
+		// UPDATE実行
+		$param = array_values($columns);
+		$param[] = $user_id;
+		$param[] = $item_id;
+		$sql = "UPDATE t_user_item SET "
+			 . implode("=?,", array_keys($columns)) . "=? "
+			 . " WHERE user_id = ? AND item_id = ?";
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+
+		$crud = 'U';
+
+		// 影響した行数を確認
+		$affected_rows = $this->db->db->affected_rows();
+		if ($affected_rows > 1) {
+			return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+		}
+
+		if ($affected_rows == 0) {
+			// INSERT実行
+			$param = array($user_id, $item_id, $columns['num']);
+			$sql = "INSERT INTO t_user_item(user_id, item_id, num, date_created)"
+				 . " VALUES(?, ?, ?, NOW())";
+			if (!$this->db->execute($sql, $param)) {
+				return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+					$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+			}
+
+			$crud = 'C';
+		}
+
+		// トラッキング処理
+//		$merged_columns = $tracking_columns;
+//		$merged_columns['item_id'] = $item_id;
+//		$merged_columns['num_after'] = $columns['num'];
+//		$merged_columns['crud'] = $crud;
+//		$this->backend->getManager('Tracking')->log($user_id, $merged_columns);
+
+		return true;
+	}
+
+	/**
+	 * アイテム情報を削除する（多分、使わないと思う）
+	 *
+	 * @param int $user_id
+	 * @param int $item_id
+	 * @return bool|object 成功時:true, 失敗時:Ethna_Errorオブジェクト
+	 */
+	function deleteUserItem($user_id, $item_id)
+	{
+		$param = array($user_id, $item_id);
+		$sql = "DELETE FROM t_user_item"
+		     . " WHERE user_id = ? AND item_id = ?";
+
+		if (!$this->db->execute($sql, $param)) {
+			return Ethna::raiseError("CODE[%d] MESSAGE[%s] FILE[%s] LINE[%d]", E_USER_ERROR,
+				$this->db->db->ErrorNo(), $this->db->db->ErrorMsg(), __FILE__, __LINE__);
+		}
+		$affected_rows = $this->db->db->affected_rows();
+		if ($affected_rows != 1) {
+			return Ethna::raiseError("rows[%d]", E_USER_ERROR, $affected_rows);
+		}
+		return true;
+	}
+
+
+	/**
+	 * ガチャの抽選を行う
+	 *
+	 * @param int $user_id ジャグモン内ユーザID
+	 * @param int $type    0:無料ガチャポイント 1:無料チケット 2:有料ガチャポイント 3:有料ガチャチケット
+	 * @param int $_r1～6  レアリティごとの当選確率
+	 */
+	function gachaMonsterGet ( $user_id, $type, $_r1, $_r2, $_r3, $_r4, $_r5, $_r6 = 0 )
+	{
+		// 確率作成
+		$_r5 += $_r6;
+		$_r4 += $_r5;
+		$_r3 += $_r4;
+		$_r2 += $_r3;
+		$_r1 += $_r2;
+
+		// 抽選を行う
+		$per = mt_rand( 0, $_r1 - 1 );
+		if ( $per < $_r6 )		$rare = 6;
+		elseif ( $per < $_r5 )	$rare = 5;
+		elseif ( $per < $_r4 )	$rare = 4;
+		elseif ( $per < $_r3 )	$rare = 3;
+		elseif ( $per < $_r2 )	$rare = 2;
+		else					$rare = 1;
+
+		//レアリティ指定で取得
+		$list = $this->backend->getManager('Monster')->getMasterMonsterListByRare( $rare );
+		$row = $list[mt_rand( 0, count( $list ) -1 )];
+
+		// 初期取得か判別
+		//if ( !$this->issetUserCardLog( $user_id, $card['card_id'], true ) )	$new = 1;
+		//else																	$new = 0;
+		// ログに登録
+		//if ( !$this->addCardGetLog( $user_id, $card['card_id'], $title['title_id'], $card['skill_id'], $new, $lv, $lvcap ) ) return false;
+
+		switch ( $type ) {
+			//どの状態でも直接付与する
+			case self::GACHA_TYPE_RARE_POINT:	// 有料(レア)
+			case self::GACHA_TYPE_RARE_TICKET:	// 有料(レア)チケット
+			default:
+				$ret = $this->backend->getManager('Monster')->createUserMonster(
+					$user_id, $row['monster_id'], array('lv' => 1)//レベルは1固定
+				);
+				if (!$ret || Ethna::isError($ret)) {
+					return $ret;
+				}
+				//モンスター図鑑を更新
+				$ret = $this->backend->getManager('Monster')->setUserMonsterBook($user_id, $row['monster_id'], Pp_MonsterManager::BOOK_STATUS_GOT);
+				if (!$ret || Ethna::isError($ret)) {
+					return $ret;
+				}
+				break;
+		}
+		return $row['monster_id'];
+	}
+
+
+}
+?>

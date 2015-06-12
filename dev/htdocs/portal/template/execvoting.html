@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>アニメ「PSYCHO-PASS サイコパス」</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, email=no">
+<link rel="stylesheet" href="css/reset.css" media="all">
+<link rel="stylesheet" href="css/common.css" media="all">
+<link rel="stylesheet" href="css/voting.css" media="all">
+<link rel="stylesheet" href="./css/theme/<?php echo( $user_info['theme_name'] ); ?>.css" media="all">
+<script src="js/jquery.js"></script>
+<script src="js/common.js"></script>
+<script src="js/voting.js"></script>
+</head>
+<body>
+
+<input type="hidden" id="php_server_domain" value="<?php echo( SERVER_DOMAIN ); ?>">
+
+<div id="wrapper">
+
+<div id="background">
+<img id="area" src="img/common/area.png" alt="" width="80" height="80">
+<img id="character" class="theme" src="img/theme/<?php echo( $user_info['theme_name'] ); ?>/chara.png" alt="" width="651" height="804">
+</div><!-- /background -->
+
+<div id="controlBox">
+
+	<img id="voting_background" src="img/voting/background.png" width="100%">
+	<p id="voting_title"></p>
+	<img id="voting_banner" src="img/voting/banner.png" width="91%">
+
+	<div id="announce">
+		<span style="color:#ff0000;">
+			※〆切まであと<?php echo( $left_time_str );?><br />
+			※票数は1時間ごとに更新されます<br />
+			※ポイントを使用しての投票となります。
+		</span>
+	</div>
+
+	<div id="voting_list">
+		<select name="name" class="name_list">
+		<?php
+		foreach ( $list as $row ) {
+			echo( '<option value="' . $row['item_id'] . '">' . $row['item_name'] . '</option>' );
+		}
+		?>
+		</select>
+	</div>
+	<div id="voting_list2">
+		<select name="point" class="point_list">
+		<?php
+		for ( $i = 5; $i <= 200; $i += 5 ) {
+			if ( $user_info['point'] >=  $i ) {
+				echo( '<option value="' . $i . '">' . $i . '</option>' );
+			} else {
+				break;
+			}
+		}
+		?>
+		</select>
+	</div>
+
+	<a href=""><img src="img/voting/vote_btn.png" width="46%" id="vote_btn"></a>
+	<a href=""><img id="ranking_btn" src="img/voting/ranking_btn.png" width="48%"></a>
+
+	<div id="rank_list">
+		<img src="img/voting/top3.png" width="100%">
+		<ul>
+		<?php
+		foreach ( $r_voting as $key => $row ) {
+			echo( '<li>' );
+			echo( '<p class="rank">' . $row['rank_str'] . '</p>' );
+			echo( '<img class="image" src="img/voting/' . $assoc[$row['item_id']]['item_file'] . '.png" width="100%">' );
+			echo( '<div class="border">' );
+			echo( '<p class="rank_name">' . $assoc[$row['item_id']]['item_name'] . '</p>' );
+			echo( '<p class="rank_point">' . number_format( $row['point'] ) . 'pt</p>' );
+			echo( '</div>' );
+			echo( '</li>' );
+			if ( $key >= 2 ) break;
+		}
+		?>
+		</ul>
+	</div>
+
+<!-- finish -->
+	<div id="popup_finish" style="display:block;">
+		<img src="img/voting/popup_confirm.png" width="100%">
+		<div class="name">
+			<?php echo( $m_voting['item_name'] );?>
+		</div>
+		<div class="point">
+			<span><?php echo( intval( $_REQUEST['point'] ) );?>ポイント</span><br>
+			投票しました。
+		</div>
+	    <div id="result_sns">
+	        <a onClick="Unity.call('https://twitter.com/share?text=「PSYCHO-PASS サイコパス公式アプリ」好評配信中!!　人気投票開催中(～3/13 23:59)　http://psycho-pass.cave.co.jp/lp/&url=http://psycho-pass.cave.co.jp/');"><img src="./img/common/twitter.png" alt="" style="width:42%; float:left;"></a>
+	        <a onClick="Unity.call('https://www.facebook.com/sharer/sharer.php?app_id=309437425817038&u=http%3A%2F%2Fpsycho-pass.cave.co.jp%2F&display=popup&ref=plugin');"><img src="./img/common/facebook.png" alt="" style="width:42%; float:right;"></a>
+	    </div>
+	    <p class="result_shere">みんなに共有しよう！</p>
+		<div class="close">
+			<a href="" alt="" onClick="Unity.call('https://<?php echo( SERVER_DOMAIN ); ?>/psychopass_portal/voting.php');">CLOSE</a>
+		</div>
+	</div>
+<!-- /finish -->
+
+<a href="" id="overlay" style="display:block;" onClick="Unity.call('https://<?php echo( SERVER_DOMAIN ); ?>/psychopass_portal/voting.php');"></a>
+<!-- controlBox --></div>
+<footer>
+    
+    <div id="Pt">
+        所持ポイント：<span><?php echo( $user_info['point'] ); ?></span>pt
+    </div>
+
+</footer>
+</body>
+</html>

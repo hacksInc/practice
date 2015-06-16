@@ -1,6 +1,0 @@
-Satisfy any
-order allow,deny
-allow from all
-<Files ~ "^\.(htaccess|htpasswd)$">
-deny from all
-</Files>

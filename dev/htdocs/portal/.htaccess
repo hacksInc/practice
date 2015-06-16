@@ -1,9 +1,0 @@
-RewriteEngine Off
-AuthUserFile /var/devptpyco/htdocs/portal/.htpasswd
-AuthName "Secret Area"
-AuthType Basic
-require valid-user
-order deny,allow
-<Files ~ "^\.(htaccess|htpasswd)$">
-deny from all
-</Files>

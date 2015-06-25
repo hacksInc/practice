@@ -1,0 +1,259 @@
+@charset "utf-8";
+@import "compass";
+@import "media_query";
+@import "compass/reset/";
+/* ここまで reset.css */
+
+$base_font: sans-serif ,Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
+a{display:block;text-decoration:none; color: #000; }
+
+html,body{
+	font-size: 22px;
+	font-family: $base_font;
+	-webkit-text-size-adjust: 100%;
+	@include tb {font-size:18px;}
+	@include spPlus {font-size:16px;}
+	@include sp {font-size:12px;}
+}
+.wrapper{
+	margin: 0 auto;
+	width: 90%;
+	max-width: 1280px;
+}
+.clearfix{
+	*zoom:1;
+
+	&:after {
+		content: ".";
+		display: block;
+		clear: both;
+		height: 0;
+		visibility: hidden;
+	}
+}
+
+header{
+	position: relative;
+	.navi{
+		position: fixed;
+		top:0%;
+		@extend .wrapper;
+		h1{
+			float:left;
+			text-align: center;
+			color: rgba(255,255,255,0.2);
+			@include transform(scale(1, 3));
+		}
+		.toggle{
+			display: none;
+			@include sp {
+				display: inline-block;
+				position: relative;
+				float: right;
+				width: 35px;
+				height: 38px;
+				margin-top: 15px;
+				padding: 0 3px;
+				border: 1px solid rgba(255,255,255,1);
+				border-radius: 4px;
+			}
+			.icon  {
+				display: block;
+				position: absolute;
+				top:0;
+				right:0;
+				bottom:0;
+				left:0;
+				margin: auto;
+				width:80%;
+				height: 4px;
+				background: rgba(255,255,255,1);
+			}
+
+			.icon:before, .icon:after {
+				display: block;
+				content: "";
+				position: absolute;
+				top: 50%;
+				right: 0%;
+				width: 100%;
+				height: 4px;
+				background: rgba(255,255,255,1);
+			}
+			.icon:before {
+				margin-top: -12px;
+			}
+
+			.icon:after {
+				margin-top: 8px;
+			}
+		}
+		.menu{
+			float:right;
+			width: 60%;
+			z-index:5;
+			@extend .clearfix;
+			@include sp {
+				display: none;
+			}
+
+			li {
+				float:left;
+				width: 24.8%;
+				a {
+					width: 100%;
+					height: 100%;
+					padding: 5px 0;
+					text-align: center;
+					color: #fff;
+				}
+			}
+		}
+	}
+	img{
+		width: 100%;
+		height:100%;
+		min-height: 300px;
+		z-index:0;
+	}
+	.topForm{
+		position: absolute;
+		top: 48%;
+		left: 0%;
+	    right: 0%;
+	    bottom: 0%;
+	    margin: 0 auto;
+		width: 60%;
+		height: 6%;
+		@include tb { height: 8%;}
+		@include spPlus { height: 9%;}
+		@include sp { height: 10%;}
+		#search{
+			width: 80%;
+			height: 96%;
+			font-size: 150%;
+			@include border-radius(3px 0 0 3px);
+			@include box-shadow(0 3px 0 #bbb);
+		}
+		#submit {
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 80%;
+			bottom: 0;
+			text-align: center;
+			background: rgba(215,60,80,1);
+			border: none;
+			padding: 0 5%;
+			height: 96%;
+			color: #fff;
+			font-size: 130%;
+			font-weight:bold;
+			@include border-radius(0 3px 3px 0);
+			@include box-shadow(0 3px 0 rgba(155,10,30,1));
+			@include tb {font-size: 120%; }
+			@include spPlus {font-size: 110%; }
+			@include sp {font-size: 100%;font-weight: normal; }
+			&:hover{
+				@include filter(brightness(0.8));
+			}
+		}
+	}
+	.test {
+		position: absolute;
+		top: 60%;
+		left: 0;
+	    right: 0;
+	    bottom: 0;
+	    margin: 0 auto;
+	    height: 5%;
+	    text-align: center;
+	    white-space:nowrap;
+	    overflow:hidden;
+	    font-size: 150%;
+	    font-weight: bold;
+	    color: #fff;
+		@include animation(typing 6s steps(100, end) );
+		@include sp {font-size:100%;font-weight:normal;}
+	}
+	@include keyframes(typing) {
+		0% { width: 0;}
+		30%{ width: 0;}
+		100% {width: 85%;}
+	}
+	.flash {
+		@include animation(blink 0.6s ease-in-out alternate infinite);
+	}
+	@include keyframes(blink) {
+		from {opacity: 1;}
+		to {opacity: 0;}
+	}
+	.circle{
+		position: absolute;
+		top: 80%;
+		left: 0;
+	    right: 0;
+	    bottom: 0;
+	    margin: 0 auto;
+	    width: 6%;
+	    height: 6%;
+	    padding: 2%;
+	    text-align: center;
+	    border: 1px solid #aaa;
+	    font-size: 150%;
+	    color: #fff;
+	    @include border-radius(50%);
+	}
+}
+
+main{
+	width: 100%;
+	.section {
+		width: 100%;
+		padding:50px 0;
+		border-bottom: 1px solid #aaa;
+		&:last-child{
+			border:none;
+		}
+		section{
+			@extend .wrapper;
+			h2{
+				text-align: center;
+				margin-bottom: 50px;
+			}
+			.content{
+				text-align: center;
+				width: 100%;
+				height: 100px;
+			}
+
+		}
+	}
+}
+footer{
+	width: 100%;
+	padding: 2% 0 5%;
+	border-top: 1px solid #aaa;
+	font-weight: bold;
+	@extend .clearfix;
+	ul{
+		@extend .wrapper;
+		@extend .clearfix;
+		li{
+			float: left;
+			margin-right: 3%;
+			a{
+				font-size: 80%;
+				&:hover{
+					text-decoration: underline;
+					color: orange;
+				}
+			}
+		}
+		.copyright{
+			font-size: 80%;
+			float:right;
+			margin: 0;
+		}
+	}
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!-- スマホ用に作る場合viewport指定。ただし、webviewの場合はwidthとheightを指定しない。 -->
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- スマホで英数字を電話番号やアドレスとして認識させない（タップさせない） -->
+<meta name="format-detection" content="telephone=no, email=no">
+<link rel="stylesheet" href="css/test.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<!-- <script src="js/common.js"></script>-->
+
+<!--レスポンシブではなくブラウザ判定で振り分ける場合 -->
+<!--<script>
+    if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+        location.href = 'スマホ用のテンプレPATH';
+    }
+</script>-->
+
+<!-- IE8以下の対応 -->
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+</head>
+<body>
+<header>
+	<div class="navi">
+		<h1></h1>
+		<a href="javaScript:void(0);" class="toggle"><span class="icon"></span></a>
+		<ul class="menu">
+			<li><a href="">demo1</a></li>
+			<li><a href="">demo2</a></li>
+			<li><a href="">demo3</a></li>
+			<li><a href="">demo4</a></li>
+		</ul>
+	</div>
+	<img src="images/image5.png" alt="" width="100%">
+	<form class="topForm">
+	<input id="search" type="search" name="search">
+	<input id="submit" type="submit" name="submit" value="検索">
+	</form>
+	<p class="test">Please Search Project or Scroll Down.<span class="flash">.</span></p>
+	<div class="circle">↓</div>
+</header>
+<main>
+	<div class="section news">
+		<section>
+			<h2>見出し見出し見出し</h2>
+			<div class="content">
+				コンテンツコンテンツコンテンツコンテンツ<br />
+				コンテンツコンテンツコンテンツコンテンツ<br />
+				コンテンツコンテンツコンテンツコンテンツ<br />
+				コンテンツコンテンツコンテンツコンテンツ<br />
+			</div>
+		</section>
+	</div>
+	<div class="section service">
+		<section>
+			<h2>見出し見出し見出し</h2>
+			<div class="content">
+				コンテンツコンテンツコンテンツコンテンツ<br />
+				コンテンツコンテンツコンテンツコンテンツ<br />
+				コンテンツコンテンツコンテンツコンテンツ<br />
+				コンテンツコンテンツコンテンツコンテンツ<br />
+			</div>
+		</section>
+	</div>
+	<div class="section company">
+		<section>
+			<h2>見出し見出し見出し</h2>
+			<div class="content">
+				コンテンツコンテンツコンテンツコンテンツ<br />
+				コンテンツコンテンツコンテンツコンテンツ<br />
+				コンテンツコンテンツコンテンツコンテンツ<br />
+				コンテンツコンテンツコンテンツコンテンツ<br />
+			</div>
+		</section>
+	</div>
+</main>
+<footer>
+	<ul>
+		<li><a href="">demo1</a></li>
+		<li><a href="">demo2</a></li>
+		<li><a href="">demo3</a></li>
+		<p class="copyright">Copyright ©hogehoge 2015 All Rights Reserved.</p>
+	</ul>
+</footer>
+
+</body>
+</html>

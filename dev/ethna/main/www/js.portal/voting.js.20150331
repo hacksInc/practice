@@ -1,0 +1,73 @@
+
+$(function(){
+    var sd = $( "input#php_server_domain" ).val();
+    
+    $(document)
+        .on('click', '#vote_btn', function(){
+
+            var name1 = $('select[name="name1"] option:selected').text();
+            var name2 = $('select[name="name2"] option:selected').text();
+
+            var point = $('select[name="usePoint"] option:selected').val();
+            var myPt = $('#myPt').text();
+            var afterPt = +myPt - +point;
+
+
+            if ( +myPt == 0 || myPt < point ) {
+
+                $('#popup_alert').show();
+                $('.alert span').text('所持票数が足りません');
+                $('#overlay').show();
+                return false;
+
+            }
+
+            if ( name1 == name2 ) {
+                
+                $('#popup_alert').show();
+                $('.alert span').text('同じキャラクター同士での投票はできません');
+                $('#overlay').show();
+                return false;
+
+            } else {
+
+                $('#popup_confirm').show();
+                $('#overlay').show();
+
+                $('.point span').text(point);
+                $('#name1').text(name1);
+                $('#name2').text(name2);
+                $('#beforePt').text(myPt);
+
+                if (afterPt > 0) {
+                    $('#afterPt').text(afterPt);
+                }
+
+                return false;
+
+            }
+
+        })
+
+        .on('click', '#ranking_btn, #result_rank_btn', function(){
+            $('#popup_ranking').show();
+            $('#overlay').show();
+               return false;
+        })
+        
+        .on('click', '.cancel, #overlay', function(){
+            $('#popup_confirm, #overlay, #popup_ranking, #popup_alert').hide();
+            return false;
+        })
+        
+        .on('click', '.accept', function(){
+            var item_id = $('select[name="name1"] option:selected').val();
+            var item_id2 = $('select[name="name2"] option:selected').val();
+            var point = $('select[name="usePoint"] option:selected').val();
+            
+            Unity.call( "https://" + sd + "/psychopass_portal/execvoting.php?item_id=" + item_id + "&item_id2=" + item_id2 + "&point=" + point );
+            return false;
+        });
+
+
+});

@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+html,body {
+	font-size: 12px;
+	font-weight: bold;
+	-webkit-text-size-adjust: 100%;
+	font-family:  sans-serif ,Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
+}
+#background{
+	margin: 0 auto;
+	width:88%;
+	position: relative;
+}
+#contentBox {
+	position: absolute;
+	top:1%;
+	left:2%;
+	width: 96%;
+	height: 96%;
+	font-size: 70%;
+}
+#title{
+	position: absolute;
+	top:0.5%;
+	left: 5%;
+}
+#topImage{
+	display: block;
+	margin: 0 auto;
+	width: 96%;
+	margin-top: 1%;
+}
+
+#rate{
+	margin: 0 auto;
+	width: 96%;
+	position: relative;
+	margin-top:1%;
+	color: #fff;
+}
+	#portalRate{
+		position: absolute;
+		top: 18%;
+		left: 13%;
+		width: 33%;
+		text-align: center;
+		font-size: 85%;
+	}
+	#ticketRate {
+		position: absolute;
+		top: 52%;
+		right: 5%;
+		width: 20%;
+		text-align: center;
+	}
+#myPortal {
+	margin: 0 auto;
+	width: 96%;
+	position: relative;
+	margin-top:1%;
+}
+	#havPortal{
+		position: absolute;
+		top: 8%;
+		left: 6%;
+	}
+	#myPotalPt{
+		position: absolute;
+		bottom: 20%;
+		right: 5%;
+		color: #fff;
+	}
+		#myPotalPt>span{
+			font-size: 120%;
+			color: rgba(1,224,255,1);
+		}
+#myTicket{
+	margin: 0 auto;
+	width: 96%;
+	position: relative;
+	margin-top:1%;
+}
+	#havTicket{
+		position: absolute;
+		top: 8%;
+		left: 6%;
+	}
+	#myTicketNumber{
+		position: absolute;
+		bottom: 20%;
+		right: 5%;
+		color: #fff;
+	}
+		#myTicketNumber>span{
+			font-size: 120%;
+			color: rgba(1,224,255,1);
+		}
+
+#tradeFrame1{
+	margin-top: 5%;
+	display: block;
+}
+#tradeFrame2{
+	display: block;
+}
+#resultText{
+	margin: 15% 0;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	font-size: 130%;
+}
+	#resultText>span{
+		font-size: 120%;
+		color: rgba(1,224,255,1);
+	}
+#closeBtn {
+	position: absolute;
+	bottom: 4%;
+	left: 21%;
+	width: 58%;
+}
+#closeBtn p {
+	position: absolute;
+	top: 30%;
+	left: 5%;
+	width: 90%;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	font-size: 150%;
+}
+
+@media screen and (min-width: 300px) {
+	html, body {
+		font-size: 14px;
+	}
+}
+
+@media screen and (min-width: 400px) {
+	html, body {
+		font-size: 18px;
+	}
+}
+
+@media screen and (min-width: 500px) {
+	html, body {
+		font-size: 22px;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	html, body {
+		font-size: 26px;
+	}
+}
+@media screen and (min-width: 700px) {
+	html, body {
+		font-size: 30px;
+	}
+}
+@media screen and (min-width: 800px) {
+	html, body {
+		font-size: 32px;
+	}
+}

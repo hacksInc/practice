@@ -1,0 +1,228 @@
+
+#background{
+	position: absolute;
+	top:11%;
+	left:7%;
+	width:86%;
+	color: #000;
+	z-index:111;
+	font-weight: bold;
+}
+#contentBox {
+	position: absolute;
+	top:1%;
+	left:2%;
+	width: 96%;
+	font-size: 70%;
+}
+#title{
+	position: absolute;
+	top:0.5%;
+	left: 5%;
+}
+#topImage{
+	display: block;
+	margin: 0 auto;
+	width: 96%;
+	margin-top: 1%;
+}
+#rate{
+	margin: 0 auto;
+	width: 96%;
+	position: relative;
+	margin-top:1%;
+	color: #fff;
+}
+	#portalRate{
+		position: absolute;
+		top: 18%;
+		left: 13%;
+		width: 33%;
+		text-align: center;
+		font-size: 85%;
+	}
+	#ticketRate {
+		position: absolute;
+		top: 52%;
+		right: 5%;
+		width: 20%;
+		text-align: center;
+	}
+#myPortal {
+	margin: 0 auto;
+	width: 96%;
+	position: relative;
+	margin-top:1%;
+}
+	#havPortal{
+		position: absolute;
+		top: 10%;
+		left: 6%;
+	}
+	#myPotalPt{
+		position: absolute;
+		bottom: 20%;
+		right: 5%;
+		color: #fff;
+	}
+		#myPotalPt>span{
+			font-size: 120%;
+			color: rgba(1,224,255,1);
+		}
+#myTicket{
+	margin: 0 auto;
+	width: 96%;
+	position: relative;
+	margin-top:1%;
+}
+	#havTicket{
+		position: absolute;
+		top: 10%;
+		left: 6%;
+	}
+	#myTicketNumber{
+		position: absolute;
+		bottom: 20%;
+		right: 5%;
+		color: #fff;
+	}
+		#myTicketNumber>span{
+			font-size: 120%;
+			color: rgba(1,224,255,1);
+		}
+#trade{
+	position: relative;
+	margin-top:2%;
+}
+	#tradeTitle{
+		position: absolute;
+		top: 15%;
+		left: 9%;
+	}
+	#tradeSelect{
+		display: block;
+		margin: 0 auto;
+		width: 95%;
+		margin-top: -3%;
+	}
+	#tradePt{
+		position: absolute;
+		top:25%;
+		left: 7%;
+		width: 65%;
+	}
+	#tradeArrow{
+		display: block;
+		margin: 0 auto;
+		width: 8%;
+	}
+	#tradeConfirm{
+		display: block;
+		margin: 0 auto;
+		width: 95%;
+	}
+	#tradeFrame2{
+		display: block;
+		margin-top: -3%;
+	}
+	#ptList{	
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    display: block;
+    position: absolute;
+	top:24.5%;
+	left: 10%;
+	width: 60%;
+    background-image: url(/psychopass_portal/img/exchange/selectBtn.png);
+    background-size: 15% 90%;
+    background-repeat: no-repeat;
+    background-position: 3% bottom;
+	padding-left: 30%;
+	font-size: 160%;
+	color: rgba(1,224,255,1);
+	border:none;
+	}
+	#ppp{
+		position: absolute;
+		top: 36%;
+		right:7%;
+		color: #fff;
+		font-size: 120%;
+	}
+	#confirmPt{
+		position: absolute;
+		bottom: 12%;
+		left: 18%;
+		width: 75%;
+		text-align: center;
+		color: #fff;
+		font-size: 105%;
+	}
+		#confirmPt>span{
+			font-size: 130%;
+			color: rgba(1,224,255,1);
+		}
+	#ticketImg{
+		display: block;
+		position: absolute;
+		bottom: 16%;
+		left: 5%;
+		width: 12%;
+	}
+#select {
+	position: relative;
+	margin-top:2%;
+}
+	#selectFrame{
+		display: block;
+		margin: 0 auto;
+		width: 98%;
+	}
+	#yes{
+		position: absolute;
+		top: 22%;
+		left: 4%;
+		width: 43%;
+	}
+	#cancel{
+		position: absolute;
+		top: 22%;
+		right: 4%;
+		width: 43%;
+	}
+
+/******************
+exchangeResult
+******************/
+div#changeNameresult{
+	position:fixed;
+	top:30%;
+	left:10%;
+	width:60%;
+	height:40%; 
+	background:rgba(0,0,0,0.6);
+	padding:0 10%;
+	z-index:999;
+	color:rgba(1,255,225,0.8);
+	border: 1px solid rgba(1,255,225,0.8);
+}
+div#changeNameresult>#finish{
+	position: absolute;
+	top:35%;
+	left:0%;
+	width:100%; 
+	text-align:center;
+	font-size:120%;
+	color:rgba(1,255,225,0.8);
+}
+.finishBtn{
+	position: absolute;
+	bottom: 5%;
+	left:30%; 
+	text-align:center;
+	padding:5% 0;
+	width:40%;
+	color:rgba(1,255,225,0.8);
+	border:1px solid rgba(1,255,225,0.8);
+}

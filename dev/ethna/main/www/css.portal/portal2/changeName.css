@@ -1,0 +1,202 @@
+#profileArea{
+	position: absolute;
+	top: 11%;
+	left:3%;
+	width: 94%;
+}
+
+#profileImg{
+	display: block;
+	position: absolute;
+	top:18%;
+	left:5%;
+	width:27%;
+}
+
+#nameDecoration{
+	position: absolute;
+	top: 15%;
+	left: 38%;
+	width: 5%;
+}
+#name {
+	position: absolute;
+	top:15%;
+	left:42%;
+	min-width: 35%;
+	border-bottom: 1px solid #fff;
+	padding-left: 3%;
+}
+
+table{
+	position: absolute;
+	top: 30%;
+	left: 38%;
+	width: 60%;
+	font-size: 80%;
+}
+
+th{
+	font-weight: normal;
+	padding: 2% 0;
+	width: 37%;
+}
+th p {
+	border-left: 2px solid #fff;
+	padding-left: 3%;
+	text-align: left;
+}
+td{
+	width: 65%;
+	padding: 2% 0;
+}
+div#changeName{
+	position:absolute;
+	top:36%;
+	left: 9%;
+	width:64%;
+	padding:3% 8%;
+	background:rgba(0,0,0,0.7);
+	border-radius: 10px;
+	border: 1px solid rgba(1,255,225,0.8);
+}
+div#changeName>#title{
+	font-size:120%;
+	width:100%;
+	margin:0 auto;
+	text-align:center;
+	color:rgba(1,255,225,0.8);
+	border-bottom: 1px solid rgba(1,255,225,0.8);
+}
+div#changeName>#addName{
+	color:#fff;
+	padding-top: 5%;
+}
+div#changeName>#nickname{
+	width:90%;
+	border-radius:6px;
+	border: 1px solid rgba(1,255,225,0.8);
+}
+div#changeName>#nameEn{
+	color:#fff;
+	padding-top:3%;
+}
+div#changeName>#ruby{
+	width:90%;
+	border-radius:6px;
+	border: 1px solid rgba(1,255,225,0.8);
+}
+div#changeName>.limit{
+	color:#f00;
+}
+.changeNamebtn{
+	display:block;
+	width:50%;
+	margin:0 auto;
+	margin-top:15px;
+	padding:5% 0;
+	text-align:center;
+}
+
+div#errBox{
+	z-index:999;
+	display:none;
+	position:fixed;
+	top:25%;
+	left:15%;
+	width:50%;
+	height:40%;
+	background:rgba(0,0,0,0.7);
+	border: 1px solid #f00;
+	padding:0 10%;
+}
+div#errBox>#title{
+	position:absolute;
+	top:10%;
+	left:15%;
+	width:70%;
+	color:#f00;
+	text-align:center;
+	font-size:120%;
+	border-bottom:1px solid #f00;
+}
+div#errBox>#errMsg{
+	color:#f00;
+	position:absolute;
+	top:35%;
+	left:5%;
+	width:90%;
+	text-align:center;
+}
+.backBtn{
+	position: absolute;
+	bottom: 5%;
+	left:30%; 
+	text-align:center;
+	padding:5% 0;
+	width:40%;
+	color:#f00;
+	border:1px solid #f00;
+}
+#overlay{
+	display:none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.7;
+	z-index: 777;
+}
+
+div#changeNameresult{
+	position:fixed;
+	top:30%;
+	left:10%;
+	width:60%;
+	height:40%; 
+	background:rgba(0,0,0,0.6);
+	padding:0 10%;
+	z-index:999;
+	color:rgba(1,255,225,0.8);
+	border: 1px solid rgba(1,255,225,0.8);
+}
+div#changeNameresult>#finish{
+	position: absolute;
+	top:35%;
+	left:0%;
+	width:100%; 
+	text-align:center;
+	font-size:120%;
+	color:rgba(1,255,225,0.8);
+}
+.finishBtn{
+	position: absolute;
+	bottom: 5%;
+	left:30%; 
+	text-align:center;
+	padding:5% 0;
+	width:40%;
+	color:rgba(1,255,225,0.8);
+	border:1px solid rgba(1,255,225,0.8);
+}
+
+#changeBtn{
+	position: absolute;
+	bottom: 25%;
+	left:10%;
+	width:46%;
+}
+.changeText{
+	position: absolute;
+	bottom: 26.5%;
+	left:12%;
+	width: 42%;
+	text-align: center;
+	font-size: 130%;
+	font-weight: bold;
+	z-index: 90;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+}

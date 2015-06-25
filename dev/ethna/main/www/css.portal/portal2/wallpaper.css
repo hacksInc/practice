@@ -1,0 +1,85 @@
+
+#contentFrame {
+	position: absolute;
+	top:10%;
+	left: 2%;
+	width:96%;
+}
+#infoContent{
+	position: absolute;
+	top:5%;
+	left:2%;
+	width:95%;
+	height:92%;
+	overflow: auto;
+}
+div#wallpaperArea{
+	overflow:hidden;
+	*zoom:1;
+	margin:auto;
+	width:98%;
+}
+div.characterSelect{
+	float:left;
+	margin-bottom: 8%;
+	width:33%;
+	text-align:center
+}
+div.characterSelect img{
+	width:90%;
+	height:auto
+}
+
+div#owl-carousel div.onePaper{
+	position: absolute;
+	top: 15%;
+	left: 10%;
+	height: 60%;
+	width: 80%;
+	color:transparent;
+}
+
+div.nav{
+position:fixed;
+top:36%;
+z-index:10
+}
+div.nav#prevButton{
+left:8%
+}
+div.nav#nextButton{
+right:8%
+}
+#back2{
+	position: absolute;
+	bottom: 19%;
+	left:10%;
+	width:46%;
+	z-index: 9;
+}
+#backText2{
+	position: absolute;
+	bottom: 20.5%;
+	left:10%;
+	width:46%;
+	text-align: center;
+	font-size: 130%;
+	font-weight: bold;
+	z-index: 10;
+}
+#chara1 {
+	display: block;
+	position: absolute;
+	bottom: 12%;
+	right: 7%;
+	width:36%;
+	z-index: 2;
+}
+#chara1_shadow {
+	display: block;
+	position: absolute;
+	bottom: 12.5%;
+	right: 18%;
+	width:13%;
+	z-index: 1;
+}

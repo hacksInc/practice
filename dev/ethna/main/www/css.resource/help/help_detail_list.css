@@ -1,0 +1,90 @@
+html,body {
+	font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+	-webkit-text-size-adjust: 100%;
+	font-size: 12px;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: black;
+}
+#wrapper {
+	width: 100%;
+	height: 100%;
+	padding-top: 2%;
+	background: black;
+	position: relative;
+	position: fixed;
+}
+.content {
+	width: 100%;
+	height: 85%;
+	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
+	-moz-overflow-scrolling: touch;
+}
+.content li {
+	width: 80%;
+	margin: 13% 7%;
+	padding: 2% 3%;
+	background-image: url("/www/img/help/help_button.png");
+	background-size: 100% 100%;
+	background-repeat:no-repeat;
+	overflow: hidden;
+}
+.content li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	text-align: center;
+	color: #fff;
+	padding: 2% 0;
+	font-weight: bold;
+}
+.back_button {
+	position: absolute;
+	bottom: 4%;
+	right: 5%;
+	width: 40%;
+	height: 8%;
+}
+.nicescroll-cursors{
+	background-image: url(/www/img/help/scrollbar.png) !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+	border:none !important;
+	border-radius: none !important;
+}
+@media screen and (min-width: 300px) {
+	html, body {
+		font-size: 14px;
+	}
+}
+
+@media screen and (min-width: 400px) {
+	html, body {
+		font-size: 18px;
+	}
+}
+
+@media screen and (min-width: 500px) {
+	html, body {
+		font-size: 22px;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	html, body {
+		font-size: 26px;
+	}
+}
+@media screen and (min-width: 700px) {
+	html, body {
+		font-size: 30px;
+	}
+}
+@media screen and (min-width: 800px) {
+	html, body {
+		font-size: 32px;
+	}
+}

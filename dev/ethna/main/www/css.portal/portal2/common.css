@@ -1,0 +1,502 @@
+@charset "UTF-8";
+
+html,body {
+	width: 100%;
+	height:100%;
+	font-size: 14px;
+	-webkit-text-size-adjust: 100%;
+	font-family:  sans-serif ,Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
+}
+.clearfix:after,.bx-pager:after {
+	content: ".";
+	height: 0;
+	font-size: 0;
+	clear: both;
+	display: block;
+	visibility: hidden;
+}
+#test {
+	position: fixed;
+	bottom: 20%;
+	right: 5%;
+	width: 50%;
+	background: rgba(0,0,0,0.6);
+	z-index:999;
+	border:1px solid #000;
+	color: #fff;
+	padding:1%;
+}
+
+#portalBackground {
+	width:100%;
+	height:100%;
+	color:#fff;
+	overflow: hidden;
+	position: relative;
+	background-image:url(/psychopass_portal/img/portal/portalBackground.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+#backgroundImg{
+	display: block;
+}
+#contentFrame {
+	position: absolute;
+	top:11%;
+	left: 7%;
+	width:86%;
+}
+#contentTitle{
+	position: absolute;
+	top:0.5%;
+	left:2%;
+	width:25%;
+	font-size: 50%;
+	text-align: center;
+	font-weight: bold;
+	font-style: oblique;
+	color: #000;
+}
+#contentText{
+	position: absolute;
+	top:7%;
+	left:2%;
+	width:93%;
+	height:80%;
+	overflow: auto;
+}
+#contentText h2 {
+	color: rgba(100,255,225,0.9);
+}
+#contentText p {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 4%;
+	font-size: 90%;
+}
+#overlay{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.7;
+	z-index: 300;
+}
+#chara1 {
+	display: block;
+	position: absolute;
+	bottom: 13%;
+	right: 4%;
+	width:42%;
+	z-index: 90;
+}
+#chara2 {
+	display: block;
+	position: absolute;
+	bottom: 13%;
+	left: 6%;
+	width:42%;
+	z-index: 90;
+}
+#chara1_shadow {
+	display: block;
+	position: absolute;
+	bottom: 13%;
+	right:16.5%;
+	width:18%;
+	z-index: 10;
+}
+#chara2_shadow {
+	display: block;
+	position: absolute;
+	bottom: 13%;
+	left:18%;
+	width:18%;
+	z-index: 10;
+}
+
+#toPage{
+	position: absolute;
+	top: 52%;
+	left: 5%;
+	width:90%;
+}
+#toPage2{
+	position: absolute;
+	top: 59%;
+	left: 5%;
+	width:90%;
+}
+.leftBtn{
+	float:left;
+	width:49%;
+}
+.rightBtn{
+	float:right;
+	width:49%;
+}
+.leftLink{
+	position: absolute;
+	top: 20%;
+	left: 3%;
+	width: 42%;
+	text-align: center;
+	font-size: 130%;
+	font-weight: bold;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+	z-index: 90;
+}
+.rightLink {
+	position: absolute;
+	top: 20%;
+	right: 3%;
+	width: 42%;
+	text-align: center;
+	font-size: 130%;
+	font-weight: bold;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+	z-index: 90;
+}
+.backBtn{
+	position: absolute;
+	bottom: 22%;
+	left:10%;
+	width:46%;
+}
+.backLink{
+	position: absolute;
+	bottom: 23.5%;
+	left:12%;
+	width: 42%;
+	text-align: center;
+	font-size: 130%;
+	font-weight: bold;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+	z-index: 90;
+}
+.backBtn2{
+	position: absolute;
+	bottom: 16%;
+	left:10%;
+	width:46%;
+}
+.backLink2{
+	position: absolute;
+	bottom: 17.5%;
+	left:12%;
+	width: 42%;
+	text-align: center;
+	font-size: 130%;
+	font-weight: bold;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+	z-index: 90;
+}
+/*********************
+   header
+*********************/
+header{
+	position: absolute;
+	width:100%;
+	top:0%;
+	left:0%;
+	z-index: 111;
+}
+
+	#headerTitleFrame{
+		width:58%;
+	}
+	#mark{
+		position: absolute;
+		top:12%;
+		left:1.5%;
+		-moz-animation: psychoMark 4s linear 1s infinite;
+		-webkit-animation: psychoMark 4s linear 1s infinite;
+	}
+	@-moz-keyframes psychoMark {
+		0% {
+			-moz-transform: rotateY(0deg);
+		}
+		20% {
+			-moz-transform: rotateY(180deg);
+		}
+		40% {
+			-moz-transform: rotateY(0deg);
+		}
+	}
+	@-webkit-keyframes psychoMark {
+		0% {
+			-webkit-transform: rotateY(0deg);
+		}
+		20% {
+			-webkit-transform: rotateY(180deg);
+		}
+		40% {
+			-webkit-transform: rotateY(0deg);
+		}
+	}
+	#votePtFrame{
+		position: absolute;
+		top:15%;
+		right: 22.5%;
+		width:20%;
+	}
+	#portalPtFrame{
+		position: absolute;
+		top:50%;
+		right: 22.5%;
+		width:20%;
+	}
+	#toGame{
+		float:right;
+		width:23%;
+	}
+	#headerTitle{
+		position: absolute;
+		top:22%;
+		left:17%;
+		width:34%;
+		font-weight: bold;
+		font-style: oblique;
+		font-size: 160%;
+		text-align: center;
+	}
+	#userNumber{
+		position: absolute;
+		bottom:0%;
+		left:42%;
+		font-size: 50%;
+	}
+	#votePt{
+		position: absolute;
+		top:22%;
+		right: 25%;
+		font-size: 60%;
+	}
+	#portalPt{
+		position: absolute;
+		top:58%;
+		right: 25%;
+		font-size: 60%;
+	}
+
+
+/*****************
+  footer
+*****************/
+footer{
+	position: absolute;
+	width:100%;
+	bottom:0%;
+	left:0%;
+	z-index: 111;
+}
+
+#btnFrame{
+	display: block;
+	width:100%;
+}
+#btn{
+	position: absolute;
+	top:14%;
+	left:1.2%;
+	width:96%;
+}
+#btn li {
+	float:left;
+	width:19%;
+	margin-left: 1%;
+	list-style: none;
+}
+
+/*****************
+  result
+*****************/
+#result{
+	position: absolute;
+	top: 28%;
+	left: 10%;
+	width: 80%;
+	z-index: 900;
+}
+#resultText{
+	position: absolute;
+	top: 35%;
+	left: 5%;
+	width: 90%;
+	text-align: center;
+	color:#fff;
+	line-height: 1.2;
+	font-size: 110%;
+}
+#resultText span{
+	color: rgba(1,224,255,1);
+	font-size: 120%;
+}
+#resultBack{
+	position: absolute;
+	bottom: 28%;
+	left: 12.5%;
+	width: 45%;
+	z-index: 900;
+}
+#resultBackText {
+	position: absolute;
+	bottom: 29.5%;
+	left: 15%;
+	width: 40%;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	font-size: 130%;
+	z-index: 901;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
+#result_chara {
+	display: block;
+	position: absolute;
+	bottom: 18%;
+	right: 4%;
+	width:45%;
+	z-index: 900;
+}
+#result_chara_shadow {
+	display: block;
+	position: absolute;
+	bottom: 18.5%;
+	right:16.5%;
+	width:18%;
+	z-index: 800;
+}
+
+/*****************
+  error
+*****************/
+#error{
+	position: absolute;
+	top: 28%;
+	left: 10%;
+	width: 80%;
+	z-index: 900;
+}
+#errorText{
+	position: absolute;
+	top: 25%;
+	left: 5%;
+	width: 90%;
+	text-align: center;
+	color:#f00;
+	line-height: 1.2;
+	font-size: 110%;
+}
+#errorBack{
+	position: absolute;
+	bottom: 28%;
+	left: 12.5%;
+	width: 45%;
+	z-index: 900;
+}
+#errorBackText {
+	position: absolute;
+	bottom: 29.5%;
+	left: 15%;
+	width: 40%;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	font-size: 130%;
+	z-index: 901;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
+#error_chara{
+	display: block;
+	position: absolute;
+	bottom: 18%;
+	right: 4%;
+	width:45%;
+	z-index: 900;
+}
+#error_chara_shadow{
+	display: block;
+	position: absolute;
+	bottom: 18.5%;
+	right:16.5%;
+	width:18%;
+	z-index: 800;
+}
+/*****************
+ ポップアップ（ポイントゲット）
+*****************/
+
+div#modal-content{
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	position:fixed;
+	left:25%;
+	top:30%;
+	width:50%;
+	padding:10px;
+	background-color:rgba(0,0,0,0.56);
+	display:none;
+	color: #fff;
+	z-index:99;
+	border: 1px solid rgba(1,255,225,0.8);
+}
+
+#modal-overlay{
+   z-index:98;
+   display:none;
+   position:fixed;
+   top:0;
+   left:0;
+   width:100%;
+   height:120%;
+   background-color:rgba(0,0,0,0.75);
+}
+
+.button-link{
+   color:#ff3399;
+   text-decoration:underline;
+}
+ 
+.button-link:hover{
+   cursor:pointer;
+   color:#f00;
+}
+/*****************
+  スクロールバー
+*****************/
+.nicescroll-cursors{
+	width: 3px !important;
+	border:none !important;
+	border-radius: none !important;
+	background-color: #eee !important;
+}
+
+/*****************
+  フォントサイズ
+*****************/
+
+@media screen and (min-width: 500px) {
+	html, body {
+		font-size: 130%;
+	}
+}
+
+@media screen and (min-width: 700px) {
+	html, body {
+		font-size: 140%;
+	}
+}
+@media screen and (min-width: 900px) {
+	html, body {
+		font-size: 150%;
+	}
+}

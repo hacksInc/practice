@@ -1,0 +1,142 @@
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+         -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+            box-sizing: border-box;
+}
+body {
+/*    background: url("http://ethna.jp/image/pagebg.gif"); */
+/*    font-family: Arial,Verdana,Helvetica,'MS UI Gothic',sans-serif;
+    margin-left: 10px;
+    margin-right: 40px;*/
+}
+.kpi-list-float-box {
+    /* width: 800px; */
+    /* height: 40px; */
+    display: box;
+    display: -webkit-box; /* Safari,Google Chrome用 */
+    display: -moz-box; /* Firefox用 */
+}
+.kpi-list-title-box {
+    /* border: 1px solid #000000; */
+    height: 50px;
+}
+.kpi-list-title {
+    background-color: #FFD700;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    font-size: 12px;
+    height: 50px;
+}
+.kpi-list-sub-title-box {
+    border: 1px solid #000000;
+    height: 50px;
+}
+.kpi-list-sub-title-gold,
+.kpi-list-sub-title-green {
+    border-bottom: 1px solid #000000;
+    border-right: 1px solid #000000;
+    padding-left: 5px;
+    font-size: 12px;
+    height: 50px;
+}
+.kpi-list-sub-title-gold{
+    background-color: #FFD700;
+}
+.kpi-list-sub-title-green {
+    background-color: #90EE90;
+}
+.kpi-list-content-box {
+    /* border: 1px solid #000000; */
+    height: 25px;
+}
+.kpi-list-content {
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    height: 25px;
+    font-size: 12px;
+    padding-left: 5px;
+}
+.attention-require {
+    font-size: 8px;
+    color: #ff0000;
+}
+/**
+*
+*/
+.content-list-part-10 {
+    width: 10px;
+}
+.content-list-part-20 {
+    width: 20px;
+}
+.content-list-part-30 {
+    width: 30px;
+}
+.content-list-part-40 {
+    width: 40px;
+}
+.content-list-part-50 {
+    width: 50px;
+}
+.content-list-part-51 {
+    width: 51px;
+}
+.content-list-part-60 {
+    width: 60px;
+}
+.content-list-part-70 {
+    width: 70px;
+}
+.content-list-part-80 {
+    width: 80px;
+}
+.content-list-part-81 {
+    width: 81px;
+}
+.content-list-part-90 {
+    width: 90px;
+}
+.content-list-part-100 {
+    width: 100px;
+}
+.content-list-part-110 {
+    width: 110px;
+}
+.content-list-part-120 {
+    width: 120px;
+}
+.content-list-part-130 {
+    width: 130px;
+}
+.content-list-part-140 {
+    width: 140px;
+}
+.content-list-part-150 {
+    width: 150px;
+}
+.content-list-part-170 {
+    width: 170px;
+}
+.content-list-part-200 {
+    width: 200px;
+}
+.content-list-part-201 {
+    width: 201px;
+}
+.content-list-part-300 {
+    width: 300px;
+}
+.content-list-part-320 {
+    width: 320px;
+}
+.content-list-part-321 {
+    width: 321px;
+}
+.content-list-part-680 {
+    width: 680px;
+}
+.content-list-part-1350 {
+    width: 1350px;
+}

@@ -1,0 +1,128 @@
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+         -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+            box-sizing: border-box;
+}
+body {
+/*    background: url("http://ethna.jp/image/pagebg.gif"); */
+/*    font-family: Arial,Verdana,Helvetica,'MS UI Gothic',sans-serif;
+    margin-left: 10px;
+    margin-right: 40px;*/
+}
+.kpi-list-float-box {
+    width: 800px;
+    /* height: 40px; */
+    display: box;
+    display: -webkit-box; /* Safari,Google Chromeóp */
+    display: -moz-box; /* Firefoxóp */
+}
+.kpi-list-title {
+    background-color: #aaaaaa;
+    border: 1px solid #000000;
+    margin-top: -1px;
+    margin-left: -1px;
+    font-size: 12px;
+}
+.kpi-list-content {
+    border: 1px solid #000000;
+    margin-top: -1px;
+    margin-left: -1px;
+    font-size: 12px;
+}
+.attention-require {
+    font-size: 8px;
+    color: #ff0000;
+}
+/**
+*
+*/
+.content-list-part-10 {
+    width: 10px;
+}
+.content-list-part-20 {
+    width: 20px;
+}
+.content-list-part-30 {
+    width: 30px;
+}
+.content-list-part-40 {
+    width: 40px;
+}
+.content-list-part-50 {
+    width: 50px;
+}
+.content-list-part-60 {
+    width: 60px;
+}
+.content-list-part-70 {
+    width: 70px;
+}
+.content-list-part-80 {
+    width: 80px;
+}
+.content-list-part-90 {
+    width: 90px;
+}
+.content-list-part-100 {
+    width: 100px;
+}
+.content-list-part-110 {
+    width: 110px;
+}
+.content-list-part-120 {
+    width: 120px;
+}
+.content-list-part-130 {
+    width: 130px;
+}
+.content-list-part-140 {
+    width: 140px;
+}
+.content-list-part-150 {
+    width: 150px;
+}
+.content-list-part-170 {
+    width: 170px;
+}
+.content-list-part-200 {
+    width: 200px;
+}
+.content-list-part-300 {
+    width: 300px;
+}
+.content-list-part-680 {
+    width: 680px;
+}
+/**
+ * KPI åpë±ó¶ï îwåiêFéwíË
+ */
+.kpi-continuance-color100,
+.kpi-continuance-color90,
+.kpi-continuance-color80,
+.kpi-continuance-color70,
+.kpi-continuance-color60 {
+    background-color: #7FFFD4;
+}
+.kpi-continuance-color50 {
+    background-color: #98EB98;
+}
+.kpi-continuance-color40 {
+    background-color: #ADFF2F;
+}
+.kpi-continuance-color30 {
+    background-color: #FFD700;
+}
+.kpi-continuance-color20 {
+    background-color: #FFA500;
+}
+.kpi-continuance-color10 {
+    background-color: #FA8072;
+}
+.kpi-continuance-color0 {
+    background-color: #DC143C;
+}
+.kpi-continuance-color-gray {
+    background-color: #aaaaaa;
+}

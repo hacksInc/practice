@@ -1,0 +1,476 @@
+
+#tournamentBackground{
+	position: fixed;
+	top:4%;
+	left:8%;
+	width: 84%;
+}
+
+#tournament{
+	position: fixed;
+	top:5.2%;
+	left:10.5%;
+	width:78.5%;
+	height:81%;
+	border: 1px solid #01e0ff;
+}
+
+	#tournamentTable{
+		width:100%;
+		position: relative;
+	}
+	#tournamentTitle{
+		position: absolute;
+		top:1%;
+		left:1%;
+		color:#fff;
+	}
+
+	ul#participant{
+		position: absolute;
+		bottom:0%;
+		left:0%;
+		width: 100%;
+	}
+	#participant li {
+		float: left;
+		width: 14%;
+		margin-left:2.3%;
+	}
+
+#battleZone{
+	width:100%;
+	position: relative;
+}
+	#l_chara{
+		position: absolute;
+		bottom:12%;
+		left:0%;
+		width: 44%;
+	}
+	#r_chara{
+		position: absolute;
+		bottom:12%;
+		right:0%;
+		width: 44%;
+	}
+	#vs{
+		position: absolute;
+		top:35%;
+		left:35%;
+		width: 30%;
+	}
+	#gauge{
+		position: absolute;
+		bottom:2%;
+		left:3%;
+		width: 94%;
+		height:8%;
+		border:1px solid #eee;
+	}
+	#l_count{
+		position: absolute;
+		bottom: 15%;
+		left: 4%;
+		width: 30%;
+		text-align:left;
+		color:#fff;
+	}
+	#r_count{
+		position: absolute;
+		bottom: 15%;
+		right: 4%;
+		width: 30%;
+		color:#fff;
+		text-align:right;
+	}
+	#mater{
+		position: absolute;
+		bottom:4%;
+		left:4%;
+		width:92.5%;
+		height:5.5%;
+	}
+	#blueGauge{
+		height:100%;
+		width:50%;
+		float: left;
+	}
+	#redGauge{
+		height:100%;
+		width:50%;
+		float: right;
+	}
+
+
+/*************************
+	トーナメント表アニメーション
+*************************/
+
+/******** 1回戦 *******/
+.height {
+	display: block;
+	width: 1%;
+	height: 12%;
+	background: #21a876;
+	border-top-left-radius: 1px;
+	-webkit-animation: height 1.5s linear;
+	-moz-animation: height 1.5s linear;
+}
+#height1{
+	position: absolute;
+	bottom:20%;
+	left:24%;
+
+}
+#height2{
+	position: absolute;
+	bottom:20%;
+	left:41%;
+}
+
+#height3{
+	position: absolute;
+	bottom:20%;
+	left:57.5%;
+}
+
+#height4{
+	position: absolute;
+	bottom:20%;
+	left:74.5%;
+}
+
+.width{
+	display: block;
+	width: 9%;
+	height: 1%;
+	background: #21a876;
+	border-top-left-radius: 1px;
+	border-bottom-right-radius: 1px;
+	-webkit-animation: width 2.7s linear;
+	-moz-animation: width 2.7s linear;
+}
+#width1{
+	position: absolute;
+	bottom:31%;
+	left:24%;
+}
+#width2{
+	position: absolute;
+	bottom:31%;
+	right:58.5%;
+}
+#width3{
+	position: absolute;
+	bottom:31%;
+	left:57.5%;
+}
+#width4{
+	position: absolute;
+	bottom:31%;
+	right:25%;
+}
+
+
+
+/******** 2回戦 ********/
+.round2_height_long{
+	display: block;
+	width: 1%;
+	height: 28%;
+	background: #21a876;
+	border-top-left-radius: 1px;
+	-webkit-animation: round2_height_long 5s linear;
+	-moz-animation: round2_height_long 5s linear;
+}
+#height5{
+	position: absolute;
+	bottom:20%;
+	left:7.5%;
+}
+#height8{
+	position: absolute;
+	bottom:20%;
+	right:7.8%;
+}
+
+.round2_height{
+	display: block;
+	width: 1%;
+	height: 15.5%;
+	background: #21a876;
+	border-top-left-radius: 1px;
+	-webkit-animation: round2_height 5s linear;
+	-moz-animation: round2_height 5s linear;
+}
+#height6{
+	position: absolute;
+	bottom:32%;
+	left:32.5%;
+}
+#height7{
+	position: absolute;
+	bottom:32%;
+	right:32.5%;
+}
+.round2_width{
+	display: block;
+	width: 13%;
+	height: 1%;
+	background: #21a876;
+	border-top-left-radius: 1px;
+	border-bottom-right-radius: 1px;
+	-webkit-animation: round2_width 7s linear;
+	-moz-animation: round2_width 7s linear;
+}
+#width5{
+	position: absolute;
+	bottom:47%;
+	left:7.5%;
+}
+#width6{
+	position: absolute;
+	bottom:47%;
+	right:66.5%;
+}
+#width7{
+	position: absolute;
+	bottom:47%;
+	left:66.5%;
+}
+#width8{
+	position: absolute;
+	bottom:47%;
+	right:7.8%;
+}
+@-webkit-keyframes round2_width{
+	0%{
+		width:0%;
+	}
+	70%{
+		width:0%;
+	}
+	100%{
+		width:13%;
+	}
+}
+@-moz-keyframes round2_width{
+	0%{
+		width:0%;
+	}
+	70%{
+		width:0%;
+	}
+	100%{
+		width:13%;
+	}
+}
+
+
+/******** 3回戦 ********/
+
+.round3_height{
+	display: block;
+	width: 1%;
+	height: 15.5%;
+	background: #21a876;
+	border-top-left-radius: 1px;
+	-webkit-animation: round3_height 9s linear;
+	-moz-animation: round3_height 9s linear;
+}
+#height9{
+	position: absolute;
+	bottom:48%;
+	left:20%;
+}
+#height10{
+	position: absolute;
+	bottom:48%;
+	right:20.5%;
+}
+@-webkit-keyframes round3_height{
+	0%{
+		height:0%;
+	}
+	80%{
+		height:0%;
+	}
+	100%{
+		height:15.5%;
+	}
+}
+@-moz-keyframes round3_height{
+	0%{
+		height:0%;
+	}
+	80%{
+		height:0%;
+	}
+	100%{
+		height:15.5%;
+	}
+}
+
+.round3_width{
+	display: block;
+	width: 30%;
+	height: 1%;
+	background: #21a876;
+	border-top-left-radius: 1px;
+	border-bottom-right-radius: 1px;
+	-webkit-animation: round3_width 12.5s linear;
+	-moz-animation: round3_width 12.5s linear;
+}
+#width9{
+	position: absolute;
+	bottom:63%;
+	left:20%;
+}
+#width10{
+	position: absolute;
+	bottom:63%;
+	right:20.5%;
+}
+@-webkit-keyframes round3_width{
+	0%{
+		width:0%;
+	}
+	75%{
+		width:0%;
+	}
+	100%{
+		width:30%;
+	}
+}
+@-moz-keyframes round3_width{
+	0%{
+		width:0%;
+	}
+	75%{
+		width:0%;
+	}
+	100%{
+		width:30%;
+	}
+}
+
+/***** finish ******/
+#height11{
+	display: block;
+	position: absolute;
+	bottom:63%;
+	left:49.5%;
+	width: 1%;
+	height: 4%;
+	background: #21a876;
+	-webkit-animation: height11 13.5s linear;
+	-moz-animation: height11 13.5s linear;
+}
+@-webkit-keyframes height11{
+	0%{
+		height:0%;
+	}
+	90%{
+		height:0%;
+	}
+	100%{
+		height:4%;
+	}
+}
+@-moz-keyframes height11{
+	0%{
+		height:0%;
+	}
+	90%{
+		height:0%;
+	}
+	100%{
+		height:4%;
+	}
+}
+
+@-webkit-keyframes height{
+	0%{
+		height:0%;
+	}
+	100%{
+		height:12%;
+	}
+}
+@-moz-keyframes height{
+	0%{
+		height:0%;
+	}
+	100%{
+		height:12%;
+	}
+}
+
+@-webkit-keyframes width{
+	0%{
+		width:0%;
+	}
+	50%{
+		width:0%;
+	}
+	100%{
+		width:9%;
+	}
+}
+@-moz-keyframes width{
+	0%{
+		width:0%;
+	}
+	50%{
+		width:0%;
+	}
+	100%{
+		width:9%;
+	}
+}
+
+@-webkit-keyframes round2_height_long{
+	0%{
+		height:0%;
+	}
+	55%{
+		height:0%;
+	}
+	100%{
+		height:28%;
+	}
+}
+@-moz-keyframes round2_height_long{
+	0%{
+		height:0%;
+	}
+	55%{
+		height:0%;
+	}
+	100%{
+		height:28%;
+	}
+}
+@-webkit-keyframes round2_height{
+	0%{
+		height:0%;
+	}
+	55%{
+		height:0%;
+	}
+	100%{
+		height:15.5%;
+	}
+}
+@-moz-keyframes round2_height{
+	0%{
+		height:0%;
+
+	55%{
+		height:0%;
+	}
+	100%{
+		height:15.5%;
+	}
+}

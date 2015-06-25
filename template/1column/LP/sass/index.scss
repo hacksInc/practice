@@ -1,0 +1,205 @@
+@charset "utf-8";
+@import "compass";
+@import "media_query";
+@import "compass/reset/";
+/**** ここまで reset.css ****/
+
+@mixin font($size: 100%, $weight: bold, $color: #000) {
+	font-size: $size;
+	font-weight: $weight;
+	color: $color;
+}
+h1{@include font(150%);}
+h2{@include font(130%);}
+h3{@include font(110%);}
+a{display:block;text-decoration:none; color: #000; }
+
+html,body{
+	font-size: 20px;
+	font-family: sans-serif ,Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
+	-webkit-text-size-adjust: 100%;
+	@include tb {font-size:18px;} //タブレット
+	@include spPlus {font-size:16px;}
+	@include sp {font-size:12px;} // スマホ
+}
+.wrapper{
+	margin: 0 auto;
+	width: 90%;
+	max-width:1280px;
+}
+.clearfix{
+	*zoom:1;
+	&:after {
+		content: ".";
+		display: block;
+		clear: both;
+		height: 0;
+		visibility: hidden;
+	}
+}
+
+#background{
+	width:100%;
+	height: 100%;
+	background: rgba(245,245,245,1);
+	#header{
+		width: 100%;
+		.sns{
+			margin: 0 auto;
+			width: 94%;
+			padding: 5px 0;
+			@extend .clearfix;
+			ul{
+				float:right;
+				width: 150px;
+				@extend .clearfix;
+				li{
+					float: left;
+					width: 50%;
+					&:last-child{
+						float:right;
+					}
+				}
+			}
+		}
+		.topimage{
+			width: 100%;
+		}
+	}
+	#main{
+		width: 100%;
+		height: 100%;
+		.info{
+			padding: 30px 0;
+			@extend .wrapper;
+			@extend .clearfix;
+			.news{
+				position: relative;
+				float: left;
+				width: 52%;
+				padding-top: 30%;
+				border: 1px solid #000;
+				@include spPlus {
+					float: none;
+					width: 100%;
+					padding-top: 50%;
+					margin-bottom: 30px;
+				}
+				@include sp {
+					float: none;
+					width: 100%;
+					padding-top: 50%;
+					margin-bottom: 30px;
+				}
+				ul.scroll{
+					position: absolute;
+					top: 1%;
+					left: 2%;
+					width: 95%;
+					height: 97%;
+					padding-right: 2%;
+					overflow: hidden;
+					li{
+						width: 98%;
+						border-bottom: 1px dashed #aaa;
+						a{
+							width: 100%;
+							height: 100%;
+							padding: 2% 0 3%;
+							font-size: 90%;
+							.news_date{
+								@include font(80%);
+							}
+							.news_title{
+								padding: 1% 0 2%;
+								border-bottom: 1px dashed #aaa;
+								@include font(90%);
+							}
+							.news_content{
+								padding-top: 2%;
+							}
+						}
+					}
+				}
+			}
+			.youtube{
+				position: relative;
+				float: right;
+				width: 42%;
+				padding-top: 30%;
+				@include spPlus {
+					float: none;
+					width: 100%;
+					padding-top: 50%;
+				}
+				@include sp {
+					float: none;
+					width: 100%;
+					padding-top: 50%;
+				}
+				iframe {
+					position: absolute;
+					top:0;
+					right:0;
+					width: 100% !important;
+					height: 100% !important;
+				}
+			}
+		}
+		.content{
+			width :100%;
+			border-bottom: 1px solid #000;
+			&:last-child{
+				border:none;
+			}
+			section{
+				padding: 30px 0;
+				@extend .wrapper;
+				h2{
+					text-align: center;
+					margin-bottom: 50px;
+				}
+				p{
+					text-align: center;
+					width: 100%;
+				}
+			}
+		}
+	}
+	#footer{
+		margin: 0 auto;
+		width: 100%;
+		padding: 20px 0;
+		border-top:1px solid #000;
+		text-align: center;
+	}
+}
+
+//****** 縦のスクロールバー *******
+// cssを上書きできるように!importantをつける
+
+#ascrail2000 {
+
+}
+	// レール
+	.nicescroll-rails-vr {
+	}
+
+	// スクロールバー
+	#ascrail2000 .nicescroll-cursors {
+	}
+
+
+//***** 横のスクロールバー *****
+#ascrail2000-hr {
+	display: none !important;
+}
+	// レール
+	.nicescroll-rails-hr {
+
+	}
+
+	// スクロールバー
+	#ascrail2000-hr .nicescroll-cursors {
+
+	}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!-- スマホ用に作る場合viewport指定。ただし、webviewの場合はwidthとheightを指定しない。 -->
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- スマホで英数字を電話番号やアドレスとして認識させない（タップさせない） -->
+<meta name="format-detection" content="telephone=no, email=no">
+<link rel="stylesheet" href="css/index.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
+<script src="js/scroll.js"></script>
+
+<!--レスポンシブではなくブラウザ判定で振り分ける場合 -->
+<!--<script>
+    if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+        location.href = 'スマホ用のテンプレPATH';
+    }
+</script>-->
+
+<!-- IE8以下の対応 -->
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<!-- twitterの表示方法一覧 ※これ以外は公式サイトを閲覧ください。https://dev.twitter.com/ -->
+<!-- 自分で画像用意する場合
+	<a href="https://twitter.com/share?text=デフォルトでツイート文を入れたい場合記述"><img src="画像のPATH"></a>
+
+	 デフォルトボタンの場合
+	<a href="https://twitter.com/share" class="twitter-share-button" data-text="デフォルトツイート文" data-count="none">Tweet</a>
+	<script>
+		// このスクリプトを</body>の直前に記載
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+	</script>
+
+	 タイムラインを出す場合
+	<a class="twitter-timeline" href="https://twitter.com/自身のtwitterのURL" data-widget-id="ユーザID" >@ユーザ名さんのツイート</a>
+	<script>
+		//　このスクリプトを</body>の直前に記載
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	 </script>
+-->
+<!-- twitter ここまで -->
+
+<!-- Facebookの表示方法一覧 ※これ以外は公式サイトを閲覧ください。https://developers.facebook.com/ -->
+<!-- 自分で画像用意する場合
+	<a href="https://www.facebook.com/sharer/sharer.php?app_id=1620269151530399&sdk=joey&u=https%3A%2F%2Fwww.facebook.com%2Fevents%2F349846928549125%3Fref%3Dhl&display=popup&ref=plugin&src=share_button"><img src="画像のPATH"></a>
+
+	 デフォルトボタンの場合
+	<div class="fb-share-button" data-href="https://www.facebook.com/pages/Psycho-Pass-%E3%82%B5%E3%82%A4%E3%82%B3%E3%83%91%E3%82%B9-Official-App/430791707090830?ref=hl" data-layout="button"></div>
+	<script>
+   		//　このスクリプトを</body>の直前に記載
+	    (function(d, s, id) {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=1620269151530399&version=v2.0";
+	    fjs.parentNode.insertBefore(js, fjs);
+	    }(document, 'script', 'facebook-jssdk'));
+	</script>
+-->
+<!-- facebook ここまで -->
+
+<div id="background">
+	<div id="header">
+		<div class="sns">
+			<ul>
+				<li>
+					<div class="fb-share-button" data-href="https://www.facebook.com/pages/Psycho-Pass-%E3%82%B5%E3%82%A4%E3%82%B3%E3%83%91%E3%82%B9-Official-App/430791707090830?ref=hl" data-layout="button"></div>
+				</li>
+				<li>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-text="デフォルトツイート文" data-count="none"></a>
+				</li>
+			</ul>
+		<!-- sns --></div>
+		<div class="topimage">
+			<img src="images/topimage.jpg" alt="" width="100%">
+		<!-- topimage --></div>
+	<!-- header --></div>
+	<div id="main">
+		<div class="info">
+			<div class="news">
+				<ul class="scroll">
+					<li>
+						<a href="">
+							<span class="news_date">2015/07/01</span>
+							<h2 class="news_title">タイトルタイトル</h2>
+							<p class="news_content">
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<span class="news_date">2015/07/01</span>
+							<h2 class="news_title">タイトルタイトル</h2>
+							<p class="news_content">
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<span class="news_date">2015/07/01</span>
+							<h2 class="news_title">タイトルタイトル</h2>
+							<p class="news_content">
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<span class="news_date">2015/07/01</span>
+							<h2 class="news_title">タイトルタイトル</h2>
+							<p class="news_content">
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+								ニュースニュースニュースニュースニュースニュースニュースニュースニュース<br />
+							</p>
+						</a>
+					</li>
+				</ul>
+			<!-- news --></div>
+			<div class="youtube">
+				<iframe width="100%" height="360px" src="https://www.youtube.com/embed/mzvqDOP8ALU" frameborder="0" allowfullscreen></iframe>
+			<!-- youtube --></div>
+		<!-- info --></div>
+		<div class="content">
+			<section>
+				<h2>見出し見出し見出し</h2>
+				<p>
+					コンテンツコンテンツコンテンツコンテンツ<br />
+					コンテンツコンテンツコンテンツコンテンツ<br />
+					コンテンツコンテンツコンテンツコンテンツ<br />
+					コンテンツコンテンツコンテンツコンテンツ<br />
+				</p>
+			</section>
+		</div>
+		<div class="content">
+			<section>
+				<h2>見出し見出し見出し</h2>
+				<p>
+					コンテンツコンテンツコンテンツコンテンツ<br />
+					コンテンツコンテンツコンテンツコンテンツ<br />
+					コンテンツコンテンツコンテンツコンテンツ<br />
+					コンテンツコンテンツコンテンツコンテンツ<br />
+				</p>
+			</section>
+		</div>
+		<div class="content">
+			<section>
+				<h2>見出し見出し見出し</h2>
+				<p>
+					コンテンツコンテンツコンテンツコンテンツ<br />
+					コンテンツコンテンツコンテンツコンテンツ<br />
+					コンテンツコンテンツコンテンツコンテンツ<br />
+					コンテンツコンテンツコンテンツコンテンツ<br />
+				</p>
+			</section>
+		</div>
+	<!-- main --></div>
+	<div id="footer">
+		<p class="copyright">Copyright ©hogehoge 2015 All Rights Reserved.</p>
+	<!-- footer --></div>
+<!-- background --></div>
+<script>
+   	//　facebook
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=1620269151530399&version=v2.0";
+	    fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+	// Twitter
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+</script>
+</body>
+</html>

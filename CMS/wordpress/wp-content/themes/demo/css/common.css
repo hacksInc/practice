@@ -1,0 +1,608 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/**** ここまで reset.css ****/
+h1 {
+  font-size: 150%;
+  font-weight: bold;
+  color: #000;
+}
+
+h2 {
+  border-left: 5px solid #0a3264;
+  padding: 5px 0 5px 3%;
+  margin-bottom: 10px;
+  font-size: 130%;
+  font-weight: bold;
+  color: #000;
+}
+
+a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #000;
+}
+
+html, body {
+  font-size: 18px;
+  font-family: sans-serif, Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
+  -webkit-text-size-adjust: 100%;
+}
+@media screen and (min-width: 641px) and (max-device-width: 768px) {
+  html, body {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 480px) and (max-device-width: 640px) {
+  html, body {
+    font-size: 14px;
+  }
+  html html, html body, body html, body body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+@media screen and (max-width: 479px) {
+  html, body {
+    font-size: 13px;
+  }
+  html html, html body, body html, body body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+
+.wrapper, #header .top, #navi .breadcrumb, #main, #footer .footer_navi {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 980px;
+}
+
+.clearfix, #header .top, #header .top .menu, #navi .breadcrumb, #navi .breadcrumb ol, #main, #footer .footer_navi, #footer .footer_navi ul, .paginate {
+  *zoom: 1;
+}
+.clearfix:after, #header .top:after, #header .top .menu:after, #navi .breadcrumb:after, #navi .breadcrumb ol:after, #main:after, #footer .footer_navi:after, #footer .footer_navi ul:after, .paginate:after {
+  content: ".";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+#header {
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+}
+#header .top {
+  padding: 10px 0;
+}
+#header .top h1 {
+  float: left;
+}
+#header .top .menu {
+  float: right;
+  width: 70%;
+  border-right: 1px solid #aaa;
+}
+@media screen and (min-width: 480px) and (max-device-width: 640px) {
+  #header .top .menu {
+    display: block;
+    position: fixed;
+    top: 0%;
+    right: -50%;
+    width: 50%;
+    z-index: 20;
+    background: rgba(0, 0, 10, 0.9);
+  }
+  #header .top .menu html, #header .top .menu body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+@media screen and (max-width: 479px) {
+  #header .top .menu {
+    display: block;
+    position: fixed;
+    top: 0%;
+    right: -50%;
+    width: 50%;
+    z-index: 20;
+    background: rgba(0, 0, 10, 0.9);
+  }
+  #header .top .menu html, #header .top .menu body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+#header .top .menu li {
+  float: right;
+  width: 15.8%;
+  border-left: 1px solid #aaa;
+  padding: 0 2%;
+}
+@media screen and (min-width: 480px) and (max-device-width: 640px) {
+  #header .top .menu li {
+    width: 100%;
+    text-align: left;
+    border-left: none;
+    border-bottom: 1px dashed #fff;
+  }
+  #header .top .menu li html, #header .top .menu li body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+@media screen and (max-width: 479px) {
+  #header .top .menu li {
+    width: 100%;
+    text-align: left;
+    border-left: none;
+    border-bottom: 1px dashed #fff;
+  }
+  #header .top .menu li html, #header .top .menu li body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+#header .top .menu li a {
+  padding: 10px 0;
+  text-align: center;
+}
+@media screen and (min-width: 480px) and (max-device-width: 640px) {
+  #header .top .menu li a {
+    text-align: left;
+    padding: 15px 0;
+    padding-left: 20%;
+    width: 80%;
+    font-size: 120%;
+    font-weight: bold;
+    color: #fff;
+  }
+  #header .top .menu li a html, #header .top .menu li a body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+@media screen and (max-width: 479px) {
+  #header .top .menu li a {
+    text-align: left;
+    padding: 15px 0;
+    padding-left: 20%;
+    width: 80%;
+    font-size: 120%;
+    font-weight: bold;
+    color: #fff;
+  }
+  #header .top .menu li a html, #header .top .menu li a body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+#header .top .menu li a:hover {
+  padding-bottom: 8px;
+  color: orange;
+  border-bottom: 2px solid #32c8fa;
+  border-radius: 3px;
+}
+@media screen and (min-width: 480px) and (max-device-width: 640px) {
+  #header .top .menu li a:hover {
+    padding: none;
+    border: none;
+  }
+  #header .top .menu li a:hover html, #header .top .menu li a:hover body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+@media screen and (max-width: 479px) {
+  #header .top .menu li a:hover {
+    padding: none;
+    border: none;
+  }
+  #header .top .menu li a:hover html, #header .top .menu li a:hover body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+#header .top #toggle {
+  display: none;
+}
+@media screen and (min-width: 480px) and (max-device-width: 640px) {
+  #header .top #toggle {
+    display: inline-block;
+    position: relative;
+    float: right;
+    width: 35px;
+    height: 38px;
+    margin-top: 15px;
+    padding: 0 3px;
+    border: 1px solid #0a325a;
+    border-radius: 4px;
+  }
+  #header .top #toggle html, #header .top #toggle body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+@media screen and (max-width: 479px) {
+  #header .top #toggle {
+    display: inline-block;
+    position: relative;
+    float: right;
+    width: 35px;
+    height: 38px;
+    margin-top: 15px;
+    padding: 0 3px;
+    border: 1px solid #0a325a;
+    border-radius: 4px;
+  }
+  #header .top #toggle html, #header .top #toggle body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+#header .top #toggle .icon {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 80%;
+  height: 4px;
+  background: #0a325a;
+}
+#header .top #toggle .icon:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  width: 100%;
+  height: 4px;
+  background: #0a325a;
+  margin-top: -12px;
+}
+#header .top #toggle .icon:after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  width: 100%;
+  height: 4px;
+  background: #0a325a;
+  margin-top: 8px;
+}
+
+#navi {
+  width: 100%;
+  background: #eee;
+}
+#navi .topimage {
+  width: 100%;
+}
+#navi .topimage img {
+  max-height: 500px;
+}
+#navi .breadcrumb ol {
+  width: 100%;
+  padding: 3px 0;
+  float: left;
+}
+#navi .breadcrumb ol li {
+  float: left;
+  padding-right: 1%;
+  font-size: 80%;
+  font-weight: normal;
+  color: #000;
+}
+#navi .breadcrumb ol li:after {
+  display: inline;
+  content: " >";
+  color: #aaa;
+  font-size: 110%;
+}
+#navi .breadcrumb ol li:last-child:after {
+  content: "";
+}
+#navi .breadcrumb ol li a {
+  display: inline;
+  padding: 5px 0;
+  color: #323264;
+}
+#navi .breadcrumb ol li a:hover {
+  color: darkorange;
+  text-decoration: underline;
+}
+
+#main {
+  padding-top: 40px;
+}
+#main .content {
+  position: relative;
+  float: left;
+  width: 70%;
+}
+@media screen and (min-width: 480px) and (max-device-width: 640px) {
+  #main .content {
+    float: none;
+    width: 100%;
+  }
+  #main .content html, #main .content body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+@media screen and (max-width: 479px) {
+  #main .content {
+    float: none;
+    width: 100%;
+  }
+  #main .content html, #main .content body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+#main .content h2 span {
+  font-size: 70%;
+  font-weight: normal;
+  color: #000;
+}
+#main .content .news {
+  width: 100%;
+  margin-bottom: 50px;
+}
+#main .content .news .date {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 90%;
+  font-weight: bold;
+  color: #000;
+}
+#main .content .news ul {
+  border-top: 1px solid #000;
+}
+#main .content .news ul li {
+  border-bottom: 1px dashed #aaa;
+}
+#main .content .news ul li a {
+  padding: 15px 0 10px 10px;
+}
+#main .content .news ul li a:hover {
+  background: #eee;
+}
+#main .content .news ul li a:hover .title {
+  color: darkorange;
+}
+#main .sidebar {
+  float: right;
+  width: 25%;
+}
+@media screen and (min-width: 480px) and (max-device-width: 640px) {
+  #main .sidebar {
+    display: none;
+  }
+  #main .sidebar html, #main .sidebar body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+@media screen and (max-width: 479px) {
+  #main .sidebar {
+    display: none;
+  }
+  #main .sidebar html, #main .sidebar body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+#main .sidebar ul {
+  width: 100%;
+  border-top: 1px solid #000;
+}
+#main .sidebar ul li {
+  width: 100%;
+  border-bottom: 1px dashed #aaa;
+  text-align: center;
+}
+#main .sidebar ul li:last-child {
+  border-bottom: 1px solid #000;
+}
+#main .sidebar ul li a {
+  padding: 10px 0;
+}
+#main .sidebar ul li a:hover {
+  color: darkorange;
+  background: #eee;
+}
+
+#footer {
+  width: 100%;
+  margin-top: 30px;
+  padding: 10px 0 30px;
+  border-top: 1px solid #000;
+}
+#footer .footer_navi ul {
+  width: 50%;
+  float: left;
+}
+#footer .footer_navi ul li {
+  float: left;
+  margin-right: 3%;
+}
+#footer .footer_navi ul li a {
+  padding: 5px 0;
+  font-size: 90%;
+  font-weight: normal;
+  color: #000;
+}
+#footer .footer_navi ul li a:hover {
+  text-decoration: underline;
+  color: darkorange;
+}
+#footer .footer_navi .copyright {
+  float: right;
+  font-size: 90%;
+  font-weight: normal;
+  color: #000;
+}
+@media screen and (max-width: 479px) {
+  #footer .footer_navi .copyright {
+    float: left;
+  }
+  #footer .footer_navi .copyright html, #footer .footer_navi .copyright body {
+    position: relative;
+    right: 0;
+    overflow-x: hidden;
+  }
+}
+
+.search {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.search #searchform {
+  position: relative;
+  width: 98%;
+}
+.search #searchform .freeword {
+  width: 100%;
+  border-radius: 6px;
+}
+.search #searchform .submit {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.paginate {
+  width: 100%;
+  text-align: center;
+}
+
+.page-numbers {
+  border-right: 1px solid #aaa;
+  width: 100%;
+  height: 100%;
+  padding: 0 5px;
+}
+
+.page-numbers:hover {
+  background: #ddd;
+}
+
+.page-numbers:last-child {
+  border-right: none;
+}
+
+.prv {
+  display: block;
+  float: right;
+}
+.prv a {
+  font-size: 80%;
+  font-weight: normal;
+  color: #323264;
+}
+.prv a:hover {
+  text-decoration: underline;
+  color: darkorange;
+}
+
+.nxt {
+  display: block;
+  float: left;
+}
+.nxt a {
+  font-size: 80%;
+  font-weight: normal;
+  color: #323264;
+}
+.nxt a:hover {
+  text-decoration: underline;
+  color: darkorange;
+}
+
+.layer {
+  display: none;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}

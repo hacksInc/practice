@@ -1,0 +1,51 @@
+h2 {
+	font-weight: bold;
+}
+#scroll_area {
+	position: fixed;
+	top: 20%;
+	left: 35%;
+	width: 30%;
+	height: 400px;
+	background: #aaa;
+	border: 1px solid #000;
+	padding: 5px;
+}
+.scroll {
+	margin: 0 auto;
+	width: 80%;
+	height: 100%;
+	padding-right: 8%; /* スクロールバー+余白分、paddingをかける */
+	overflow: hidden;
+}
+
+/****** 縦のスクロールバー *******/
+/* cssを上書きできるように!importantをつける */
+
+#ascrail2000 {
+
+}
+	/* レール */
+	.nicescroll-rails-vr {
+		background: #eee !important;
+	}
+
+	/* スクロールバー */
+	#ascrail2000 .nicescroll-cursors {
+		background: #00f !important;
+	}
+
+
+/****** 横のスクロールバー *******/
+#ascrail2000-hr {
+	display: none !important;
+}
+	/* レール */
+	.nicescroll-rails-hr {
+
+	}
+
+	/* スクロールバー */
+	#ascrail2000-hr .nicescroll-cursors {
+
+	}

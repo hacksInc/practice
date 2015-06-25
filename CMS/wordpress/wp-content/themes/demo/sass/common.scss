@@ -1,0 +1,312 @@
+@charset "utf-8";
+@import "compass";
+@import "mixin";
+@import "compass/reset/";
+/**** ここまで reset.css ****/
+
+
+$base_font: sans-serif ,Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
+$hover: rgba(255,140,0,1);
+$black: rgba(0,0,0,1);
+$white: rgba(255,255,255,1);
+
+h1{@include font(150%);}
+h2{
+	border-left: 5px solid rgba(10,50,100,1);
+	padding: 5px 0 5px 3%;
+	margin-bottom: 10px;
+	@include font(130%);
+}
+a{display:block;width:100%;height:100%;text-decoration:none; color: #000; }
+
+html,body{
+	font-size: 18px;
+	font-family: $base_font;
+	-webkit-text-size-adjust: 100%;
+	@include tb {font-size:16px;}
+	@include sp_plus {font-size:14px;}
+	@include sp {font-size:13px;}
+}
+.wrapper{
+	margin: 0 auto;
+	width: 90%;
+	max-width: 980px;
+}
+.clearfix{
+	*zoom:1;
+	&:after {
+		content: ".";
+		display: block;
+		clear: both;
+		height: 0;
+		visibility: hidden;
+	}
+}
+
+#header{
+	width: 100%;
+	border-bottom:1px solid #aaa;
+	.top{
+		padding: 10px 0;
+		@extend .wrapper;
+		@extend .clearfix;
+		h1{
+			float:left;
+		}
+		.menu{
+			float: right;
+			width: 70%;
+			border-right: 1px solid #aaa;
+			@extend .clearfix;
+			@include sp_plus {@include sp_menu;}
+			@include sp {@include sp_menu;}
+			li {
+				float:right;
+				width: 15.8%;
+				border-left: 1px solid #aaa;
+				padding: 0 2%;
+				@include sp_plus {@include sp_menu_li;}
+				@include sp {@include sp_menu_li;}
+				a {
+					padding: 10px 0;
+					text-align: center;
+					@include sp_plus {@include sp_menu_li_a;}
+					@include sp {@include sp_menu_li_a;}
+
+					&:hover {
+						padding-bottom:8px;
+						color: orange;
+						border-bottom: 2px solid rgba(50,200,250,1);
+						border-radius: 3px;
+						@include sp_plus {padding:none;border:none;}
+						@include sp {padding:none;border:none;}
+					}
+				}
+			}
+		}
+		#toggle{
+			display: none;
+			@include sp_plus {@include toggle;}
+			@include sp {@include toggle;}
+			.icon{
+				@include icon;
+				&:before{
+					@include icon_op;
+					margin-top: -12px;
+				}
+				&:after{
+					@include icon_op;
+					margin-top: 8px;
+				}
+			}
+		}
+	}
+}
+#navi{
+	width: 100%;
+	background: #eee;
+	.topimage{
+		width: 100%;
+		img{
+		max-height: 500px;
+		}
+	}
+	.breadcrumb{
+		@extend .wrapper;
+		@extend .clearfix;
+		ol{
+			width: 100%;
+			padding: 3px 0;
+			float:left;
+			@extend .clearfix;
+			li{
+				float: left;
+				padding-right: 1%;
+				@include font(80%,normal);
+				&:after{
+					display: inline;
+					content: " >";
+					color: #aaa;
+					font-size: 110%;
+				}
+				&:last-child:after{
+					content: "";
+				}
+				a{
+					display: inline;
+					padding: 5px 0;
+					color: rgba(50,50,100,1);
+					&:hover{
+						color: $hover;
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+}
+#main{
+	padding-top: 40px;
+	@extend .wrapper;
+	@extend .clearfix;
+	.content{
+		position: relative;
+		float: left;
+		width: 70%;
+		@include sp_plus {float:none;width: 100%;}
+		@include sp {float:none;width: 100%;}
+		h2{
+			span{
+				@include font(70%, normal);
+			}
+		}
+		.news{
+			width: 100%;
+			margin-bottom: 50px;
+			.date{
+				display: block;
+				margin-bottom: 7px;
+				@include font(90%);
+			}
+			ul{
+				border-top:1px solid #000;
+				li{
+					border-bottom: 1px dashed #aaa;
+					a{
+						padding: 15px 0 10px 10px;
+						&:hover{
+							background: #eee;
+						}
+						&:hover .title{
+							color:$hover;
+						}
+					}
+				}
+			}
+		}
+	}
+	.sidebar{
+		float: right;
+		width: 25%;
+		@include sp_plus {display:none;}
+		@include sp {display:none;}
+		ul{
+			width: 100%;
+			border-top: 1px solid #000;
+			li{
+				width :100%;
+				border-bottom: 1px dashed #aaa;
+				text-align: center;
+				&:last-child{
+					border-bottom: 1px solid #000;
+				}
+				a{
+					padding: 10px 0;
+					&:hover{
+						color: $hover;
+						background: #eee;
+					}
+				}
+			}
+		}
+	}
+}
+#footer{
+	width: 100%;
+	margin-top: 30px;
+	padding: 10px 0 30px;
+	border-top: 1px solid #000;
+	.footer_navi{
+		@extend .wrapper;
+		@extend .clearfix;
+		ul{
+			width: 50%;
+			float:left;
+			@extend .clearfix;
+			li{
+				float: left;
+				margin-right: 3%;
+				a{
+					padding: 5px 0;
+					@include font(90%, normal);
+					&:hover{
+						text-decoration: underline;
+						color: $hover;
+					}
+				}
+			}
+		}
+		.copyright{
+			float:right;
+			@include font(90%,normal);
+			@include sp {float: left;}
+		}
+	}
+}
+
+.search{
+	width: 100%;
+	margin-bottom: 10px;
+	#searchform {
+		position: relative;
+		width: 98%;
+		.freeword {
+			width: 100%;
+			border-radius: 6px;
+		}
+		.submit {
+		    position: absolute;
+		    top: 5px;
+		    right: 5px;
+		}
+	}
+}
+
+.paginate {
+	width: 100%;
+	text-align: center;
+	@extend .clearfix;
+}
+.page-numbers {
+	border-right: 1px solid #aaa;
+	width: 100%;
+	height: 100%;
+	padding: 0 5px;
+}
+.page-numbers:hover {
+	background: #ddd;
+}
+.page-numbers:last-child {
+	border-right: none;
+}
+.prv{
+	display: block;
+	float: right;
+	a {
+		@include font(80%,normal,rgba(50,50,100,1));
+		&:hover{
+			text-decoration: underline;
+			color: $hover;
+		}
+	}
+}
+.nxt {
+	display: block;
+	float: left;
+	a {
+		@include font(80%,normal,rgba(50,50,100,1));
+		&:hover{
+			text-decoration: underline;
+			color: $hover;
+		}
+	}
+}
+.layer{
+    display: none;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}

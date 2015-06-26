@@ -1,0 +1,18 @@
+@import "common";
+
+.content{
+	float: left;
+	width: 70%;
+	.news{
+		position: relative;
+		width: 100%;
+		.date{
+			display: block;
+			margin-bottom: 7px;
+			@include font(90%);
+		}
+		p{
+			margin-bottom: 50px;
+		}
+	}
+}

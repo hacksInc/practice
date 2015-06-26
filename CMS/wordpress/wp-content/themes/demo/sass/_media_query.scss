@@ -1,0 +1,22 @@
+@charset "utf-8";
+// スマホ、タブレット用CSS
+// モバイルファースト
+
+
+
+@mixin tb {
+	@media screen and ( min-width: 641px ) and ( max-device-width: 768px ) {
+		@content;
+	}
+}
+
+@mixin spPlus {
+	@media screen and ( min-width: 480px ) and ( max-device-width: 640px ) {
+		@content;
+	}
+}
+@mixin sp {
+	@media screen and ( max-width: 479px ) {
+		@content;
+	}
+}

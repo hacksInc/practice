@@ -1,20 +1,167 @@
 <?php
-/**
- * Front to the WordPress application. This file doesn't do anything, but loads
- * wp-blog-header.php which does and tells WordPress to load the theme.
+
+/*
+ *	wordpress内のcontact固定ページを参照する場合
  *
- * @package WordPress
+ *	define('WP_USE_THEMES', true);
+ *	require('../wp-blog-header.php');
+ *
  */
 
-/**
- * Tells WordPress to load the WordPress theme and output it.
- *
- * @var bool
- */
-define('WP_USE_THEMES', true);
+?>
 
-/** Loads the WordPress Environment and Template */
+<?php
+
+/*
+ *	ここにページを作り、共通部分はwordpress内を参照する場合(header,footer,sidebar,css,js,imageなど)
+ *	wordpressの関数も使うことができる。
+ *
+ *	require('../wp-blog-header.php');
+ */
+
+?>
+
+
+<?php
 require('../wp-blog-header.php');
-/** wordpress内のページを参照(URL（スラッグ)をwordpressと合わせる)
- *	例）　ここが hoge.com/contact/の場合、woredpress内でhoge.com/contact/となるようなスラッグのページを作る
- */
+
+// 不正アクセス用と入力値用のセッション
+session_start();
+
+// セッション初期化
+if( isset($_SESSION) ) {
+	$_SESSION = array();
+	session_destroy();
+	session_start();
+	$ticket = md5(uniqid(mt_rand(), TRUE));
+	$_SESSION['ticket'] = $ticket;
+}
+
+// ランダムな数字を生成　⇒　次ページで照合する
+$ticket = md5(uniqid(mt_rand(), TRUE));
+$_SESSION['ticket'] = $ticket;
+
+// 文字列エスケープ
+function h($string) {
+	return htmlspecialchars($string, ENT_QUOTES);
+}
+
+// word pressの header.php読み込み
+get_header('contact');
+
+?>
+<div id="contact">
+	<h2>お問い合わせ内容のご入力</h2>
+	<form method="post" action="/contact/confirm/">
+	<table>
+		<tr>
+			<th>お問い合わせ種別</th>
+			<td>
+				<select name="contactType" id="contactType">
+					<option value="">選択してください</option>
+					<option value="広報・プレスに関するお問い合わせ">広報・プレスに関するお問い合わせ</option>
+					<option value="協業に関するお問い合わせ">協業に関するお問い合わせ</option>
+					<option value="採用に関するお問い合わせ">採用に関するお問い合わせ</option>
+					<option value="その他のお問い合わせ">その他のお問い合わせ</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>氏名</th>
+			<td><input name="name" type="text" id="ContactName" required="required" value="<?php echo h($_SESSION['name']);?>" /></td>
+		</tr>
+		<tr>
+			<th>貴社名</th>
+			<td><input name="companyName" placeholder="法人の方は貴社名を入力してください" type="text" id="ContactCompanyName" value="<?php echo h($_SESSION['companyName']);?>" /></td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th>
+			<td>
+				<input name="email" type="email" id="email" required="required" value="<?php echo h($_SESSION['email']);?>" /><br>
+				<div id="emailErr" class="errorbox"><p></p></div>
+			</td>
+		</tr>
+		<tr>
+			<th>電話番号</th>
+			<td><input name="tel" type="text" id="tel" required="required" value="<?php echo h($_SESSION['tel']);?>" /><div id="telErr" class="errorbox"><p></p></div></td>
+		</tr>
+		<tr>
+			<th>お問い合わせ内容</th>
+			<td><textarea name="content" rows="10" id="ContactContents" required="required"><?php echo h($_SESSION['content']);?></textarea></td>
+		</tr>
+	</table>
+	<div class="privacy">
+		<h3>プライバシーポリシー(個人情報保護方針)</h3><br />
+		<p>
+			<span>１. 個人情報の利用目的について</span><br /><br />
+			弊社は、お客様から得た個人情報等を原則として本人以外の者に開示・提供せず、本サービスの提供のために必要な範囲を超えて利用いたしません。<br />
+		  	・お客様に本サービスおよび弊社関連情報をご提供するため。<br />
+			・サーバの不具合やその他のトラブル等に対処するため。<br />
+			・お客様により良いサービスをご提供するための調査分析およびアンケート調査実施のため。<br /><br />
+			<span>２. 第三者への提供について</span><br /><br />
+			弊社は、下記の場合を除き、お客様の個人情報を第三者に開示いたしません。<br />
+			・お客様の同意がある場合<br />
+			・利用目的の達成に必要な範囲内で個人情報の取り扱いを委託する場合。<br />
+			・法律・法令の定めに基づく強制の処分が行われた場合。<br />
+			・裁判所等の法律上照会権限を有する者から照会を受けた場合。<br />
+			・緊急避難または正当防衛に該当すると弊社が判断する場合<br /><br />
+			<span>３. 個人情報の管理について</span><br /><br />
+			弊社では、お客様によって入力された個人情報が傍受・妨害または改ざんされることを防ぐためにSSL（Secure Sockets Layer）技術を使用し、情報を暗号化して通信しております。また当社は、お客様の個人情報を保護・管理するにあたり、外部からの不正なアクセス、個人情報の紛失・破壊・改ざん・漏えいなどを防ぐための適切な安全対策を行っております。<br /><br />
+			<span>４. 個人情報の変更・訂正・削除について</span><br /><br />
+			弊社は、個人情報の開示および変更・訂正・削除などのご依頼があった場合、そのご依頼をされた方がお客様ご本人であることが確認できた場合のみ、適切な方法で対応したします。<br /><br />
+			<span>５. クッキー（Cookies）について</span><br /><br />
+			弊社のウェブサイトでは、お客様に弊社のサービスを便利にご利用いただくためにクッキーと呼ばれる機能を使用することがあります。この機能はお客様のプライバシーを侵害するものではなく、またお客さまのコンピューターへ悪影響を及ぼすこともありません。<br /><br />
+			<span>６. 個人情報保護の取り組みについて</span><br /><br />
+			弊社は、法令等の改正や社会情勢の変化に応じ適宜見直しを行い、改善を図ってまいります。<br /><br />
+			<span>７. お問合わせ先について</span><br /><br />
+			お客様の個人情報の管理等についてのお問い合わせは、へお願い致します。<br /><br />
+		</p><br />
+		<h3>個人情報の取扱につきまして</h3><br />
+		<p>
+			下記の内容についてご同意の上で個人情報をご提供いただきますようお願いいたします。<br /><br />
+			<span>1.利用目的</span><br /><br />
+			株式会社弊社（以下「弊社」といいます。）は、サービスの提供にあたり、以下に定める目的の範囲内でご本人の氏名、住所、メールアドレス、生年月日、性別などの個人情報を取得し、適切に利用します。一般に公開されているホームページなどから間接的に取得する場合も同様です。<br />
+			•	情報提供および関連するサービスの提供<br />
+			•	状況確認およびサービス向上を目的としたごアンケート、キャンペーン、その他情報提供、意見、ご要望等の聴取<br />
+			•	サービス提供期間中またはサービス終了後における応募、入社等の事実に関するクライアント企業への確認およびクライアント企業からの通知の受領<br />
+			•	ウェブサイトその他各種媒体等に掲載するための情報の加工、統計および分析<br />
+			•	サービスの開発およびマーケティング<br />
+			•	クライアント企業の人材採用計画立案のための助言・提案<br />
+			•	お問い合わせ、ご相談および苦情への対応ならびに紛争の解決<br /><br />
+			<span>2.提供</span><br /><br />
+			弊社は、プラットフォームサービスを行うため、本人の希望や求人への適合度合いなどを検討した上で、個人情報の適切な取扱いに関する事項を含む契約を結んだクライアント企業に対し、本人から受領した個人情報を、書面を送付または持参する等の方法により提供します。また、弊社は、クライアント企業に個人情報を提供した場合には、参画・就職・転職後の状況確認、当該クライアント企業の人材採用計画立案のための助言・提案等を行うために、個人情報を利用することがあります。なお、以下の場合は、個人情報を求人企業以外の第三者に提供することがあります。<br /><br />
+			•	法令に基づく場合<br />
+			•	人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき<br />
+			•	公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって、本人の同意を得ることが困難であるとき<br />
+			•	国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって、本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき<br /><br />
+			<span>3.外部委託</span><br /><br />
+			弊社は、情報処理などの業務の全部または一部を外部に委託する際に、当該委託先に個人情報を開示する場合があります。当該委託先に個人情報の開示を行う場合には、十分な個人情報保護水準を確保していることを条件として委託先を選定し、機密保持契約を結んだ上で開示します。<br /><br />
+			<span>4.個人情報提供の任意性</span><br /><br />
+			弊社は利用目的の達成に必要な個人情報を提供していただきます。弊社が提供を求めるすべての項目にお答えいただく必要はありませんが、必要な情報が不足している場合には、弊社のサービスを提供できない場合があります。<br /><br />
+			<span>5.個人情報の開示等</span><br /><br />
+			個人情報の利用目的の通知、開示、訂正、追加または削除、利用の停止、消去または第三者への提供の停止の依頼を受けた場合は、弊社の社内規定に従ってすみやかに対応します。ただし、弊社の業務に支障がある場合や業務の記録については、開示、訂正、追加または削除、利用の停止、消去または第三者への提供の停止の依頼にお応えできない場合があります。<br /><br />
+			<span>6.適正管理</span><br /><br />
+			弊社は、利用目的の達成に必要な範囲内において、個人情報を正確かつ最新の状態で管理するよう努めるとともに、個人情報への不正なアクセスまたは個人情報の紛失、破壊、改竄、漏洩などの危険に対して、技術面および組織面において必要な安全対策を継続的に講じるよう努めます。また、弊社は、個人情報の安全管理が図られるよう、従業者に対する必要かつ適切な教育および監督を行います。なお、個人情報はサービスを終了した後も法令等の定めに従い一定期間保管します。保管期間が経過した個人情報はすみやかに消去します。<br /><br />
+			<span>7.問い合わせ先</span><br /><br />
+			個人情報管理に関するお問い合わせや、利用目的の通知、開示、訂正、追加または削除、利用の停止、消去または第三者への提供の停止の依頼は、個人情報お問い合わせフォームよりご連絡ください。<br /><br />
+			<span>8.管理者</span><br /><br />
+			弊社は、個人情報保護管理責任者を個人情報の管理者とし、適切な個人情報の保護に努めます。<br /><br />
+			<span>9.本規約の変更</span><br /><br />
+			弊社は、法令等の定めがある場合を除き必要に応じて本規約の内容を変更することができるものとします。変更後の内容は、のウェブページにおいて掲載するものとし、掲載後1カ月経過した時点で本サービスを継続して利用している利用者は、変更後の本規約の内容に同意したものとみなします。<br /><br />
+			2014年10月20日掲載<br />
+		</p><br /><br />
+	</div>
+	<div class="SubmitForm">
+		<script>
+			// ランダム生成した数値をPOSTで
+			$(function(){
+				var key = '<?php echo h($ticket); ?>';
+				$('#ticket').val(key);
+			});
+		</script>
+		<input type="hidden" id="ticket" name="ticket">
+		<input  class="submit" type="submit" value="同意して確認画面へ進む"/>
+	</div>
+	</form>
+<!-- contact --></div>
+<?php get_footer(); ?>

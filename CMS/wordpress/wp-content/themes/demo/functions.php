@@ -77,6 +77,7 @@ function is_parent_slug() {
 // メニューの登録
 register_nav_menus( array(
 	'menu' => 'menu',
+	'sidebar' => 'sidebar',
 	'footer' => 'footer'
 	)
 );

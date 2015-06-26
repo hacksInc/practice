@@ -2,7 +2,7 @@
 <div class="sidebar">
 	<?php get_search_form(); ?>
 	<?php
-		wp_nav_menu( array('container' => false, 'theme_location' => 'footer', 'items_wrap' => '<ul>%3$s</ul>'));
+		wp_nav_menu( array('container' => false, 'theme_location' => 'sidebar', 'items_wrap' => '<ul>%3$s</ul>'));
 
 	/*		アーカイブを取得する場合
 			wp_get_archives(array(

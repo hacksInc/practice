@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Connect(コネクト) IT/webフリーランスの案件/求人情報</title>
+<meta name="keywords" content="フリーランス,エンジニア,デザイナー,web,IT,案件,求人,仕事">
+<meta name="description" content="Connect(コネクト)はITエンジニア/webデザイナなどのフリーランスと企業を繋ぐ、案件/求人情報サイト。キャリア相談〜案件紹介、アフターフォローまでIT/webフリーランスをトータルサポート！">
+<link rel="stylesheet" href="../css/search.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="../js/common.js"></script>
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+</head>
+<body>
+<header class="header">
+	<div class="header_inner">
+		<div class="header_title">
+			<h1>IT/webフリーランスと企業をつなぐ案件/求人情報サイト</h1>
+			<p class="header_title_logo">
+				<a href="/" alt="Connect">Connect</a>
+			</p>
+		</div>
+		<ul class="header_menu">
+			<li class="header_menu_list">
+				<a class="header_menu_list_title" href="">案件を探す</a>
+				<ul class="header_menu_list_detail">
+					<li><a href="">とりあえず見る</a></li>
+					<li><a href="">LAMPエンジニア</a></li>
+					<li><a href="">Rubyエンジニア</a></li>
+					<li><a href="">Javaエンジニア</a></li>
+					<li><a href="">フロントエンド</a></li>
+					<li><a href="">webデザイナー</a></li>
+					<li><a href="">webディレクター</a></li>
+					<li><a href="">インフラ(サーバー)</a></li>
+					<li><a href="">インフラ(ネットワーク)</a></li>
+					<li><a href="">コンサル/PM/PMO</a></li>
+				</ul>
+			</li>
+			<li class="header_menu_list">
+				<a class="header_menu_list_title" href="">お問い合わせ</a>
+			</li>
+			<li class="register">
+				<a href="">新規無料登録</a>
+			</li>
+		</ul>
+	</div>
+</header>
+<main class="main">
+	<div class="container">
+		<div class="main_content">
+			<ul class="breadcrumb">
+				<li><a href="">トップ</a></li>
+				<li>1234件の案件/求人情報</li>
+			<!-- breadcrumb --></ul>
+			<div class="search_header">
+				<p class="search_result">
+					該当案件：<span>1234</span> 件 <span>1〜50件目を表示中</span>
+				<p>
+				<p class="search_panel_open">検索条件を変更する</p>
+			</div>
+			<div class="search">	
+				<section class="freeword_search">
+					<h2>フリーワードで1発検索！</h2>
+					<form name="freeword_search_form" class="freeword_search_form">
+						<input class="freeword" type="search" name="freeword">
+						<input class="submit" type="submit" name="submit" value="検索">
+					</form>
+				</section>
+				<section class="search_panel">
+					<h2>条件を絞り込んで検索する</h2>
+					<ul class="search_panel_tab_list">
+						<li class="search_panel_tab on">スキル</li>
+						<li class="search_panel_tab">ポジション</li>
+						<li class="search_panel_tab">金額</li>
+					</ul>
+					<div class="search_panel_box">
+						<ul class="search_panel_select select">
+							<li>
+								<input type="checkbox" name="skill" id="skill_1" value="1">
+								<label for="skill_1">PHP</label>
+							</li>
+							<li>
+								<input type="checkbox" name="skill" id="skill_2" value="2">
+								<label for="skill_2">Java</label>
+							</li>
+							<li>
+								<input type="checkbox" name="skill" id="skill_3" value="3">
+								<label for="skill_3">Ruby</label>
+							</li>
+							<li>
+								<input type="checkbox" name="skill" id="skill_4" value="4">
+								<label for="skill_4">test</label>
+							</li>
+							<li>
+								<input type="checkbox" name="skill" id="skill_5" value="5">
+								<label for="skill_5">aaa</label>
+							</li>
+							<li>
+								<input type="checkbox" name="skill" id="skill_6" value="6">
+								<label for="skill_6">bbb</label>
+							</li>
+							<li>
+								<input type="checkbox" name="skill" id="skill_7" value="7">
+								<label for="skill_7">ccccccccccccccc</label>
+							</li>
+							<li>
+								<input type="checkbox" name="skill" id="skill_8" value="8">
+								<label for="skill_8">dddddddddddddddddddd</label>
+							</li>
+						</ul>
+						<ul class="search_panel_select">
+							<li>
+								<input type="checkbox" name="position" id="position_1" value="1">
+								<label for="position_1">サーバーサイド</label>
+							</li>
+							<li>
+								<input type="checkbox" name="position" id="position_2" value="2">
+								<label for="position_2">フロントエンド</label>
+							</li>
+							<li>
+								<input type="checkbox" name="position" id="position_3" value="3">
+								<label for="position_3">デザイナー</label>
+							</li>
+							<li>
+								<input type="checkbox" name="position" id="position_4" value="4">
+								<label for="position_4">ディレクター</label>
+							</li>
+							<li>
+								<input type="checkbox" name="position" id="position_5" value="5">
+								<label for="position_5">aaa</label>
+							</li>
+							<li>
+								<input type="checkbox" name="position" id="position_6" value="6">
+								<label for="position_6">bbb</label>
+							</li>
+						</ul>
+						<ul class="search_panel_select">
+							<li>
+								<input type="radio" name="price" id="price_1" value="1">
+								<label for="price_1">30万円〜</label>
+							</li>
+							<li>
+								<input type="radio" name="price" id="price_2" value="2">
+								<label for="price_2">40万円〜</label>
+							</li>
+							<li>
+								<input type="radio" name="price" id="price_3" value="3">
+								<label for="price_3">50万円〜</label>
+							</li>
+							<li>
+								<input type="radio" name="price" id="price_4" value="4">
+								<label for="price_4">60万円〜</label>
+							</li>
+							<li>
+								<input type="radio" name="price" id="price_5" value="5">
+								<label for="price_5">70万円〜</label>
+							</li>
+							<li>
+								<input type="radio" name="price" id="price_6" value="6">
+								<label for="price_6">80万円〜</label>
+							</li>
+						</ul>
+						<div class="search_panel_selected">
+							<dl class="selected_item_box">
+								<dt>選択した項目</dt>
+								<dd class="selected_item">
+									<p class="selected_item_default">まだ選択されていません</p>
+								</dd>
+								<p class="selected_item_all_delete">
+									<a href="javascript:void(0)">条件をクリア</a>
+								</p>
+							</dl>
+						<!-- search_panel_selected --></div>
+						<div class="submit_area">
+							<input class="submit" type="submit" name="submit" value="検索">
+						</div>
+					<!-- search_panel_box --></div>
+				<!-- search_panel --></section>
+			<!-- search --></div>
+			<div class="project_list">
+				<section>
+					<a class="project_inner" href="">
+						<h3 class="title">タイトルタイトルタイトルタイトル</h3>
+						<p class="body">業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容</p>
+						<table>
+							<tr>
+								<th>金額</th>
+								<td>￥650,000 〜 / 月額</td>
+							</tr>
+							<tr>
+								<th>最寄駅</th>
+								<td>渋谷駅</td>
+							</tr>
+							<tr>
+								<th>ポジション</th>
+								<td>フロントエンド</td>
+							</tr>
+							<tr>
+								<th>スキル</th>
+								<td>LAMP,CakePHP,AWS,Git</td>
+							</tr>
+						</table>
+						<div class="project_overlay"></div>
+					</a>
+					<div class="favorite"><a href="#">★ お気に入りに追加する</a><div class="project_overlay"></div></div>
+				</section>
+				<section>
+					<a class="project_inner" href="">
+						<h3 class="title">タイトルタイトルタイトルタイトル</h3>
+						<p class="body">業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容</p>
+						<table>
+							<tr>
+								<th>金額</th>
+								<td>￥650,000 〜 / 月額</td>
+							</tr>
+							<tr>
+								<th>最寄駅</th>
+								<td>渋谷駅</td>
+							</tr>
+							<tr>
+								<th>ポジション</th>
+								<td>フロントエンド</td>
+							</tr>
+							<tr>
+								<th>スキル</th>
+								<td>LAMP,CakePHP,AWS,Git</td>
+							</tr>
+						</table>
+						<div class="project_overlay"></div>
+					</a>
+					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+				</section>
+				<section>
+					<a class="project_inner" href="">
+						<h3 class="title">タイトルタイトルタイトルタイトル</h3>
+						<p class="body">業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容</p>
+						<table>
+							<tr>
+								<th>金額</th>
+								<td>￥650,000 〜 / 月額</td>
+							</tr>
+							<tr>
+								<th>最寄駅</th>
+								<td>渋谷駅</td>
+							</tr>
+							<tr>
+								<th>ポジション</th>
+								<td>フロントエンド</td>
+							</tr>
+							<tr>
+								<th>スキル</th>
+								<td>LAMP,CakePHP,AWS,Git</td>
+							</tr>
+						</table>
+						<div class="project_overlay"></div>
+					</a>
+					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+				</section>
+				<section>
+					<a class="project_inner" href="">
+						<h3 class="title">タイトルタイトルタイトルタイトル</h3>
+						<p class="body">業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容</p>
+						<table>
+							<tr>
+								<th>金額</th>
+								<td>￥650,000 〜 / 月額</td>
+							</tr>
+							<tr>
+								<th>最寄駅</th>
+								<td>渋谷駅</td>
+							</tr>
+							<tr>
+								<th>ポジション</th>
+								<td>フロントエンド</td>
+							</tr>
+							<tr>
+								<th>スキル</th>
+								<td>LAMP,CakePHP,AWS,Git</td>
+							</tr>
+						</table>
+						<div class="project_overlay"></div>
+					</a>
+					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+				</section>
+				<section>
+					<a class="project_inner" href="">
+						<h3 class="title">タイトルタイトルタイトルタイトル</h3>
+						<p class="body">業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容</p>
+						<table>
+							<tr>
+								<th>金額</th>
+								<td>￥650,000 〜 / 月額</td>
+							</tr>
+							<tr>
+								<th>最寄駅</th>
+								<td>渋谷駅</td>
+							</tr>
+							<tr>
+								<th>ポジション</th>
+								<td>フロントエンド</td>
+							</tr>
+							<tr>
+								<th>スキル</th>
+								<td>LAMP,CakePHP,AWS,Git</td>
+							</tr>
+						</table>
+						<div class="project_overlay"></div>
+					</a>
+					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+				</section>
+				<section>
+					<a class="project_inner" href="">
+						<h3 class="title">タイトルタイトルタイトルタイトル</h3>
+						<p class="body">業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容</p>
+						<table>
+							<tr>
+								<th>金額</th>
+								<td>￥650,000 〜 / 月額</td>
+							</tr>
+							<tr>
+								<th>最寄駅</th>
+								<td>渋谷駅</td>
+							</tr>
+							<tr>
+								<th>ポジション</th>
+								<td>フロントエンド</td>
+							</tr>
+							<tr>
+								<th>スキル</th>
+								<td>LAMP,CakePHP,AWS,Git</td>
+							</tr>
+						</table>
+						<div class="project_overlay"></div>
+					</a>
+					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+				</section>
+				<section>
+					<a class="project_inner" href="">
+						<h3 class="title">タイトルタイトルタイトルタイトル</h3>
+						<p class="body">業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容</p>
+						<table>
+							<tr>
+								<th>金額</th>
+								<td>￥650,000 〜 / 月額</td>
+							</tr>
+							<tr>
+								<th>最寄駅</th>
+								<td>渋谷駅</td>
+							</tr>
+							<tr>
+								<th>ポジション</th>
+								<td>フロントエンド</td>
+							</tr>
+							<tr>
+								<th>スキル</th>
+								<td>LAMP,CakePHP,AWS,Git</td>
+							</tr>
+						</table>
+						<div class="project_overlay"></div>
+					</a>
+					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+				</section>
+				<section>
+					<a class="project_inner" href="">
+						<h3 class="title">タイトルタイトルタイトルタイトル</h3>
+						<p class="body">業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容</p>
+						<table>
+							<tr>
+								<th>金額</th>
+								<td>￥650,000 〜 / 月額</td>
+							</tr>
+							<tr>
+								<th>最寄駅</th>
+								<td>渋谷駅</td>
+							</tr>
+							<tr>
+								<th>ポジション</th>
+								<td>フロントエンド</td>
+							</tr>
+							<tr>
+								<th>スキル</th>
+								<td>LAMP,CakePHP,AWS,Git</td>
+							</tr>
+						</table>
+						<div class="project_overlay"></div>
+					</a>
+					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+				</section>
+			<!-- project_list --></div>
+		<!-- main_content --></div>
+		<div class="sub_content">
+			<div class="sub_sns">
+			</div>
+			<section class="sub_keyword">
+				<h3>＊ 人気のキーワード</h3>
+				<ul>
+					<li><a href="">PHP</a></li>
+					<li><a href="">Ruby</a></li>
+					<li><a href="">Java</a></li>
+					<li><a href="">HTML5</a></li>
+					<li><a href="">Unity</a></li>
+					<li><a href="">JavaScript</a></li>
+					<li><a href="">Swift</a></li>
+					<li><a href="">Android</a></li>
+					<li><a href="">Objective-C</a></li>
+					<li><a href="">webデザイナー</a></li>
+				</ul>
+			</section>
+			<section class="sub_project">
+				<h3>＊ 人気の案件</h3>
+				<ul>
+					<li>
+						<a href="">
+							<h4>タイトルタイトルタイトル</h4>
+							<p>渋谷駅 / 650,000〜</p>
+							<p>LAMP,CakePHP,AWS,Git</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<h4>タイトルタイトルタイトル</h4>
+							<p>渋谷駅 / 650,000〜</p>
+							<p>LAMP,CakePHP,AWS,Git</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<h4>タイトルタイトルタイトル</h4>
+							<p>渋谷駅 / 650,000〜</p>
+							<p>LAMP,CakePHP,AWS,Git</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<h4>タイトルタイトルタイトル</h4>
+							<p>渋谷駅 / 650,000〜</p>
+							<p>LAMP,CakePHP,AWS,Git</p>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<div class="sub_partner">
+				<img src="../img/partner.png" width="100%">
+			</div>
+		<!-- sub_content --></div>
+	<!-- container --></div>
+</main>
+<footer class="footer">
+	<div class="footer_navi">
+		<div class="facebook_area">
+		<!-- facebook_area --></div>
+		<div class="footer_navi_list">
+			<section>
+				<h2>ホーム</h2>
+				<ul>
+					<li><a href="">トップページ</a></li>
+				</ul>
+			</section>
+			<section>
+				<h2>案件を探す</h2>
+				<ul>
+					<li><a href="">とりあえず見る</a></li>
+					<li><a href="">LAMPエンジニア</a></li>
+					<li><a href="">Rubyエンジニア</a></li>
+					<li><a href="">Javaエンジニア</a></li>
+					<li><a href="">フロントエンド</a></li>
+					<li><a href="">webデザイナー</a></li>
+					<li><a href="">webディレクター</a></li>
+					<li><a href="">インフラ(サーバー)</a></li>
+					<li><a href="">インフラ(ネットワーク)</a></li>
+					<li><a href="">コンサル/PM/PMO</a></li>
+				</ul>
+			</section>
+			<section>
+				<h2>お問い合わせ</h2>
+				<ul>
+					<li><a href="">お問い合わせ</a></li>
+				</ul>
+			</section>
+		<!-- footer_navi_list --></div>
+	<!-- footer_navi --></div>
+	<div class="copyright"><p>Copyright © IT/webフリーランスと企業をつなぐ案件/求人情報 Connect All Rights Reserved.</p></div>
+</footer>
+</body>
+</html>

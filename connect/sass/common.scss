@@ -1,0 +1,349 @@
+@charset "utf-8";
+@import "compass";
+@import "media_query";
+@import "compass/reset/";
+/**** ここまで reset.css ****/
+
+$white1: rgba(255,255,255,1);
+$white2: rgba(255,255,255,0.95);
+$black: rgba(70,70,70,1);
+$black2: lighten($black, 20%);
+$black3: lighten($black2, 20%);
+$main: rgba(248,248,250,1);
+$orange: rgba(255,70,90,1);
+$orange2: lighten($orange, 10%);
+$orange3: lighten($orange2, 10%);
+
+
+a{display:block;text-decoration:none; color: #000; }
+img{display:block}
+html,body{
+	font-size: 20px;
+	font-family: sans-serif ,Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
+	-webkit-text-size-adjust: 100%;
+	overflow-x:hidden;
+	@include tb {
+		font-size: 16px;
+	}
+	@include sp {
+		font-size: 12px;
+	}
+}
+.wrapper{
+	margin: 0 auto;
+	width: 92%;
+	max-width:1200px; 
+}
+.clearfix{
+	*zoom:1;
+	&:after {
+		content: ".";
+		display: block;
+		clear: both;
+		height: 0;
+		visibility: hidden;
+	}
+}
+
+.header{
+	position: relative;
+	width: 100%;
+	background: $white2;
+	box-shadow: 0 2px 2px 1px rgba(80,80,80,0.5);
+	z-index: 10;
+	.header_inner{
+		@extend .wrapper;
+		@extend .clearfix;
+		.header_title{
+			margin: 10px 0 8px;
+			float:left;
+			@extend .clearfix;
+			h1{
+				font-size: 60%;
+				margin-bottom: 5px;
+				margin-left: 5px;
+				font-weight: bold;
+			}
+			.header_title_logo{
+				a{
+					font-size: 220%;
+					font-weight: bold;
+					&:hover{
+						@include filter(opacity(0.9));
+					}
+				}
+			}
+		}
+		.header_menu{
+			float:right;
+			@extend .clearfix;
+			li{
+				float:left;
+			}
+			.header_menu_list {
+				position: relative;
+				border-right: 1px solid $black;
+				&:first-child{
+					border-left:1px solid $black;
+					&:hover:before{
+						position: absolute;
+						top: 100%;
+						left: 40%;
+						content:"";
+						width: 0;
+						height: 0;
+						border-style: solid;
+						border-width: 15px 15px 0 15px;
+						border-color: $orange transparent transparent transparent;
+					}
+				}
+				&:hover .header_menu_list_title{
+					background: $orange;
+					color: $white1;
+				}
+				.header_menu_list_title{
+					font-size: 80%;
+					padding: 35px 40px 30px;
+					text-align: center;
+					color: $black;
+				}
+				.header_menu_list_detail{
+					display: none;
+					position: absolute;
+					top: 120%;
+					left:0%;
+					width: 220%;
+					@extend .clearfix;
+					li{
+						float:left;
+						width: 49.8%;
+						background: $white2;
+						border-bottom:1px solid $black3;
+						&:nth-child(2n+1){
+							border-right: 1px solid $black3;
+						}
+						a{
+							padding: 10px 0;
+							padding-left: 10px;
+							font-size: 65%;
+							&:hover{
+								color:#fff;
+								background: $orange;
+							}
+							&:before{
+								display: inline-block;
+								content:">";
+								margin-right: 10px;
+								font-size: 100%;
+							}
+						}
+					}
+				}
+			}
+			.register{
+				margin: 10px 0 8px 15px;
+				a {
+					background: $orange;
+					border-radius: 2px;
+					padding: 21px 60px;
+					text-align: center;
+					color: $white1;
+					&:hover{
+						@include filter(opacity(0.9));
+					}
+				}
+			}
+		}
+	}
+}
+.main{
+	width: 100%;
+	background: $main;
+	border-bottom: 2px solid rgba(205,205,205,0.8);
+	.container{
+		padding: 10px 0;
+		@extend .wrapper;
+		@extend .clearfix;
+		.breadcrumb{
+			width: 100%;
+			margin-bottom: 30px;
+			@extend .clearfix;
+			li{
+				float:left;
+				margin-right: 15px;
+				font-size: 70%;
+				a{
+					padding-left: 30px;
+					color: $black;
+					&:hover{
+						color: $orange;
+						text-decoration: underline;
+					}
+				}
+				&:before{
+					float:left;
+					display: inline-block;
+					content:"＞";
+					margin-right: 15px;
+				}
+				&:first-child{
+					&:before{
+						display: none;
+					}
+					a{
+						padding:0;
+					}
+				}
+			}
+		}
+		.sub_content{
+			float: right;
+			width: 25%;
+			@include tb {
+				display: none;
+			}
+			@include sp {
+				display: none;
+			}
+
+			.sub_sns{
+				width: 100%;
+				height: 200px;
+				margin-bottom: 30px;
+			}
+			.sub_partner{
+				margin: 0 auto;
+				width: 97%;
+				margin-bottom: 30px;
+				background: $white1;
+				border: 1px solid rgba(205,205,205,0.8);
+				@include box-shadow(2px 2px 2px rgba(205,205,205,0.8));
+				padding: 3px 2px;
+			}
+			section{
+				width: 100%;
+				margin-bottom: 30px;
+				h3{
+					padding-bottom: 5px;
+					font-weight: bold;
+					margin-bottom: 10px;
+					border-bottom: 2px solid $black;
+				}
+			}
+			.sub_keyword{
+				ul{
+					width: 100%;
+					@extend .clearfix;
+					li{
+						float:left;
+						margin: 0 10px 10px 0;
+						a{
+							display: inline-block;
+							padding: 6px 7px;
+							cursor: pointer;
+							color: $white1;
+							font-size: 70%;
+							border-radius: 4px;
+							border: 1px solid $orange;
+							@include background(linear-gradient($orange2, $orange));
+							&:hover{
+								@include background(linear-gradient($orange3, $orange));
+							}
+						}
+					}
+				}
+			}
+			.sub_project{
+				ul{
+					width: 100%;
+					@extend .clearfix;
+					li{
+						margin: 0 auto;
+						margin-bottom: 15px;
+						width: 99%;
+						background: #fff;
+						@include box-shadow(2px 2px 2px rgba(205,205,205,0.8));
+						a{
+							padding: 10px;
+							font-size: 80%;
+							&:hover{
+								background: $orange;
+								color:#fff;
+							}
+							&:hover h4{
+								color:#fff;
+							}
+							h4{
+								font-weight: bold;
+								color:$orange;
+								margin-bottom: 5px;
+								@include ellipsis(no-wrap);
+							}
+							p{
+								width: 100%;
+								font-size: 80%;
+								line-height: 1.2;
+								@include ellipsis(no-wrap);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.footer{
+	.footer_navi{
+		padding: 30px 0;
+		@extend .wrapper;
+		@extend .clearfix;
+		.facebook_area{
+			float:left;
+			width: 40%;
+			height: 200px;
+			border: 1px solid #000;
+		}
+		.footer_navi_list{
+			float: right;
+			width: 58%;
+			@extend .clearfix;
+			section{
+				float:left;
+				width: 32%;
+				margin-left:1%;
+				h2{
+					font-weight: bold;
+					margin-bottom: 20px;
+				}
+				ul{
+					li{
+						margin-bottom: 10px;
+						a{
+							font-size: 70%;
+							&:hover{
+								color: $orange;
+								text-decoration: underline;
+							}
+							&:before{
+								display: inline-block;
+								content: '>';
+								margin-right: 10px;
+								color: $black;
+								vertical-align: text-top;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.copyright{
+		padding: 10px 0;
+		background: $black;
+		p{
+			text-align: center;
+			color: $white1;
+			font-size: 60%;
+		}
+	}
+}

@@ -1,0 +1,195 @@
+@import "admin";
+
+.content{
+	float:left;
+	width: 88%;
+	height: 84%;
+	overflow: scroll;
+	@extend .clearfix;
+	.project {
+		margin: 0 auto;
+		width: 96%;
+		margin-top: 20px;
+		.count{
+			margin-bottom: 10px;
+			font-size: 70%;
+			span{
+				display: inline-block;
+				margin-right: 10px;
+				font-size: 130%;
+				color:$hover;
+			}
+		}
+		table{
+			width: 100%;
+			tr{
+				border-bottom: 2px solid rgba(240,240,240,1);
+				th{
+					padding: 7px 0;
+					text-align: center;
+					background: #fff;
+					font-size: 80%;
+					border-right:2px solid rgba(240,240,240,1);
+				}
+				td {
+					padding: 7px 0;
+					text-align: center;
+					background: #fff;
+					font-size: 70%;
+					border-right:2px solid rgba(240,240,240,1);
+					a:hover{
+						width: 100%;
+						height: 100%;
+						color: rgba(250,150,100,1);
+					}
+				}
+			}
+		}
+	}
+}
+	.pagenate {
+		float:left;
+		width: 88%;
+		margin-top: 15px;
+		text-align: center;
+		.now {
+			display: inline-block;
+			padding: 7px;
+			font-size: 70%;
+			color: #fff;
+			text-align: center;
+			background: rgba(130,130,130,1);
+			border: 1px solid #eee;
+			border-radius: 4px;
+		}
+		span{
+			display: inline-block;
+			margin-right: 10px;
+			a{
+				display: inline-block;
+				padding: 7px;
+				font-size: 70%;
+				color: #fff;
+				text-align: center;
+				background: rgba(10,150,220,1);
+				border: 1px solid #eee;
+				border-radius: 4px;
+				&:hover{
+					color:$hover;
+				}
+
+			}
+		}
+	}
+
+.project_add {
+	float:left;
+	margin-top: 20px;
+	width: 87%;
+	overflow: scroll;
+	height: 88%;
+	margin-left: 1%;
+	.form_area{
+		width: 100%;
+		@extend .clearfix;
+		table{
+			float:left;
+			width: 47.5%;
+			margin-left: 1%;
+			tr{
+				width:100%;
+				border-bottom: 2px solid rgba(240,240,240,1);
+				th{
+					width: 20%;
+					padding: 10px 0;
+					text-align: center;
+					background: #fff;
+					font-size: 70%;
+					border-right:2px solid rgba(240,240,240,1);
+				}
+				td {
+					width: 94%;
+					padding: 12px 3%;
+					background: #fff;
+					font-size: 70%;
+					border-right:2px solid rgba(240,240,240,1);
+					float: left;
+					textarea {
+						width: 98%;
+						font-size: 100%;
+					}
+					input[type="text"] {
+						font-size: 100%;
+					}
+
+					.title, .place{
+						width: 98%;
+					}
+					.min_price {
+						width: 10%;
+					}
+					.max_price {
+						width: 10%;
+					}
+					.check {
+						list-style: none;
+						float: left;
+						width: 25%;
+					}
+				}
+			}
+		}
+	}
+	.form_area2 {
+		width: 100%;
+		table{
+			margin-left: 1%;
+			tr{
+				border-bottom: 2px solid rgba(240,240,240,1);
+				th{
+					width: 9.5%;
+					padding: 10px 0;
+					text-align: center;
+					background: #fff;
+					font-size: 70%;
+					border-right:2px solid rgba(240,240,240,1);
+				}
+				td {
+					width: 95%;
+					padding: 15px 0 15px 15px;
+					background: #fff;
+					font-size: 60%;
+					border-right:2px solid rgba(240,240,240,1);
+					float: left;
+					
+				}
+				.check {
+					list-style: none;
+					float: left;
+					width: 20%;
+					margin-bottom: 15px;
+				}
+			}
+		}	
+	}
+    .submitForm{
+        margin: 0 auto;
+        width: 40%;
+        text-align: center;
+     	margin-top: 20px;
+     	margin-bottom: 20px;
+        .submit{
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            color: #fff;
+            font-size: 100%;
+            background: rgba(20,100,150,0.9);
+            @include border-radius(4px);
+            @include box-shadow(0 3px 0 rgba(20,90,140,1));
+            &:hover {
+                @include opacity(0.9);
+            }
+        }
+    }
+}

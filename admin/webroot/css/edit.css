@@ -1,0 +1,41 @@
+
+#edit_body {
+	width: 1180px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.new_edit {
+width: 1180px;
+border-collapse: separate;
+border-spacing: 0px;
+border-top: 1px solid #ccc;
+border-left: 1px solid #ccc;
+}
+
+.new_edit th{
+width:300px;
+padding:4px;
+text-align: left;
+vertical-align: top;
+color: #444;
+background-color: #ccc;
+border-left: 3px double #999;
+border-top: 1px solid #fff;
+border-right: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+
+.new_edit td{
+width:980px;
+padding:4px;
+background-color: #fafafa;
+border-right: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+
+
+.submit {
+	text-align: center;
+	
+}

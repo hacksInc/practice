@@ -13,21 +13,15 @@ $main: rgba(248,248,250,1);
 $orange: rgba(255,70,90,1);
 $orange2: lighten($orange, 10%);
 $orange3: lighten($orange2, 10%);
-
+$contact: rgba(240,240,245,1);
 
 a{display:block;text-decoration:none; color: #000; }
 img{display:block}
 html,body{
-	font-size: 20px;
 	font-family: sans-serif ,Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
 	-webkit-text-size-adjust: 100%;
 	overflow-x:hidden;
-	@include tb {
-		font-size: 16px;
-	}
-	@include sp {
-		font-size: 12px;
-	}
+	font-size: 20px;
 }
 .wrapper{
 	margin: 0 auto;
@@ -54,6 +48,9 @@ html,body{
 	.header_inner{
 		@extend .wrapper;
 		@extend .clearfix;
+		@include sp {
+			width: 100%;
+		}
 		.header_title{
 			margin: 10px 0 8px;
 			float:left;
@@ -73,10 +70,59 @@ html,body{
 					}
 				}
 			}
+			.header_menu_toggle{
+				display: none;
+				@include sp {
+					display: inline-block;
+					position: relative;
+					float: right;
+					width: 35px;
+					height: 38px;
+					margin-top: 15px;
+					padding: 0 3px;
+					border: 1px solid rgba(10,50,90,1);
+					border-radius: 4px;				
+					.icon  {
+						display: block;
+						position: absolute;
+						top:0;
+						right:0;
+						bottom:0;
+						left:0;
+						margin: auto;
+						width:80%;
+						height: 4px;
+						background: rgba(10,50,90,1);
+						&:before, &:after {
+							display: block;
+							content: "";
+							position: absolute;
+							top: 50%;
+							right: 0%;
+							width: 100%;
+							height: 4px;
+							background: rgba(10,50,90,1);
+						}
+						&:before {
+							margin-top: -12px;
+						}
+						&:after {
+							margin-top: 8px;
+						}
+					}
+					.icon2{
+						display: none;
+					}
+				}
+			}
 		}
 		.header_menu{
 			float:right;
 			@extend .clearfix;
+			@include sp {
+				display: none;
+				width: 100%;
+			}
 			li{
 				float:left;
 			}
@@ -117,7 +163,7 @@ html,body{
 					li{
 						float:left;
 						width: 49.8%;
-						background: $white2;
+						background: $white1;
 						border-bottom:1px solid $black3;
 						&:nth-child(2n+1){
 							border-right: 1px solid $black3;
@@ -161,12 +207,13 @@ html,body{
 	background: $main;
 	border-bottom: 2px solid rgba(205,205,205,0.8);
 	.container{
+		position: relative;
 		padding: 10px 0;
 		@extend .wrapper;
 		@extend .clearfix;
 		.breadcrumb{
 			width: 100%;
-			margin-bottom: 30px;
+			margin-bottom: 40px;
 			@extend .clearfix;
 			li{
 				float:left;
@@ -210,6 +257,7 @@ html,body{
 				width: 100%;
 				height: 200px;
 				margin-bottom: 30px;
+				border: 1px solid #000;
 			}
 			.sub_partner{
 				margin: 0 auto;

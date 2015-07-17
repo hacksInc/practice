@@ -6,9 +6,15 @@
 <title>Connect(コネクト) IT/webフリーランスの案件/求人情報</title>
 <meta name="keywords" content="フリーランス,エンジニア,デザイナー,web,IT,案件,求人,仕事">
 <meta name="description" content="Connect(コネクト)はITエンジニア/webデザイナなどのフリーランスと企業を繋ぐ、案件/求人情報サイト。キャリア相談〜案件紹介、アフターフォローまでIT/webフリーランスをトータルサポート！">
-<link rel="stylesheet" href="../css/project.css">
+<script>
+	if(!navigator.userAgent.match(/(iPhone|iPad|Android)/)){
+		document.write('<link rel="stylesheet" href="../css/project.css">');
+	}else{
+		document.write('<link rel="stylesheet" href="../css/sp_project.css">');
+	}
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script src="../js/common.js"></script>
+<script src="../js/project.js"></script>
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -22,6 +28,7 @@
 			<p class="header_title_logo">
 				<a href="/" alt="Connect">Connect</a>
 			</p>
+			<p class="header_menu_toggle">MENU</p>
 		</div>
 		<ul class="header_menu">
 			<li class="header_menu_list">
@@ -50,68 +57,167 @@
 </header>
 <main class="main">
 	<div class="container">
+		<ul class="breadcrumb">
+			<li><a href="">トップ</a></li>
+			<li><a href="">エンジニアの案件/求人</a></li>
+			<li>タイトルタイトルタイトル</li>
+		<!-- breadcrumb --></ul>
 		<div class="main_content">
-			<ul class="breadcrumb">
-				<li><a href="">トップ</a></li>
-				<li><a href="">エンジニアの案件/求人</a></li>
-				<li>タイトルタイトルタイトル</li>
-			<!-- breadcrumb --></ul>
+			<section class="project_detail">
+				<h2 class="title">タイトルタイトルタイトルタイトル</h2>
+				<p class="body">業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容業務内容</p>
+				<div class="project_inner">
+					<table>
+						<tr>
+							<th>最寄駅</th>
+							<td>渋谷駅</td>
+							<th>面談回数</th>
+							<td>1回</td>
+						</tr>
+						<tr>
+							<th>金額</th>
+							<td>￥650,000 〜 / 月額</td>
+							<th>勤務時間</th>
+							<td>9:30 〜 19:30</td>
+						</tr>
+						<tr>
+							<th>清算</th>
+							<td>140h - 180h</td>
+							<th>備考</th>
+							<td>年齢不問</td>
+						</tr>
+					</table>
+				</div>
+				<div class="project_inner">
+					<table>
+						<tr class="wide">
+							<th>必須スキル</th>
+							<td>・PHP経験3年以上</td>
+						</tr>
+						<tr class="wide">
+							<th>尚可スキル</th>
+							<td>・PHP経験3年以上</td>
+						</tr>
+						<tr class="wide">
+							<th>開発環境</th>
+							<td>・PHP経験3年以上</td>
+						</tr>
+						<tr class="wide">
+							<th>職場環境</th>
+							<td>・PHP経験3年以上</td>
+						</tr>
+						<tr>
+							<th>ポジション</th>
+							<td><a class="tag" href="">フロントエンド</a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="favorite"><a href="#">★ 気になる！</a></div>
+				<div class="entry"><a href="">今すぐエントリー！</a></div>
+			</section>
+			<section class="same_project">
+				<h2>タイトルタイトルタイトルタイトルに似た案件</h2>
+				<p class="text">タイトルタイトルタイトルタイトルを見た人はこんな案件も見ています</p>
+				<div class="same_project_list">
+					<section>
+						<a href="">
+							<h3>テストテストテストテストテストテスト</h3>
+							<table>
+								<tr>
+									<th>金額</th>
+									<td>650,000 〜 / 月額</td>
+								</tr>
+								<tr>
+									<th>最寄駅</th>
+									<td>渋谷駅</td>
+								</tr>
+								<tr>
+									<th>ポジション</th>
+									<td>サーバーサイドエンジニア</td>
+								</tr>
+								<tr>
+									<th>スキル</th>
+									<td>LAMP,CakePHP,AWS,Git</td>
+								</tr>
+							</table>
+							<p class="more">詳細を見る</p>
+						</a>
+					</section>
+					<section>
+						<a href="">
+							<h3>テストテストテストテストテストテスト</h3>
+							<table>
+								<tr>
+									<th>金額</th>
+									<td>650,000 〜 / 月額</td>
+								</tr>
+								<tr>
+									<th>最寄駅</th>
+									<td>渋谷駅</td>
+								</tr>
+								<tr>
+									<th>ポジション</th>
+									<td>サーバーサイドエンジニア</td>
+								</tr>
+								<tr>
+									<th>スキル</th>
+									<td>LAMP,CakePHP,AWS,Git</td>
+								</tr>
+							</table>
+							<p class="more">詳細を見る</p>
+						</a>
+					</section>
+					<section>
+						<a href="">
+							<h3>テストテストテストテストテストテスト</h3>
+							<table>
+								<tr>
+									<th>金額</th>
+									<td>650,000 〜 / 月額</td>
+								</tr>
+								<tr>
+									<th>最寄駅</th>
+									<td>渋谷駅</td>
+								</tr>
+								<tr>
+									<th>ポジション</th>
+									<td>サーバーサイドエンジニア</td>
+								</tr>
+								<tr>
+									<th>スキル</th>
+									<td>LAMP,CakePHP,AWS,Git</td>
+								</tr>
+							</table>
+							<p class="more">詳細を見る</p>
+						</a>
+					</section>
+					<section>
+						<a href="">
+							<h3>テストテストテストテストテストテスト</h3>
+							<table>
+								<tr>
+									<th>金額</th>
+									<td>650,000 〜 / 月額</td>
+								</tr>
+								<tr>
+									<th>最寄駅</th>
+									<td>渋谷駅</td>
+								</tr>
+								<tr>
+									<th>ポジション</th>
+									<td>サーバーサイドエンジニア</td>
+								</tr>
+								<tr>
+									<th>スキル</th>
+									<td>LAMP,CakePHP,AWS,Git</td>
+								</tr>
+							</table>
+							<p class="more">詳細を見る</p>
+						</a>
+					</section>
+				</div>
+			</section>
 		<!-- main_content --></div>
-		<div class="sub_content">
-			<div class="sub_sns">
-			</div>
-			<section class="sub_keyword">
-				<h3>＊ 人気のキーワード</h3>
-				<ul>
-					<li><a href="">PHP</a></li>
-					<li><a href="">Ruby</a></li>
-					<li><a href="">Java</a></li>
-					<li><a href="">HTML5</a></li>
-					<li><a href="">Unity</a></li>
-					<li><a href="">JavaScript</a></li>
-					<li><a href="">Swift</a></li>
-					<li><a href="">Android</a></li>
-					<li><a href="">Objective-C</a></li>
-					<li><a href="">webデザイナー</a></li>
-				</ul>
-			</section>
-			<section class="sub_project">
-				<h3>＊ 人気の案件</h3>
-				<ul>
-					<li>
-						<a href="">
-							<h4>タイトルタイトルタイトル</h4>
-							<p>渋谷駅 / 650,000〜</p>
-							<p>LAMP,CakePHP,AWS,Git</p>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<h4>タイトルタイトルタイトル</h4>
-							<p>渋谷駅 / 650,000〜</p>
-							<p>LAMP,CakePHP,AWS,Git</p>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<h4>タイトルタイトルタイトル</h4>
-							<p>渋谷駅 / 650,000〜</p>
-							<p>LAMP,CakePHP,AWS,Git</p>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<h4>タイトルタイトルタイトル</h4>
-							<p>渋谷駅 / 650,000〜</p>
-							<p>LAMP,CakePHP,AWS,Git</p>
-						</a>
-					</li>
-				</ul>
-			</section>
-			<div class="sub_partner">
-				<img src="../img/partner.png" width="100%">
-			</div>
-		<!-- sub_content --></div>
 	<!-- container --></div>
 </main>
 <footer class="footer">

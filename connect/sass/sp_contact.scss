@@ -1,0 +1,178 @@
+@import "sp_common";
+
+.main_content{
+	@extend .wrapper;
+	@extend .clearfix;
+	.contact{
+		margin: 30px 0;
+		@extend .clearfix;
+		.process{
+			width: 100%;
+			margin-bottom: 20px;
+			@extend .clearfix;
+			li{
+				position: relative;
+				float: left;
+				width: 30%;
+				padding-left: 2%;
+				margin-left:4%;
+				padding: 8px 0;
+				text-align: center;
+				background: $orange3;
+				color: $white1;
+				line-height: 8px;
+				font-size: 60%;
+				z-index: 7;
+				&:before{
+					z-index: 8;
+					position: absolute;
+					top: 0%;
+					left: 0px;
+					content:"";
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 12px 0px 12px 12px;
+					border-color: transparent transparent transparent $main;
+				}
+				&:after{
+					position: absolute;
+					top: 0%;
+					right: -12px;
+					content:"";
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 12px 0px 12px 12px;
+					border-color: transparent transparent transparent $orange3;
+				}
+				&:first-child{
+					margin-left:0;
+					&:before{
+						display: none;
+					}
+				}
+			}
+			.now{
+				background: $orange;
+				&:after{
+					border-color: transparent transparent transparent $orange;
+				}
+			}
+		}
+		.contact_inner{
+			dl {
+				width: 100%;
+				border-bottom: 2px solid rgba(225,225,225,0.8);
+				@extend .clearfix;
+				dt{
+					vertical-align: middle;
+					width: 96%;
+					padding: 6px 2%;
+					background: $black2;
+					color: $white1;
+					font-size: 90%;
+				}
+				dd{			
+					vertical-align: middle;
+					width: 96%;
+					padding: 10px 2%;
+				}
+				input[type="text"]{
+					width: 45%;
+					border: none;
+					background: $contact;
+					padding: 5px 1%;
+					font-size: 110%;
+					&:first-child{
+						margin-right: 5%;
+					}
+				}
+				input[type="select"]{
+					width: 26%;
+					border: none;
+					background: $contact;
+					padding: 5px 2%;
+					margin-right: 5%;
+					font-size: 110%;
+					&:last-child{
+						margin-right:0;
+					}
+				}
+				input[type="email"],
+				input[type="tel"]{
+					width: 96%;
+					border: none;
+					background: $contact;
+					padding: 5px 2%;
+					font-size: 110%;
+				}
+				textarea {
+					width: 98%;
+					padding: 5px 1%;
+					border:none;
+					background: $contact;
+					font-size: 110%;
+				}
+
+			}
+			.must{
+				dt{
+					position: relative;
+					background: $black;
+					&:after{
+						position: absolute;
+						top: 4px;
+						right: 2%;
+						content:"必須";
+						background: $orange;
+						color: $white1;
+						padding: 3px;
+					}
+				}
+			}
+		}
+		.entry{
+			margin: 0 auto;
+			width: 70%;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			a{
+				padding: 20px 0;
+				text-align: center;
+				color: $white1;
+				background: $orange;
+				&:hover{
+					@include background(linear-gradient($orange3, $orange));
+				}
+			}
+		}
+		.policy{
+			width: 98%;
+			padding: 10px 1%;
+			height: 100px;
+			background: $white1;
+			p{
+				width: 96%;
+				height: 90px;
+				padding: 5px 2%;
+				background: $contact;
+				overflow: auto;
+				font-size: 70%;
+				line-height: 1.2;
+				strong{
+					display: block;
+					font-size: 130%;
+					font-weight: bold;
+					margin-bottom:5px;
+				}
+				span{
+					display: block;
+					font-size: 110%;
+					font-weight: bold;
+					margin: 5px 0;
+				}
+			}
+		}
+	}
+}

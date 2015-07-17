@@ -1,4 +1,44 @@
 
+// サイドメニューのスクロール処理
+$(function(){
+
+	var contentH	= $('html, body').height(),
+		contentW	= $('html, body').width(),
+		target	= $('.sub_content'),
+		targetH	= target.outerHeight(),
+		targetW	= target.width() - 1,
+		targetTop	= target.offset().top,
+		targetLeft	= target.offset().left,
+		footer	= $('.footer'),
+		footerH	= footer.outerHeight();
+
+	$(window).bind('load scroll resize', scroll_sidebar);
+
+	function scroll_sidebar() {
+
+		var windowH = $(this).height(),
+			scrollTop = $(this).scrollTop(),
+			scrollBottom = scrollTop + windowH,
+			targetBottom = targetTop + targetH;
+
+		if ( scrollBottom > targetBottom ) {
+
+			if ( footerH > contentH - scrollBottom ) {
+
+				target.css({width: targetW, position: 'fixed', left: targetLeft, bottom: footerH - ( contentH - scrollBottom )});
+
+			} else {
+
+				target.css({width: targetW, position:'fixed', left: targetLeft, bottom: 0});
+			}
+
+		} else {
+
+			target.css({width: targetW,position: 'static', left: targetLeft, bottom: 'auto'});
+		}
+	}
+});
+
 // 検索フォームの処理
 $(function() {
 
@@ -11,12 +51,12 @@ $(function() {
 
 		tab.removeClass('on');
 		$(this).addClass('on');
-		panel.removeClass('select');		
-		panel.eq(num).addClass('select');
+		panel.hide();
+		panel.eq(num).fadeIn();
 
 	});
 
-    // checkbox, radiowをチェックした際の処理
+    // checkbox, radioをチェックした際の処理
 	$(document).on('change','.search_panel_box :input', function(){
 
 		var id = $(this).attr('id');
@@ -34,7 +74,7 @@ $(function() {
 
 		if( $(this).prop('checked') ) {
 		
-			$('.selected_item').append(item);
+			$(item).appendTo('.selected_item').hide().fadeIn();
 
 		} else {
 
@@ -56,6 +96,7 @@ $(function() {
             if( $(this).attr('id').match(key) ) {
                 $(this).prop('checked', false);
             }
+            check();
         });
         
     });
@@ -71,11 +112,11 @@ $(function() {
 	function check(){
 
 		if ($(".selected_item span").length == 0) {
-			$('.selected_item_default').show();
+			$('.selected_item_default').fadeIn();
 			$(".selected_item_all_delete").hide();
 		} else {
 			$('.selected_item_default').hide();
-			$(".selected_item_all_delete").show();
+			$(".selected_item_all_delete").fadeIn();
 		}
 		return;
 	}
@@ -90,6 +131,7 @@ $(function(){
 	});
 });
 
+// search後の検索条件変更ボタンの処理
 $(function(){
 	$(document).on('click', '.search_panel_open', function(){
 		$('.search_panel_open').toggleClass('active');

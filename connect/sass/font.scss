@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+@media only screen and ( max-device-width: 320px ) {
+	html,body{font-size: 13px;}
+}
+@media only screen and ( min-device-width: 321px ) and ( max-device-width: 375px ) {
+	html,body{font-size: 14px;}	
+}
+@media only screen and ( min-device-width: 376px ) and ( max-device-width: 414px ) {
+	html,body{font-size: 15px;}	
+}
+@media only screen and ( min-device-width: 415px ) and ( max-device-width: 480px ) {
+	html,body{font-size: 16px;}	
+}
+@media only screen and ( min-device-width: 481px ) and ( max-device-width: 568px ) {
+	html,body{font-size: 17px;}	
+}
+@media only screen and ( min-device-width: 569px ) and ( max-device-width: 667px ) {
+	html,body{font-size: 18px;}	
+}
+@media only screen and ( min-device-width: 668px ) and ( max-device-width: 736px ) {
+	html,body{font-size: 19px;}	
+}
+@media only screen and ( min-device-width: 737px ) {
+	html,body{font-size: 20px;}	
+}

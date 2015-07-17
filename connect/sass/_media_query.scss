@@ -7,6 +7,12 @@
 		@content;
 	}
 }
+
+@mixin pc {
+	@media screen and ( min-width: 737px ) and ( max-width: 979px ) {
+		@content;
+	}
+}
 @mixin sp {
 	@media screen and ( max-width: 736px ) {
 		@content;

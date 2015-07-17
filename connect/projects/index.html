@@ -6,9 +6,15 @@
 <title>Connect(コネクト) IT/webフリーランスの案件/求人情報</title>
 <meta name="keywords" content="フリーランス,エンジニア,デザイナー,web,IT,案件,求人,仕事">
 <meta name="description" content="Connect(コネクト)はITエンジニア/webデザイナなどのフリーランスと企業を繋ぐ、案件/求人情報サイト。キャリア相談〜案件紹介、アフターフォローまでIT/webフリーランスをトータルサポート！">
-<link rel="stylesheet" href="../css/search.css">
+<script>
+	if(!navigator.userAgent.match(/(iPhone|iPad|Android)/)){
+		document.write('<link rel="stylesheet" href="../css/search.css">');
+	}else{
+		document.write('<link rel="stylesheet" href="../css/sp_search.css">');
+	}
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script src="../js/common.js"></script>
+<script src="../js/search.js"></script>
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -22,6 +28,7 @@
 			<p class="header_title_logo">
 				<a href="/" alt="Connect">Connect</a>
 			</p>
+			<p class="header_menu_toggle">MENU</p>
 		</div>
 		<ul class="header_menu">
 			<li class="header_menu_list">
@@ -50,11 +57,11 @@
 </header>
 <main class="main">
 	<div class="container">
+		<ul class="breadcrumb">
+			<li><a href="">トップ</a></li>
+			<li>1234件の案件/求人情報</li>
+		<!-- breadcrumb --></ul>
 		<div class="main_content">
-			<ul class="breadcrumb">
-				<li><a href="">トップ</a></li>
-				<li>1234件の案件/求人情報</li>
-			<!-- breadcrumb --></ul>
 			<div class="search_header">
 				<p class="search_result">
 					該当案件：<span>1234</span> 件 <span>1〜50件目を表示中</span>
@@ -71,6 +78,7 @@
 				</section>
 				<section class="search_panel">
 					<h2>条件を絞り込んで検索する</h2>
+					<form name="search_panel" class="search_panel">
 					<ul class="search_panel_tab_list">
 						<li class="search_panel_tab on">スキル</li>
 						<li class="search_panel_tab">ポジション</li>
@@ -179,6 +187,7 @@
 						</div>
 					<!-- search_panel_box --></div>
 				<!-- search_panel --></section>
+				</form>
 			<!-- search --></div>
 			<div class="project_list">
 				<section>
@@ -205,7 +214,7 @@
 						</table>
 						<div class="project_overlay"></div>
 					</a>
-					<div class="favorite"><a href="#">★ お気に入りに追加する</a><div class="project_overlay"></div></div>
+					<div class="favorite"><a href="#">★ 気になる！</a></div>
 				</section>
 				<section>
 					<a class="project_inner" href="">
@@ -231,7 +240,7 @@
 						</table>
 						<div class="project_overlay"></div>
 					</a>
-					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+					<p class="favorite"><a href="#">★ 気になる！</a></p>
 				</section>
 				<section>
 					<a class="project_inner" href="">
@@ -257,7 +266,7 @@
 						</table>
 						<div class="project_overlay"></div>
 					</a>
-					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+					<p class="favorite"><a href="#">★ 気になる！</a></p>
 				</section>
 				<section>
 					<a class="project_inner" href="">
@@ -283,7 +292,7 @@
 						</table>
 						<div class="project_overlay"></div>
 					</a>
-					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+					<p class="favorite"><a href="#">★ 気になる！</a></p>
 				</section>
 				<section>
 					<a class="project_inner" href="">
@@ -309,7 +318,7 @@
 						</table>
 						<div class="project_overlay"></div>
 					</a>
-					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+					<p class="favorite"><a href="#">★ 気になる！</a></p>
 				</section>
 				<section>
 					<a class="project_inner" href="">
@@ -335,7 +344,7 @@
 						</table>
 						<div class="project_overlay"></div>
 					</a>
-					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+					<p class="favorite"><a href="#">★ 気になる！</a></p>
 				</section>
 				<section>
 					<a class="project_inner" href="">
@@ -361,7 +370,7 @@
 						</table>
 						<div class="project_overlay"></div>
 					</a>
-					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+					<p class="favorite"><a href="#">★ 気になる！</a></p>
 				</section>
 				<section>
 					<a class="project_inner" href="">
@@ -387,7 +396,7 @@
 						</table>
 						<div class="project_overlay"></div>
 					</a>
-					<p class="favorite"><a href="#">★ お気に入りに追加する</a></p>
+					<p class="favorite"><a href="#">★ 気になる！</a></p>
 				</section>
 			<!-- project_list --></div>
 		<!-- main_content --></div>

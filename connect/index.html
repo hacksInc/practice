@@ -6,9 +6,15 @@
 <title>Connect(コネクト) IT/webフリーランスの案件/求人情報</title>
 <meta name="keywords" content="フリーランス,エンジニア,デザイナー,web,IT,案件,求人,仕事">
 <meta name="description" content="Connect(コネクト)はITエンジニア/webデザイナなどのフリーランスと企業を繋ぐ、案件/求人情報サイト。キャリア相談〜案件紹介、アフターフォローまでIT/webフリーランスをトータルサポート！">
-<link rel="stylesheet" href="css/home.css">
+<script>
+	if(!navigator.userAgent.match(/(iPhone|iPad|Android)/)){
+		document.write('<link rel="stylesheet" href="css/home.css">');
+	}else{
+		document.write('<link rel="stylesheet" href="css/sp_home.css">');
+	}
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script src="js/common.js"></script>
+<script src="js/home.js"></script>
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -22,6 +28,7 @@
 			<p class="header_title_logo">
 				<a href="/" alt="Connect">Connect</a>
 			</p>
+			<p class="header_menu_toggle">MENU</p>
 		</div>
 		<ul class="header_menu">
 			<li class="header_menu_list">
@@ -77,6 +84,7 @@
 					＊ 案件検索<br>
 					<span>条件を絞り込んで、あなたに合った案件を見つけよう！</span>
 				</h2>
+				<form name="search_panel" class="search_panel">
 				<div class="search_panel">
 					<ul class="search_panel_tab_list">
 						<li class="search_panel_tab on">スキル</li>
@@ -84,7 +92,7 @@
 						<li class="search_panel_tab">金額</li>
 					</ul>
 					<div class="search_panel_box">
-						<ul class="search_panel_select select">
+						<ul class="search_panel_select">
 							<li>
 								<input type="checkbox" name="skill" id="skill_1" value="1">
 								<label for="skill_1">PHP</label>
@@ -116,6 +124,14 @@
 							<li>
 								<input type="checkbox" name="skill" id="skill_8" value="8">
 								<label for="skill_8">dddddddddddddddddddd</label>
+							</li>
+							<li>
+								<input type="checkbox" name="skill" id="skill_9" value="9">
+								<label for="skill_9">eeeeeeeeeeeeeeeeeeeee</label>
+							</li>
+							<li>
+								<input type="checkbox" name="skill" id="skill_10" value="10">
+								<label for="skill_10">ssssssssssssssssssss</label>
 							</li>
 						</ul>
 						<ul class="search_panel_select">
@@ -186,6 +202,7 @@
 						</div>
 					<!-- search_panel_box --></div>
 				<!-- search_panel --></div>
+				</form>
 			<!-- search --></section>
 			<section class="pickup">
 				<h2>

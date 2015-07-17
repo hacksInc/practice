@@ -1,0 +1,192 @@
+@charset "utf-8";
+@import "compass";
+@import "compass/reset/";
+/**** ここまで reset.css ****/
+@import "font";
+
+$white1: rgba(255,255,255,1);
+$white2: rgba(255,255,255,0.95);
+$black: rgba(70,70,70,1);
+$black2: lighten($black, 20%);
+$black3: lighten($black2, 20%);
+$main: rgba(248,248,250,1);
+$orange: rgba(255,70,90,1);
+$orange2: lighten($orange, 10%);
+$orange3: lighten($orange2, 10%);
+$orange4: darken($orange, 30%);
+$contact: rgba(230,230,245,1);
+
+a{display:block;text-decoration:none; color: #000; }
+img{display:block}
+html,body{
+	font-family: sans-serif ,Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック";
+	-webkit-text-size-adjust: 100%;
+	overflow-x:hidden;
+}
+
+.wrapper{
+	margin: 0 auto;
+	width: 96%;
+}
+.clearfix{
+	*zoom:1;
+	&:after {
+		content: ".";
+		display: block;
+		clear: both;
+		height: 0;
+		visibility: hidden;
+	}
+}
+.header{
+	position: fixed;
+	top:0;
+	width: 100%;
+	background: $white2;
+	z-index: 10;
+	.header_inner{
+		.header_title{
+			width: 96%;
+			padding: 10px 2%;
+			@include box-shadow(0 2px 2px 1px rgba(80,80,80,0.5));
+			@extend .clearfix;
+			h1{
+				font-size: 80%;
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+			.header_title_logo{
+				float:left;
+				a{
+					font-size: 250%;
+					font-weight: bold;
+					&:hover{
+						@include filter(opacity(0.9));
+					}
+				}
+			}
+			.header_menu_toggle{
+				display: inline-block;
+				float: right;
+				padding: 10px 4%;
+				margin-right: 2%;
+				text-align: center;
+				font-weight: bold;
+				color: $white1;
+				background: $orange;
+				font-size: 120%;
+			}
+		}
+		.header_menu{
+			display: none;
+			@extend .clearfix;
+			.header_menu_list {
+				width: 100%;
+				.header_menu_list_title{
+					padding: 20px 0;
+					text-align: center;
+					color: $white1;
+					background: $black;
+					font-size: 120%;
+				}
+				.header_menu_list_detail{
+					width: 100%;
+					@extend .clearfix;
+					li{
+						float:left;
+						width: 49.5%;
+						text-align: center;
+						border-bottom:1px solid $black3;
+						a{
+							padding: 20px 0;
+						}
+					}
+				}
+			}
+			.register{
+				border-bottom:1px solid $black3;;
+				a {
+					font-size: 140%;
+					background: $orange;
+					border-radius: 2px;
+					padding: 20px 5%;
+					margin: 10px 5%;
+					text-align: center;
+					color: $white1;
+				}
+			}
+		}
+	}
+}
+.main{
+	width: 100%;
+	background: $main;
+	border-bottom: 2px solid rgba(205,205,205,0.8);
+	.container{
+		position: relative;
+		width: 100%;
+		padding: 10px 0;
+		@extend .clearfix;
+		.breadcrumb{
+			display: none;
+		}
+		.sub_content{
+			display: none;
+		}
+	}
+}
+.footer{
+	.footer_navi{
+		@extend .clearfix;
+		.facebook_area{
+			margin: 0 auto;
+			width: 90%;
+			height: 150px;
+			margin-bottom: 30px;
+			margin-top: 30px;
+			border: 1px solid #000;
+		}
+		.footer_navi_list{
+			width: 100%;
+			@extend .clearfix;
+			section{
+				width: 100%;
+				h2{
+					padding: 10px 0;
+					background: $black;
+					color: $white1;
+					text-align: center;
+					font-weight: bold;
+				}
+				ul{
+					li{
+						border-bottom:1px solid $black3;
+						text-align: center;
+						font-weight: bold;
+						a{
+							padding: 20px 0;
+						}
+					}
+				}
+			}
+			section:nth-child(2){
+				ul{
+					@extend .clearfix;
+					li{
+						float:left;
+						width:49%;
+					}
+				}
+			}
+		}
+	}
+	.copyright{
+		padding: 15px 0;
+		background: $black;
+		p{
+			text-align: center;
+			color: $white1;
+			font-size: 80%;
+		}
+	}
+}

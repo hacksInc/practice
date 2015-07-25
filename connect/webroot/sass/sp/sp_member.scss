@@ -1,0 +1,314 @@
+@import "sp_common";
+
+.main_content{
+	@extend .wrapper;
+	@extend .clearfix;
+	.contact{
+		margin: 20px 0 10px;
+		@extend .clearfix;
+		.keep_project{
+			margin-bottom: 30px;
+			h2{
+				padding: 5px 0 5px 2%;
+				color: $white1;
+				font-weight: bold;
+				background: $black;
+				margin-bottom: 10px;
+			}
+			section{
+				position: relative;
+				width: 98%;
+				padding: 5px 1%;
+				margin-bottom: 10px;
+				background: $white1;
+				a{
+					h3{
+						width: 80%;
+						font-weight: bold;
+						color: $orange;
+						margin-bottom: 10px;
+						font-size: 110%;
+						@include ellipsis(no-wrap);
+					}
+					p{
+						font-size: 90%;
+						width: 80%;
+						@include ellipsis(no-wrap);
+					}
+				}
+				.keep_delete_button{
+					position: absolute;
+					top: 10px;
+					right: 2%;
+					width: 15%;
+					background: $black2;
+					@include box-shadow(0 3px 0 $black4);
+					@include border-radius(1px 1px 3px 3px);
+					.keep_delete{
+						text-align: center;
+						color: $white1;
+						padding: 5px 0;
+						span{
+							display: none;
+						}
+					}
+				}
+			}
+		}
+		.process{
+			width: 100%;
+			margin-bottom: 20px;
+			@extend .clearfix;
+			li{
+				position: relative;
+				float: left;
+				width: 30%;
+				padding-left: 2%;
+				margin-left:4%;
+				padding: 8px 0;
+				text-align: center;
+				background: $orange3;
+				color: $white1;
+				line-height: 8px;
+				font-size: 60%;
+				z-index: 7;
+				&:before{
+					z-index: 8;
+					position: absolute;
+					top: 0%;
+					left: 0px;
+					content:"";
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 12px 0px 12px 12px;
+					border-color: transparent transparent transparent $main;
+				}
+				&:after{
+					position: absolute;
+					top: 0%;
+					right: -12px;
+					content:"";
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 12px 0px 12px 12px;
+					border-color: transparent transparent transparent $orange3;
+				}
+				&:first-child{
+					margin-left:0;
+					&:before{
+						display: none;
+					}
+				}
+			}
+			.now{
+				background: $orange;
+				&:after{
+					border-color: transparent transparent transparent $orange;
+				}
+			}
+		}
+		.contact_inner{
+			.skillsheet{display: none;}
+			dl {
+				width: 100%;
+				border-bottom: 2px solid rgba(225,225,225,0.8);
+				@extend .clearfix;
+				dt{
+					vertical-align: middle;
+					width: 96%;
+					padding: 6px 2%;
+					background: $black2;
+					color: $white1;
+					font-size: 90%;
+				}
+				dd{			
+					vertical-align: middle;
+					width: 96%;
+					padding: 10px 2%;
+				}
+				.error-message{
+					font-size: 90%;
+					color: #f00;
+					margin: 3px 0 6px;
+				}
+				input[type="text"]{
+					width: 45%;
+					border: none;
+					background: $contact;
+					padding: 5px 1%;
+					font-size: 110%;
+					&:first-child{
+						margin-right: 4%;
+					}
+				}
+				select{
+					width: 26%;
+					border: none;
+					background: $contact;
+					padding: 5px 2%;
+					margin-right: 5%;
+					font-size: 110%;
+					&:last-child{
+						margin-right:0;
+					}
+				}
+				input[type="email"],
+				input[type="tel"]{
+					width: 96%;
+					border: none;
+					background: $contact;
+					padding: 5px 2%;
+					font-size: 110%;
+				}
+				textarea {
+					width: 98%;
+					padding: 5px 1%;
+					border:none;
+					background: $contact;
+					font-size: 110%;
+				}
+				input[type=radio] + label {
+					position: relative;
+					display: inline-block;
+					line-height: 30px;
+					cursor: pointer;
+					margin-right: 10px;
+				}
+				@media (min-width: 1px) {
+				   input[type=radio]{
+					    display: none;
+						margin: 0;
+						+ label {
+							padding: 0 0 0 24px;
+							&:before {
+								display: block;
+								position: absolute;
+								top: 50%;
+								left: 0;
+								content: "";
+								width: 20px;
+								height: 20px;
+								margin-top: -10px;
+								border: 2px solid #ccc;
+								border-radius: 30px;
+								@include box-sizing(border-box);
+							}
+							&:hover:before{
+								border: 2px solid $contact;
+							}
+						}
+					}
+					input[type=radio]:checked + label{
+						&:before{
+							border: 2px solid $blue;
+						}
+						&:after{
+							content: "";
+							position: absolute;
+							top: 50%;
+							left: 5px;
+							width: 10px;
+							height: 10px;
+							margin-top: -5px;
+							background: $blue;
+							@include border-radius(10px);
+							@include box-sizing(border-box);
+						}
+						&:last-child{
+							&:before{
+								border: 2px solid $orange;
+							}
+							&:after{
+								background: $orange;
+							}
+						}
+					}
+				}
+			}
+			.must{
+				dt{
+					position: relative;
+					background: $black;
+					&:after{
+						position: absolute;
+						top: 4px;
+						right: 2%;
+						content:"必須";
+						background: $orange;
+						color: $white1;
+						padding: 3px;
+					}
+				}
+			}
+		}
+		.entry{
+			margin: 0 auto;
+			width: 65%;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			.submit{
+				border: none;
+				padding: 10px 0;
+				width: 100%;
+				font-size: 130%;
+				text-align: center;
+				color: $white1;
+				background: $orange;
+				@include box-shadow(0 3px 0 $orange4);
+				@include border-radius(2px 2px 4px 4px);
+			}
+		}
+		.back{
+			position: absolute;
+			bottom:10px;
+			left:0;
+			padding: 10px;
+			color: $blue;
+			text-align: center;
+			font-weight: bold;
+		}
+		.policy{
+			width: 98%;
+			padding: 10px 1%;
+			height: 100px;
+			background: $white1;
+			p{
+				width: 96%;
+				height: 90px;
+				padding: 5px 2%;
+				background: $contact;
+				overflow: auto;
+				font-size: 70%;
+				line-height: 1.2;
+				strong{
+					display: block;
+					font-size: 130%;
+					font-weight: bold;
+					margin-bottom:5px;
+				}
+				span{
+					display: block;
+					font-size: 110%;
+					font-weight: bold;
+					margin: 5px 0;
+				}
+			}
+		}
+		.complete{
+			margin: 30% 0 60%;
+			text-align: center;
+			p{
+				font-size: 120%;
+				line-height: 1.2;
+				span{
+					display: block;
+					font-weight: bold;
+					font-size: 150%;
+					margin-bottom: 20px;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,299 @@
+@import "common";
+.header_menu{
+	display: none;
+}
+.main_content{
+	margin: 0 auto;
+	width: 100%;
+	@extend .clearfix;
+	.contact{
+		position: relative;
+		margin: 0 auto;
+		width: 86%;
+		font-size: 80%;
+		margin-top: 20px;
+		margin-bottom: 30px;
+		@extend .clearfix;
+		.keep_project{
+			margin-bottom: 50px;
+			h2{
+				width: 99%;
+				padding: 4px 0 4px 1%;
+				background: $black;
+				color: $white1;
+				font-size: 100%;
+				margin-bottom: 10px;
+			}
+			section{
+				position: relative;
+				margin-bottom: 15px;
+				width: 100%;
+				background: #fff;
+				@include box-shadow(2px 2px 2px rgba(205,205,205,0.8));
+				a{
+					
+					z-index: 7;
+					padding: 8px 0;
+					font-size: 100%;
+					&:hover{
+						background: darken($white1, 10%);
+					}
+					h3{
+						font-size: 110%;
+						padding-left: 3%;
+						font-weight: bold;
+						color:$orange;
+						margin-bottom: 5px;
+						@include ellipsis(no-wrap);
+					}
+					p{
+						padding-left: 3%;
+						font-size: 80%;
+						line-height: 1.2;
+						@include ellipsis(no-wrap);
+					}
+				}
+				.keep_delete_button{
+					position: absolute;
+					top: 15%;
+					right: 3%;
+					width: 15%;
+					z-index: 8;
+					.keep_delete{
+						padding: 12px 0;
+						text-align: center;
+						color: $white1;
+						@include background(linear-gradient($black3, $black));
+						&:hover{
+							@include background(linear-gradient($black4, $black));
+						}
+					}
+				}
+			}
+		}
+		.process{
+			width: 100%;
+			margin-bottom: 20px;
+			@extend .clearfix;
+			li{
+				z-index: 7;
+				position: relative;
+				float: left;
+				width: 30%;
+				margin-left:4%;
+				padding: 10px 0;
+				text-align: center;
+				background: $orange3;
+				color: $white1;
+				line-height: 20px;
+				&:before{
+					z-index: 8;
+					position: absolute;
+					top: 0%;
+					left: 0px;
+					content:"";
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 20px 0px 20px 20px;
+					border-color: transparent transparent transparent $main;
+				}
+				&:after{
+					position: absolute;
+					top: 0%;
+					right: -20px;
+					content:"";
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 20px 0px 20px 20px;
+					border-color: transparent transparent transparent $orange3;
+				}
+				&:first-child{
+					margin-left:0;
+					&:before{
+						display: none;
+					}
+				}
+			}
+			.now{
+				background: $orange;
+				&:after{
+					border-color: transparent transparent transparent $orange;
+				}
+			}
+		}
+		.contact_inner{
+			width: 94%;
+			padding: 20px 3%;
+			background: $white1;
+			@include box-shadow(1px 1px 1px 1px rgba(205,205,205,0.8));
+			dl {
+				display: table;
+				width: 100%;
+				border-bottom: 2px solid rgba(225,225,225,0.8);
+				@extend .clearfix;
+				dt{
+					display: table-cell;
+					vertical-align: middle;
+					width: 21%;
+					padding: 15px 0 15px 2%;
+					background: $black2;
+					color: $white1;
+					font-size: 95%;
+				}
+				dd{			
+					display: table-cell;
+					vertical-align: middle;
+					width: 95%;
+					padding: 5px 2%;
+				}
+				input[type="text"]{
+					width: 25%;
+					margin-right: 2%;
+					border: none;
+					background: $contact;
+					padding: 5px;
+					font-size: 110%;
+				}
+				select{
+					width: 15%;
+					border: none;
+					background: $contact;
+					padding: 5px;
+					margin-right: 2%;
+					font-size: 100%;
+				}
+				input[type="email"],
+				input[type="tel"]{
+					width: 70%;
+					border: none;
+					background: $contact;
+					padding: 5px;
+					font-size: 110%;
+				}
+				input[type="file"]{
+					font-size: 100%;
+				}
+				textarea {
+					width: 98%;
+					padding: 5px 1%;
+					border:none;
+					background: $contact;
+					font-size: 100%;
+				}
+				.skillsheet{
+					float: right;
+					font-size: 80%;
+					padding-top:5px;
+					a{
+						font-weight: bold;
+						display: inline-block;
+						text-decoration: underline;
+						padding: 0 2px;
+						&:hover{
+							color:$orange;
+						}
+					}
+				}
+				.error-message{
+					padding: 5px 0;
+					font-size: 80%;
+					color: red;
+					font-weight: bold;
+				}
+
+			}
+			.must{
+				dt{
+					position: relative;
+					background: $black;
+					&:after{
+						position: absolute;
+						top: 10px;
+						right: 5%;
+						content:"必須";
+						background: $orange;
+						color: $white1;
+						padding: 5px;
+						font-size: 90%;
+					}
+				}
+			}			
+		}
+		.entry{
+			position: relative;
+			margin: 0 auto;
+			width: 60%;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			.submit{
+				border: none;
+				width: 100%;
+				font-size: 130%;
+				padding: 20px 0;
+				text-align: center;
+				color: $white1;
+				background: $orange;
+				&:hover{
+					@include background(linear-gradient($orange3, $orange));
+				}
+			}
+		}
+		.back{
+			position: absolute;
+			bottom:30px;
+			left:0;
+			width: 10%;
+			padding: 10px 0;
+			background: $blue;
+			color: $white1;
+			text-align: center;
+			&:hover{
+				@include background(linear-gradient($blue2, $blue));
+			}
+		}
+		.policy{
+			width: 94%;
+			padding: 10px 3%;
+			height: 120px;
+			background: $white1;
+			@include box-shadow(1px 1px 1px 1px rgba(205,205,205,0.8));
+			p{
+				width: 96%;
+				height: 100px;
+				padding: 10px 2%;
+				background: $contact;
+				overflow: auto;
+				font-size: 70%;
+				line-height: 1.2;
+				strong{
+					display: block;
+					font-size: 130%;
+					font-weight: bold;
+					margin-bottom:5px;
+				}
+				span{
+					display: block;
+					font-size: 110%;
+					font-weight: bold;
+					margin: 5px 0;
+				}
+			}
+		}
+		.complete{
+			margin: 150px 0;
+			text-align: center;
+			font-size: 120%;
+			p{
+				line-height: 1.2;
+				span{
+					display: block;
+					font-size: 130%;
+					font-weight: bold;
+					margin-bottom: 30px;
+				}
+			}
+		}
+	}
+}

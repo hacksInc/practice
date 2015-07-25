@@ -1,0 +1,402 @@
+
+body {
+	font: 16px/20px "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",'メイリオ',Meiryo,Helvetica,Arial,Sans-Serif;
+	color: black;
+	margin: auto 0;
+}
+
+
+/*********** header *************/
+
+
+#header {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+}
+
+
+	.menu {
+		width: 100%;
+		height: 25px;
+		background: linear-gradient(#B8D0EE, #112B4C);
+	}
+		.menu_bar {
+			margin: 0 auto;
+			max-width: 1060px;
+			min-width: 980px;
+			height: 25px;
+			border-left: 1px solid white;
+		}
+			.menu_bar>li {
+				float: left;
+				width: 19.8%;
+				border-right: 1px solid white;
+				text-align: center;
+				position: relative;
+			}
+
+				.menu_bar>li>a {
+					display: block;
+					padding: 2.5px 0 2.5px 0;
+					font-size: 11px;
+					font-weight: 800;
+					color: white;
+					text-decoration: none;
+					width: 100%;
+					height: 100%;
+				}
+
+				.menu_bar>li:hover {
+					background: linear-gradient(#B8D0EE, #112B4C);
+				}
+				.menu_bar>li a:hover {
+					color: orange;
+				}
+
+				.menu_bar:after {
+					height:0;
+					visibility: hidden;
+					content: " ";
+					display: block;
+					clear: both; 
+				}
+
+				.menu_list {
+					width: 100%;
+					position: absolute;
+					background: linear-gradient(#B8D0EE, #112B4C);
+					display: none;
+					margin-top: 1px;
+					opacity: 0.95;
+				}
+
+				.menu_list>li {
+					width: 100%;
+					height: 25px;
+					margin: 0px;
+					padding: 0px;
+					border-bottom: 1px solid white;
+				}
+
+				.menu_list>li a {
+					display: block;
+					font-size: 12px;
+					font-weight: 800;
+					color: white;
+					text-decoration: none;
+					width: 100%;
+					height: 22px;
+					padding-top: 3px;
+				}
+
+				.menu_list>li a:hover {
+					color: orange;
+					padding-left: 1px;
+				}
+
+	.info {
+		overflow: hidden;
+		margin: 0 auto;
+		max-width: 1060px;
+		min-width: 980px;
+		height: 70px;
+	}
+
+		.logo {
+			float: left;
+			width: 200px;
+			height: 50px;
+			margin-top: 10px;
+		}
+
+		.count {
+			float: left;
+			width: 300px;
+			height: 18px;
+			margin: 42px 0 0 15px;
+		}
+			.count p {
+				font-size: 12px;
+				font-weight: 800;
+				color: black;
+			}
+
+			.count span {
+				font-size: 14px;
+				font-weight: 800;
+				color: orange;
+				padding-right: 5px;
+			}
+
+			.register {
+			float: right;
+			margin-top: 10px;
+			height: 60px;
+		}
+			.register a {
+				display: block;
+				padding: 10px 50px;
+				background: linear-gradient(#B8D0EE, #112B4C);
+				font: 18px bold;
+				color: white;
+				text-decoration: none;
+				border-radius: 10px;
+				box-shadow: 1px 1px 1px 1px white inset;
+				border: 1px solid #ccc;
+			}
+
+			.register a:hover {
+				opacity: 0.9;
+				border: 1px solid orange;
+				padding: 11px 50px 9px 50px;
+			}
+
+
+	.search {
+		width: 100%;
+		height: 40px;
+		background: #ddd;
+		margin-bottom: 5px;
+	}
+
+		.search ul {
+			margin:  auto;
+			max-width: 1060px;
+			min-width: 980px;
+			height: 40px;
+			padding-top: 8px;
+		}
+
+			.select {
+				float: left;
+				width: 19%;
+				margin-right: 15px;
+			}
+				.skill, .position, .money {
+					width: 100%;
+				}
+
+			.freeword {
+				float: left;
+				width: 300px;
+				font-size: 14px;
+			}
+
+			.submit {
+				width: 60px;
+				height: 25px;
+				float: right;
+				font-size: 14px;
+				cursor: pointer;
+				background: linear-gradient(#B8D0EE, #112B4C);
+				border-radius: 4px;
+				color: white;
+			}
+			.submit:hover {
+				opacity: 0.9;
+			}
+
+	.breadcrumb {
+		margin: 0 auto;
+		max-width: 1060px;
+		min-width: 980px;
+		height: 30px;
+	}
+		.breadcrumb li {
+			float: left;
+			list-style: none;
+			font-size: 10px;
+			padding-right: 8px;
+		}
+		.breadcrumb li a {
+			padding-right: 8px;
+			color: #336699; 
+		}
+
+		.breadcrumb li a:hover {
+			color: orange;
+		}
+
+
+/*********** main *************/
+
+
+#main {
+	margin: 0 auto;
+	width: 900px;
+	height: 100%;
+}
+
+	h1 {
+		width: 100%;
+		height: 100%;
+		font-size: 30px;
+		font-weight: bold;
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+
+	.explain {
+		width: 100%;
+		height: 100%;
+		margin-bottom: 30px;
+	}
+		.explain p {
+			font-size: 14px;
+		}
+
+
+	.conditions {
+		width: 100%;
+		height: 100%;
+		margin-bottom: 40px;
+		padding: 6px;
+		border-radius: 6px;
+		background: #eee;
+	}
+		.conditions h2 {
+			padding: 10px;
+			font-weight: bold;
+			color: white;
+			border-radius: 4px;
+			background: linear-gradient(#B8D0EE, #112B4C);
+		}
+		.conditions table {
+			width: 100%;
+			height: 100%;
+			background: #fff;
+
+		}
+			.conditions tr {
+				width: 100%;
+				height: 100%;
+				border-bottom: 1px dashed #aaa;
+			}
+				.conditions tr:last-child {
+					border-bottom: none;
+				}
+
+			.conditions th {
+				width: 25%;
+				height: 100%;
+				padding: 17px 0 14px 0;
+				text-align: center;
+				font-size: 14px;
+				font-weight: bold;
+				background: #FCFCFC;
+			}
+			.conditions td {
+				width: 75%;
+				height: 100%;
+				padding: 17px 5px 14px 10px;
+				font-size: 15px;
+			}
+				.conditions td a {
+					float: right;
+					margin-right: 30px;
+					color: #112B4C;
+					font-weight: bold;
+				}
+				.conditions td a:hover {
+					color: orange;
+				}
+
+	.convert {
+		margin: 0 auto;
+		width: 550px;
+		height: 100%;
+		margin-bottom: 50px;
+		text-align: center;
+	}
+		.convert a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding: 30px 0;
+			background: linear-gradient(#FCC4A6, orange);
+			border-radius: 10px;
+			cursor: pointer;
+			color: white;
+			font-size: 28px;
+			font-weight: bold;
+			box-shadow: 2px 2px 2px #aaa;
+			text-decoration: none;
+		}
+		.convert a:hover {
+			opacity: 0.9;
+			box-shadow: 2px 2px 2px #ccc;
+		}
+
+
+/*********** facebook *************/
+
+#facebook {
+	margin: 0 auto;
+	max-width: 1500px;
+	min-width: 980px;
+	height: 200px;
+	overflow: hidden;
+	clear: both;
+}
+
+/*********** subfooter *************/
+
+#subfooter {
+	height: 300px;
+	max-width: 100%;
+	min-width: 980px;
+	margin: 0 auto;
+	overflow: hidden;
+	background: linear-gradient(#B8D0EE, #112B4C);
+	padding-top: 20px;
+}
+
+	#subfooter ul {
+		float: left;
+		width: 16%;
+		height: 100%;
+	}
+
+			#subfooter li a {
+				display: block;
+				font-size: 11px;
+				font-weight: bold;
+				padding: 10px 0 0 0;
+				height: 100%;
+				width: 100%;
+				color: white;
+				text-decoration: none;
+			}
+
+
+			#subfooter li a:hover {
+				text-decoration: underline;
+				color: orange;
+			}
+
+		#subfooter ul:first-child {
+			margin-left: 35px;
+		}
+
+		#subfooter ul li:first-child {
+			font-size: 20px;
+			font-weight: bold;
+			color: black;
+			margin-bottom: 10px;
+		}
+
+/*********** footer *************/
+
+#footer {
+	margin: 0 auto;
+	max-width: 100%;
+	min-width: 980px;
+	height: 50px;
+	padding-top: 20px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	background: #112B4C;
+	color: white;
+}

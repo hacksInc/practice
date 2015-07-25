@@ -2,7 +2,7 @@
 
 class ProjectsController extends AppController {
 
-	public $uses = array('Project', 'Skill', 'Tool', 'Framework', 'Db', 'Contract', 'Position', 'Service', 'Prefecture', 'City', 'Liquidation' );
+	public $uses = array('Project', 'Skill', 'Tool', 'Framework', 'Db', 'Contract', 'Position', 'Service', 'Prefecture', 'City', 'Liquidation', 'PrimarySkill' );
 	public $helpers = array('Html', 'Form');
 
 	public function index() {
@@ -40,6 +40,7 @@ class ProjectsController extends AppController {
 		$this->set('prefecture', $this->Prefecture->find('list'));
 		$this->set('city', $this->City->find('list'));
 		$this->set('liquidation', $this->Liquidation->find('list'));
+		$this->set('primarySkill', $this->PrimarySkill->find('list'));
 
 
 	}

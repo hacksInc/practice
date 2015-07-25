@@ -3,6 +3,7 @@
 class Project extends AppModel {
 
 	public $name = 'Project';
+	public $order = 'Project.modified DESC';
 	
 	public $hasAndBelongsToMany = array(
 		'Skill' => array(
@@ -11,7 +12,9 @@ class Project extends AppModel {
 			'foreignKey' => 'project_id',
 			'associationForeignKey' => 'skill_id',
 			'with' => 'ProjectsSkill',
-			'unique' => true
+			'unique' => true,
+			'conditions' => 'ProjectsSkill.skill_id = Skill.id',
+			'fields' => array('Skill.id', 'Skill.name')
 		),
 		'Db' => array(
 			'className' => 'Db',
@@ -19,7 +22,9 @@ class Project extends AppModel {
 			'foreignKey' => 'project_id',
 			'associationForeignKey' => 'db_id',
 			'with' => 'DbsProject',
-			'unique' => true
+			'unique' => true,
+			'conditions' => 'DbsProject.db_id = Db.id',
+			'fields' => array('Db.id', 'Db.name')
 		),
 		'Framework' => array(
 			'className' => 'Framework',
@@ -27,7 +32,9 @@ class Project extends AppModel {
 			'foreignKey' => 'project_id',
 			'associationForeignKey' => 'framework_id',
 			'with' => 'FrameworksProject',
-			'unique' => true
+			'unique' => true,
+			'conditions' => 'FrameworksProject.framework_id = Framework.id',
+			'fields' => array('Framework.id', 'Framework.name')
 		),
 		'Tool' => array(
 			'className' => 'Tool',
@@ -35,7 +42,9 @@ class Project extends AppModel {
 			'foreignKey' => 'project_id',
 			'associationForeignKey' => 'tool_id',
 			'with' => 'ProjectsTool',
-			'unique' => true
+			'unique' => true,
+			'conditions' => 'ProjectsTool.tool_id = Tool.id',
+			'fields' => array('Tool.id', 'Tool.name')
 		),
 		'Contract' => array(
 			'className' => 'Contract',
@@ -43,7 +52,9 @@ class Project extends AppModel {
 			'foreignKey' => 'project_id',
 			'associationForeignKey' => 'contract_id',
 			'with' => 'ContractsProject',
-			'unique' => true
+			'unique' => true,
+			'conditions' => 'ContractsProject.contract_id = Contract.id',
+			'fields' => array('Contract.id', 'Contract.name')
 		),
 	);
 
@@ -67,6 +78,10 @@ class Project extends AppModel {
 		'Liquidation' => array(
 			'className' => 'Liquidation',
 			'foreignKey' => 'liquidation_id'
+		),
+		'PrimarySkill' => array(
+			'className' => 'PrimarySkill',
+			'foreignKey' => 'primary_skill_id'
 		),
 	);
 

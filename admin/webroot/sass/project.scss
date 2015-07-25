@@ -91,6 +91,7 @@
 	margin-left: 1%;
 	.form_area{
 		width: 100%;
+		margin-bottom: 30px;
 		@extend .clearfix;
 		table{
 			float:left;
@@ -142,6 +143,11 @@
 	}
 	.form_area2 {
 		width: 100%;
+		p{
+			font-weight: bold;
+			margin-left: 1%;
+			margin-bottom: 10px;
+		}
 		table{
 			margin-left: 1%;
 			tr{

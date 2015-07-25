@@ -67,6 +67,10 @@
 			<th>ポジション</th>
 			<td><?php echo $this->Form->select('position_id', array($position), array('empty' => '選択してください', 'id' => false)); ?></td>
 		</tr>
+		<tr>
+			<th>主要スキル</th>
+			<td><?php echo $this->Form->select('primary_skill_id', array($primarySkill), array('empty' => '選択してください', 'id' => false)); ?></td>
+		</tr>
 	</table>
 	<table>
 		<tr>
@@ -92,6 +96,7 @@
 	</table>
 	</div>
 	<div class="form_area2">
+	<p>開発環境</p>
 	<table>
 		<tr>
 			<th>スキル</th>

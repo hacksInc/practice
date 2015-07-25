@@ -1,0 +1,653 @@
+
+body {
+	font: 16px/20px "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",'メイリオ',Meiryo,Helvetica,Arial,Sans-Serif;
+	color: black;
+	margin: auto 0;
+}
+
+
+/*********** header *************/
+
+
+#header {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+}
+
+
+	.menu {
+		width: 100%;
+		height: 25px;
+		background: linear-gradient(#B8D0EE, #112B4C);
+	}
+		.menu_bar {
+			margin: 0 auto;
+			max-width: 1060px;
+			min-width: 980px;
+			height: 25px;
+			border-left: 1px solid white;
+		}
+			.menu_bar>li {
+				float: left;
+				width: 19.8%;
+				border-right: 1px solid white;
+				text-align: center;
+				position: relative;
+			}
+
+				.menu_bar>li>a {
+					display: block;
+					padding: 2.5px 0 2.5px 0;
+					font-size: 11px;
+					font-weight: 800;
+					color: white;
+					text-decoration: none;
+					width: 100%;
+					height: 100%;
+				}
+
+				.menu_bar>li:hover {
+					background: linear-gradient(#B8D0EE, #112B4C);
+				}
+				.menu_bar>li a:hover {
+					color: orange;
+				}
+
+				.menu_bar:after {
+					height:0;
+					visibility: hidden;
+					content: " ";
+					display: block;
+					clear: both; 
+				}
+
+				.menu_list {
+					width: 100%;
+					position: absolute;
+					background: linear-gradient(#B8D0EE, #112B4C);
+					display: none;
+					margin-top: 1px;
+					opacity: 0.95;
+				}
+
+				.menu_list>li {
+					width: 100%;
+					height: 25px;
+					margin: 0px;
+					padding: 0px;
+					border-bottom: 1px solid white;
+				}
+
+				.menu_list>li a {
+					display: block;
+					font-size: 12px;
+					font-weight: 800;
+					color: white;
+					text-decoration: none;
+					width: 100%;
+					height: 22px;
+					padding-top: 3px;
+				}
+
+				.menu_list>li a:hover {
+					color: orange;
+					padding-left: 1px;
+				}
+
+	.info {
+		overflow: hidden;
+		margin: 0 auto;
+		max-width: 1060px;
+		min-width: 980px;
+		height: 70px;
+	}
+
+		.logo {
+			float: left;
+			width: 200px;
+			height: 50px;
+			margin-top: 10px;
+		}
+
+		.count {
+			float: left;
+			width: 300px;
+			height: 18px;
+			margin: 42px 0 0 15px;
+		}
+			.count p {
+				font-size: 12px;
+				font-weight: 800;
+				color: black;
+			}
+
+			.count span {
+				font-size: 14px;
+				font-weight: 800;
+				color: orange;
+				padding-right: 5px;
+			}
+
+			.register {
+			float: right;
+			margin-top: 10px;
+			height: 60px;
+		}
+			.register a {
+				display: block;
+				padding: 10px 50px;
+				background: linear-gradient(#B8D0EE, #112B4C);
+				font: 18px bold;
+				color: white;
+				text-decoration: none;
+				border-radius: 10px;
+				box-shadow: 1px 1px 1px 1px white inset;
+				border: 1px solid #ccc;
+			}
+
+			.register a:hover {
+				opacity: 0.9;
+				border: 1px solid orange;
+				padding: 11px 50px 9px 50px;
+			}
+
+
+	.change {
+		background: linear-gradient(#B8D0EE, #112B4C);
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		display: none;
+		z-index: 9999;
+	}
+
+		.change_info {
+			overflow: hidden;
+			margin: 0 auto;
+		max-width: 1060px;
+		min-width: 980px;
+			height: 60px;
+		}
+
+			.change_logo {
+				float: left;
+				width: 200px;
+				height: 45px;
+				margin-top: 5px;
+			}
+
+			.change_count {
+				float: left;
+				width: 400px;
+				height: 18px;
+				margin: 37px 0 0 15px;
+			}
+				.change_count p {
+					font-size: 12px;
+					font-weight: 800;
+					color: white;
+				}
+
+				.change_count span {
+					font-size: 14px;
+					font-weight: 800;
+					color: orange;
+					padding-right: 5px;
+				}
+
+			.change_register {
+				float: right;
+				margin-top: 5px;
+				height: 55px;
+
+			}
+				.change_register a {
+					display: block;
+					padding: 10px 50px;
+					background: linear-gradient(#B8D0EE, #112B4C);
+					font: 18px bold;
+					color: white;
+					text-decoration: none;
+					border-radius: 10px;
+					box-shadow: 10px #bbb;
+					border: 2px solid white;
+					box-shadow: 1px 1px 1px 1px #fff inset;
+				}
+
+				.change_register a:hover {
+					opacity: 0.9;
+					padding: 11px 50px 9px 50px;
+				}
+
+
+
+	.search {
+		width: 100%;
+		height: 40px;
+		background: #ddd;
+		margin-bottom: 5px;
+	}
+
+		.search ul {
+			margin:  auto;
+			max-width: 1060px;
+			min-width: 980px;
+			height: 40px;
+			padding-top: 8px;
+		}
+
+			.select {
+				float: left;
+				width: 19%;
+				margin-right: 15px;
+			}
+				.skill, .position, .money {
+					width: 100%;
+				}
+
+			.freeword {
+				float: left;
+				width: 300px;
+				font-size: 14px;
+			}
+
+			.submit {
+				width: 60px;
+				height: 25px;
+				float: right;
+				font-size: 14px;
+				cursor: pointer;
+				background: linear-gradient(#B8D0EE, #112B4C);
+				border-radius: 4px;
+				color: white;
+			}
+			.submit:hover {
+				opacity: 0.9;
+			}
+
+	.breadcrumb {
+		margin: 0 auto;
+		max-width: 1060px;
+		min-width: 980px;
+		height: 30px;
+	}
+		.breadcrumb li {
+			float: left;
+			list-style: none;
+			font-size: 10px;
+			padding-right: 8px;
+		}
+		.breadcrumb li a {
+			padding-right: 8px;
+			color: #336699; 
+		}
+
+		.breadcrumb li a:hover {
+			color: orange;
+		}
+
+
+/*********** main *************/
+
+
+#main {
+	margin: 0 auto;
+	max-width: 1060px;
+	min-width: 980px;
+	height: 100%;
+}
+#main:after {
+	visibility: hidden;
+	clear: both;
+	height: 0;
+	content: "";
+	display: block;
+	margin-bottom: 50px;
+}
+
+		.about {
+			width: 100%;
+			height: 170px;
+			margin-bottom: 10px;
+		}
+			.explain {
+				float: left;
+				width: 49%;
+				height: 155px;
+				padding-top: 10px;
+			}
+				.explain span {
+					font-size: 19px;
+					font-weight: 800;				
+				}
+				.explain p {
+					margin-top: 10px;
+					font-size: 13px;
+				}
+
+				.explain a {
+					color: #336699; 
+				}
+
+				.explain a:hover {
+					color: orange;
+				}
+		
+			.flow {
+				float: right;
+				width: 49%;
+				height: 170px;
+			}
+
+		.main_contents {
+			float: left;
+			width: 75%;
+			height: 100%;
+			background: #F4F4F4;
+		}
+
+			.contents_title {
+				width: 100%;
+				height: 100%;
+				margin-bottom: 50px;
+			}
+				.contents_title h2 {
+					padding: 10px;
+					font-weight: bold;
+					color: white;
+					border-radius: 4px;
+					margin-bottom: 10px;
+					background: linear-gradient(#B8D0EE, #112B4C);
+				}
+
+				.contents_title p {
+					font-size: 13px;
+					font-weight: bold;
+					margin-left: 10px;
+				}
+					.contents_title span {
+						color: orange;
+						font-size: 16px;
+					}
+
+			.project {
+				height: 100%;
+				width: 97%;
+				margin: 0 auto;
+				margin-bottom: 20px;
+				background: #FCFCFC;
+				border-right: 1px solid #eee;
+				border-left: 1px solid #eee;
+				box-shadow: 2px 2px 2px #aaa;
+			}
+				.project h3 {
+					width: 100%;
+					height: 30px;
+					background: linear-gradient(#B8D0EE, #112B4C);
+					padding-top: 12px;
+					border-bottom: 1px solid #aaa;
+					box-shadow: 1px 1px 1px #aaa;
+				}
+					.project h3 a {
+						display: block;
+						width: 100%;
+						height: 100%;
+						padding-left: 15px;
+						font-size: 18px;
+						color: white;
+					}
+					.project h3 a:hover{
+						color: orange;
+						opacity: 0.9;
+					}
+
+
+				.project_content {
+					width: 96%;
+					height: 100%;
+					margin: 0 auto;
+					padding: 10px;
+				}
+					.project_content ul {
+						width: 47%;
+						height: 100%;
+						float: left;
+					}
+						.project_content ul li {
+						width: 100%;
+						height: 30px;
+						padding-top: 12px;
+						font-size: 14px;
+						border-bottom: 1px dashed #aaa;
+						color: black;
+						overflow: scroll;
+					}
+						.project_content li span {
+							float: left;
+							padding-left: 10px;
+							font-weight: bold;
+							font-size: 14px;
+						}
+						.project_content li p {
+							padding-left: 100px;
+							font-size: 13px;
+						}
+
+				.text {
+					width: 46%;
+					height: 250px;
+					float: right;
+					padding: 5px;
+					background: #eee;
+					overflow: scroll;
+				}
+					.text p {
+						font-size: 13px;
+					}
+
+			.project_content:after {
+				visibility: hidden;
+				clear: both;
+				height: 0;
+				content: "";
+				display: block;
+			}
+
+				.btn {
+					margin-top: 10px;
+					width: 100%;
+					height: 70px;
+				}
+
+					.more_read {
+						margin-left: 20px;
+						float: left;
+						width: 45%;
+						height: 50px;
+						background: linear-gradient(#00CCCC, #59B2B2);
+						border: 1px solid #ccc;
+						border-radius: 6px;
+						box-shadow: 1px 1px 1px 1px #aaa;
+					}
+					.convert {
+						margin-right: 20px;
+						float: right;
+						width: 45%;
+						height: 50px;
+						border: 1px solid #ccc;
+						background: linear-gradient(#FCC4A6, orange);
+						border-radius: 6px;
+						box-shadow: 1px 1px 1px 1px #aaa;
+					}
+						.more_read a,
+						.convert a {
+						display: block;
+						width: 100%;
+						height: 20px;
+						text-decoration: none;
+						text-align: center;
+						padding: 15px 1px 15px 1px;
+						font-size: 18px;
+						font-weight: bold;
+						color: white;
+						}
+
+					.more_read:hover,
+					.convert:hover {
+						opacity: 0.9;
+						box-shadow: 1px 1px 1px 1px #ddd;
+					}
+					.more_read a:hover,
+					.convert a:hover {
+						padding: 16px 0 14px 2px;
+					}
+
+			.project:after {
+				visibility: hidden;
+				clear: both;
+				height: 0;
+				content: "";
+				display: block;
+			}
+
+			.main_contents:after {
+				visibility: hidden;
+				display: block;
+				content: " ";
+				clear: both;
+				height: 0;
+			}
+
+
+
+		.sub_contents {
+			float: right;
+			width: 225px;
+			height: 100%;
+			overflow: hidden;
+		}
+
+			.like {
+				width: 225px;
+				height: 90px;
+			}
+
+
+			.recomend {
+				width: 223px;
+				height: 100%;
+				border-right: 1px solid #eee;
+				border-left: 1px solid #eee;
+				background: #FCFCFC;
+			}
+
+				.recomend p {
+					height: 23px;
+					background: linear-gradient(white, #ccc);
+					font-size: 13px;
+					font-weight: bold;
+					padding: 5px 0 0 10px;
+					border-bottom: 1px solid #aaa;
+					box-shadow: 1px 1px 1px #aaa;
+				}
+
+					.recomend ul li{
+						padding-top: 3px; 
+						border-bottom: 1px dashed #ddd;
+					}
+					.recomend ul li:last-child {
+						padding-top: 3px; 
+						border-bottom: 1px solid #eee;
+					}
+
+
+						.recomend ul li a{
+							display: block;
+							width: 100%;
+							height: 100%;
+							font-size: 12px;
+							font-weight: bold;
+							padding: 5px 0 5px 15px;
+							color: #336699;
+						}
+
+
+						.recomend ul li a:hover {
+							color: orange;
+						}
+
+
+
+/*********** facebook *************/
+
+#facebook {
+	margin: 0 auto;
+	max-width: 1500px;
+	min-width: 980px;
+	height: 200px;
+	overflow: hidden;
+	clear: both;
+}
+
+/*********** subfooter *************/
+
+#subfooter {
+	height: 300px;
+	max-width: 100%;
+	min-width: 980px;
+	margin: 0 auto;
+	overflow: hidden;
+	background: linear-gradient(#B8D0EE, #112B4C);
+	padding-top: 20px;
+}
+
+	#subfooter ul {
+		float: left;
+		width: 16%;
+		height: 100%;
+	}
+
+			#subfooter li a {
+				display: block;
+				font-size: 11px;
+				font-weight: bold;
+				padding: 10px 0 0 0;
+				height: 100%;
+				width: 100%;
+				color: white;
+				text-decoration: none;
+			}
+
+
+			#subfooter li a:hover {
+				text-decoration: underline;
+				color: orange;
+			}
+
+		#subfooter ul:first-child {
+			margin-left: 35px;
+		}
+
+		#subfooter ul li:first-child {
+			font-size: 20px;
+			font-weight: bold;
+			color: black;
+			margin-bottom: 10px;
+		}
+
+/*********** footer *************/
+
+#footer {
+	margin: 0 auto;
+	max-width: 100%;
+	min-width: 980px;
+	height: 50px;
+	padding-top: 20px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	background: #112B4C;
+	color: white;
+}

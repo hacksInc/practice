@@ -296,6 +296,7 @@ html, body {
 }
 .project_add .form_area {
   width: 100%;
+  margin-bottom: 30px;
 }
 .project_add .form_area table {
   float: left;
@@ -345,6 +346,11 @@ html, body {
 }
 .project_add .form_area2 {
   width: 100%;
+}
+.project_add .form_area2 p {
+  font-weight: bold;
+  margin-left: 1%;
+  margin-bottom: 10px;
 }
 .project_add .form_area2 table {
   margin-left: 1%;

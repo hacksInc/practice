@@ -3,47 +3,30 @@ $(function(){
 	var	tab = $('.search_panel_tab'),
 		panel = $('.search_panel_select');
 
-	window.onload = checkInput();
+	checkInput();
 
-	if(!navigator.userAgent.match(/(iPhone|iPad|Android)/)){
 
-		$('.header_menu_list, .header_menu_list_detail').hover(hover_menu);
+	$('.header_menu_list, .header_menu_list_detail').hover(hover_menu);
 
-		$(document).on('click', '.header_menu_toggle', menu_toggle);
+	$(document).on('click', '.header_menu_toggle', menu_toggle);
 
-	    // タブ切り替え
-		$(document).on('click', '.search_panel_tab', tab_change);
+    // タブ切り替え
+	$(document).on('click', '.search_panel_tab', tab_change);
 
-	    // checkbox, radioをチェックした際の処理
-		$(document).on('change','.search_panel_box input', search_panel);
+    // checkbox, radioをチェックした際の処理
+	$(document).on('change','.search_panel_box input', search_panel);
 
-	    // selected_itemに表示されている文字をクリックした時の処理
-	    $(document).on('click', '.selected_item span', delete_item);
+    // selected_itemに表示されている文字をクリックした時の処理
+    $(document).on('click', '.selected_item span', delete_item);
 
-	    // すべて消す処理
-		$(document).on('click', '.selected_item_all_delete', all_delete);
+    // すべて消す処理
+	$(document).on('click', '.selected_item_all_delete', all_delete);
 
-	} else {
+	// 気になる！
+	$(document).on('click', '.keep_data', keep_check);
 
-		var windowH = $(window).height(),
-			topimage = $('.topimage');
-	
-		topimage.css({height: windowH * 0.45});
-
-		$(document).on('touchstart', '.header_menu_toggle', menu_toggle);
-
-	    // タブ切り替え
-		$(document).on('touchstart', '.search_panel_tab', tab_change);
-
-	    // checkbox, radioをチェックした際の処理
-		$(document).on('change','.search_panel_box input', search_panel);
-
-	    // selected_itemに表示されている文字をクリックした時の処理
-	    $(document).on('touchstart', '.selected_item span', delete_item);
-
-	    // すべて消す処理
-		$(document).on('touchstart', '.selected_item_all_delete', all_delete);
-	}
+	// 気になる！をリストから削除
+	$(document).on('click', '.keep_delete', keep_delete);
 
 
 	function tab_change() {
@@ -109,7 +92,7 @@ $(function(){
 
 	function menu_toggle(event) {
 		event.preventDefault();
-		$('.header_menu').slideToggle();
+		$('.header_menu').slideToggle();		
 	}
 
     // 値の有無で表示を変える処理
@@ -138,6 +121,38 @@ $(function(){
 			}
 		});
 		check();
+	}
+	
+	function keep_check() {
+
+		var project_id = $(this).attr('value');
+        $.ajax({
+            url: "/keeps/add",
+            type: "POST",
+            dataType: "json",
+            data: { name : project_id },
+            success : function(data){            
+            	var button = $('.keep_data[value='+project_id+']');
+            	button.addClass('keep_delete').removeClass('keep_data');
+            	$('.keep_count').text('('+data.keep_count+'件)');
+	        },
+        });
+	}
+
+	function keep_delete(){
+
+		var project_id = $(this).attr('value');
+		 $.ajax({
+            url: "/keeps/delete",
+            type: "POST",
+            dataType: "json",
+            data: { name : project_id },
+            success : function(data){
+            	var button = $('.keep_delete[value='+project_id+']');
+            	button.addClass('keep_data').removeClass('keep_delete');
+            	$('.keep_count').text('('+data.keep_count+'件)');
+	        },
+        });
 	}
 });
 

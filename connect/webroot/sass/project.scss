@@ -22,47 +22,62 @@
 			background: $white1;
 			margin-bottom: 30px;
 			@include box-shadow(1px 1px 1px 1px rgba(205,205,205,0.8));
-			table {
-				width: 100%;
-				table-layout: fixed;
-				font-size: 80%;
-				tr {
-					border-bottom: 2px solid rgba(225,225,225,0.8);
-					th{
-						width: 21%;
-						padding: 10px 0;
-						background: $black;
+			@extend .clearfix;
+			dl {
+				border-bottom: 2px solid rgba(225,225,225,0.8);
+				display: table;
+				float: left;
+				width: 50%;
+				font-size: 90%;
+				dt{
+					display: table-cell;
+					width: 21%;
+					padding: 10px 0;
+					background: $black;
+					color: $white1;
+					text-align: center;
+					vertical-align: middle;
+				}
+				dd{
+					display: table-cell;
+					width: 96%;
+					padding: 10px 2%;
+					vertical-align: middle;
+					.tag{
+						display: inline-block;
+						margin: 3px 5px 3px 0;
+						padding: 6px;
+						cursor: pointer;
 						color: $white1;
-						text-align: center;
-					}
-					td{
-						width: 75%;
-						padding: 10px 2%;
-						.tag{
-							display: inline-block;
-							margin: 10px 10px 10px 0;
-							padding: 6px;
-							cursor: pointer;
-							color: $white1;
-							font-size: 90%;
-							border-radius: 4px;
-							border: 1px solid $orange;
-							@include background(linear-gradient($orange2, $orange));
-							&:hover{
-								@include background(linear-gradient($orange3, $orange));
-							}
+						font-size: 90%;
+						border-radius: 4px;
+						border: 1px solid $orange;
+						@include background(linear-gradient($orange2, $orange));
+						&:hover{
+							@include background(linear-gradient($orange3, $orange));
 						}
 					}
 				}
-				.wide{
-					th{
-						width: 20%;
-						padding: 30px 0;
-					}
-					td{
-						font-size: 90%;
-						line-height:1.5;
-					}
+			}
+		}
+		.big{
+			dl{
+				float: none;
+				width: 100%;
+				dt{
+					width: 20%;
+				}
+				dd{
+					width: 100%;
+				}
+			}
+			.wide{
+				dt{
+					padding: 30px 0;
+				}
+				dd{
+					width: 90%;
+					line-height:1.5;
 				}
 			}
 		}
@@ -125,6 +140,7 @@
 			width: 100%;
 			@extend .clearfix;
 			section {
+				position: relative;
 				float:left;
 				width: 23.5%;
 				margin-left: 2%;
@@ -174,6 +190,32 @@
 						text-align: center;
 						color: $white1;
 						@include background(linear-gradient($black2,$black));
+					}
+				}
+				.keep{
+					display: none;
+					position: absolute;
+					top: 13px;
+					right: 13px;
+					width: 25%;
+					z-index: 9;
+					.keep_data{
+						padding: 15px 0;
+						text-align: center;
+						color: $white1;
+						@include background(linear-gradient($keep2, $keep));
+						&:hover{
+							@include background(linear-gradient($keep3, $keep));
+						}
+					}
+					.keep_delete{
+						padding: 15px 0;
+						text-align: center;
+						color: $white1;
+						@include background(linear-gradient($black3, $black));
+						&:hover {
+							@include background(linear-gradient($black4, $black));
+						}
 					}
 				}
 			}

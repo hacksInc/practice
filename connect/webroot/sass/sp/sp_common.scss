@@ -22,6 +22,10 @@ $keep3: lighten($keep2, 20%);
 $keep4: darken($keep, 20%);
 $blue: rgba(0,100,205,1);
 
+
+input{@include appearance(none);}
+.submit{@include appearance(none);}
+select{@include appearance(none);}
 a{display:block;text-decoration:none; color: #000; }
 img{display:block}
 html,body{
@@ -53,18 +57,19 @@ html,body{
 	.header_inner{
 		.header_title{
 			width: 96%;
-			padding: 10px 2%;
+			padding: 5px 2%;
 			@include box-shadow(0 2px 2px 1px rgba(80,80,80,0.5));
 			@extend .clearfix;
 			h1{
 				font-size: 80%;
 				font-weight: bold;
-				margin-bottom: 10px;
+				margin-bottom: 5px;
+				@include ellipsis(no-wrap);
 			}
 			.header_title_logo{
 				float:left;
 				a{
-					font-size: 250%;
+					font-size: 240%;
 					font-weight: bold;
 					&:hover{
 						@include filter(opacity(0.9));
@@ -74,15 +79,15 @@ html,body{
 			.header_menu_toggle{
 				display: inline-block;
 				float: right;
-				padding: 10px 4%;
+				padding: 8px 4%;
 				margin-right: 2%;
 				text-align: center;
 				font-weight: bold;
 				color: $white1;
 				background: $orange;
-				font-size: 120%;
+				font-size: 110%;
 				@include box-shadow(0 3px 0 $orange4);
-				@include border-radius(2px 2px 4px 4px);
+				@include border-radius(3px);
 			}
 		}
 		.header_menu{
@@ -95,7 +100,7 @@ html,body{
 					border-bottom: none;
 				}
 				.header_menu_list_title{
-					padding: 20px 0;
+					padding: 15px 0;
 					text-align: center;
 					color: $white1;
 					background: $black;
@@ -106,9 +111,10 @@ html,body{
 					padding: 15px 0;
 					width: 90%;
 					font-size: 140%;
-					background: $keep;					
-					@include box-shadow(0 3px 0 $keep4);
-					@include border-radius(2px 2px 4px 4px);
+					background: $keep;			
+					font-weight: bold;		
+					@include box-shadow(0 2px 0 $keep4);
+					@include border-radius(3px);
 				}
 				.header_menu_list_detail{
 					width: 100%;
@@ -119,7 +125,7 @@ html,body{
 						text-align: center;
 						border-bottom:1px solid $black3;
 						a{
-							padding: 20px 0;
+							padding: 15px 0;
 						}
 					}
 				}
@@ -134,6 +140,7 @@ html,body{
 					margin: 10px 5%;
 					text-align: center;
 					color: $white1;
+					font-weight: bold;
 					@include box-shadow(0 3px 0 $orange4);
 					@include border-radius(2px 2px 4px 4px);
 				}
@@ -164,10 +171,8 @@ html,body{
 		.facebook_area{
 			margin: 0 auto;
 			width: 90%;
-			height: 150px;
-			margin-bottom: 30px;
-			margin-top: 30px;
-			border: 1px solid #000;
+			margin-top: 10px;
+			margin-bottom: 10px;
 		}
 		.footer_navi_list{
 			width: 100%;
@@ -220,26 +225,27 @@ html,body{
 	padding: 10px 3%;
 	background: rgba(0,0,0,0.7);
 	z-index: 11;
-	font-size: 130%;
+	font-size: 120%;
+	font-weight: bold;
 	@extend .clearfix;
 	.keep_list{
 		float: left;
 		width: 48%;
-		padding: 15px 0;
+		padding: 10px 0;
 		text-align: center;
 		color: $white1;
 		background: $keep;
 		@include box-shadow(0 3px 0 $keep4);
-		@include border-radius(0 0 4px 4px);
+		@include border-radius(3px);
 	}
 	.regist{
 		float: right;
 		width: 48%;
-		padding: 15px 0;
+		padding: 10px 0;
 		text-align: center;
 		color: $white1;
 		background: $orange;
 		@include box-shadow(0 3px 0 $orange4);
-		@include border-radius(0 0 4px 4px);
+		@include border-radius(3px);
 	}
 }

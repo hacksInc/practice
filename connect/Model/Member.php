@@ -202,4 +202,23 @@ class Member extends AppModel {
 		return $day;
 	}
 
+	public function input($data) {
+
+		if (!empty($data['File']['tmp_name'])) {
+			$dir = new Folder(WWW_ROOT.'files', true);
+			$filename = md5(mt_rand());
+			if ( move_uploaded_file($data['File']['tmp_name'], 'files/'.$filename)) {
+				$file = array(
+					'filename' => $filename,
+					'type' => $data['File']['type'],
+					'contents' => 'files/'.$filename,
+				);
+				$data['File'] = $file;
+			}
+		}
+
+		$data['birth'] =  date('Y-m-d', strtotime($data['year'].'-'.$data['month'].'-'.$data['day']));
+
+		return $data;
+	}
 }

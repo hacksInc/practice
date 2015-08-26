@@ -73,26 +73,34 @@
 	}
 }
 .explain {
-	padding-top: 20px;
+	padding: 20px 0;
 	@extend .wrapper;
 	@extend .clearfix;
 	.message{
-		padding-top: 5px;
 		float:left;
-		width: 48%;
+		width: 44%;
 		h2{
 			display: block;
 			font-weight: bold;
 			margin-bottom: 10px;
 		}
-		p{
-			font-size: 70%;
-			line-height: 1.2;
+		section{
+			margin-bottom: 10px;
+			padding-left: 10px;
+			h3{
+				display: block;
+				font-weight: bold;
+				margin-bottom: 2px;
+				font-size: 70%;
+			}
+			p{
+				font-size: 60%;
+			}
 		}
 	}
 	.flow{
 		float: right;
-		width: 50%;
+		width: 55%;
 		img{
 			min-height: 160px;
 		}
@@ -156,15 +164,10 @@
 					}
 					div{
 						float:left;
-						width: 24.5%;
+						width: 33%;
 						font-size: 90%;
 						margin-bottom: 5px;
 						@include ellipsis(no-wrap);
-					}
-					&:nth-child(2){
-						div{
-							width: 33%;
-						}
 					}
 					input[type=radio] + label,
 					input[type=checkbox] + label {
@@ -348,6 +351,7 @@
 			margin-top: 10px;
 			@extend .clearfix;
 			section {
+				position: relative;
 				float:left;
 				width: 32%;
 				margin-left: 2%;
@@ -398,6 +402,32 @@
 						text-align: center;
 						color: $white1;
 						@include background(linear-gradient($black2,$black));
+					}
+				}
+				.keep{
+					display: none;
+					position: absolute;
+					top: 13px;
+					right: 13px;
+					width: 25%;
+					z-index: 9;
+					.keep_data{
+						padding: 15px 0;
+						text-align: center;
+						color: $white1;
+						@include background(linear-gradient($keep2, $keep));
+						&:hover{
+							@include background(linear-gradient($keep3, $keep));
+						}
+					}
+					.keep_delete{
+						padding: 15px 0;
+						text-align: center;
+						color: $white1;
+						@include background(linear-gradient($black3, $black));
+						&:hover {
+							@include background(linear-gradient($black4, $black));
+						}
 					}
 				}
 			}

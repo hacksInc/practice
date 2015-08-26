@@ -3,70 +3,40 @@ $(function(){
 	var tab = $('.search_panel_tab'),
 		panel = $('.search_panel_select');
 
-	window.onload = checkInput();
-
-	if(!navigator.userAgent.match(/(iPhone|iPad|Android)/)){
-
-		// サイドメニューのスクロール処理
-		var target	= $('.sub_content'),
-			targetH	= target.outerHeight(),
-			targetW	= target.width(),
-			targetTop	= target.offset().top,
-			targetLeft	= target.offset().left,
-			footer	= $('.footer'),
-			footerH	= footer.outerHeight();
-
-		$('.header_menu_list, .header_menu_list_detail').hover(hover_menu);
-
-		$(document).on('click', '.keep_delete', keep_delete);
-
-		$(document).on('click', '.keep_all_delete', keep_all_delete);
-
-		// サイドメニューのスクロール処理
-		$(window).bind('load scroll resize', scroll_sidebar);
-
-	    // タブ切り替え
-		$(document).on('click', '.search_panel_tab', tab_change);
-
-	    // checkbox, radioをチェックした際の処理
-		$(document).on('change','.search_panel_box input', search_panel);
-
-	    // selected_itemに表示されている文字をクリックした時の処理
-	    $(document).on('click', '.selected_item span', delete_item);
-
-	    // すべて消す処理
-		$(document).on('click', '.selected_item_all_delete', all_delete);
-
-		$(document).on('click', '.search_panel_open', open_panel);
-	
-	} else {
-
-		var headerH = $('.header').height();
-		window.onload = function(){
-			$('.main').css({'padding-top': headerH});
-		}
-		$(document).on('touchstart', '.header_menu_toggle', menu_toggle);
-
-		$(document).on('touchstart', '.keep_delete', keep_delete);
-
-		$(document).on('touchstart', '.keep_all_delete', keep_all_delete);
-
-	    // タブ切り替え
-		$(document).on('touchstart', '.search_panel_tab', tab_change);
-
-	    // checkbox, radioをチェックした際の処理
-		$(document).on('change','.search_panel_box input', search_panel);
-
-	    // selected_itemに表示されている文字をクリックした時の処理
-	    $(document).on('touchstart', '.selected_item span', delete_item);
-
-	    // すべて消す処理
-		$(document).on('touchstart', '.selected_item_all_delete', all_delete);
-		
-		$(document).on('touchstart', '.search_panel_open', open_panel);
+	checkInput();
 
 
-	}
+	// サイドメニューのスクロール処理
+	var target	= $('.sub_content'),
+		targetH	= target.outerHeight(),
+		targetW	= target.width(),
+		targetTop	= target.offset().top,
+		targetLeft	= target.offset().left,
+		footer	= $('.footer'),
+		footerH	= footer.outerHeight();
+
+	$('.header_menu_list, .header_menu_list_detail').hover(hover_menu);
+
+	$(document).on('click', '.keep_delete', keep_delete);
+
+	$(document).on('click', '.keep_all_delete', keep_all_delete);
+
+	// サイドメニューのスクロール処理
+	$(window).bind('load scroll resize', scroll_sidebar);
+
+	// タブ切り替え
+	$(document).on('click', '.search_panel_tab', tab_change);
+
+	// checkbox, radioをチェックした際の処理
+	$(document).on('change','.search_panel_box input', search_panel);
+
+	// selected_itemに表示されている文字をクリックした時の処理
+	$(document).on('click', '.selected_item span', delete_item);
+
+	// すべて消す処理
+	$(document).on('click', '.selected_item_all_delete', all_delete);
+
+	$(document).on('click', '.search_panel_open', open_panel);
 
 	function scroll_sidebar() {
 		var	windowH = $(this).height(),

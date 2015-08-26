@@ -121,15 +121,10 @@
 					}
 					div{
 						float:left;
-						width: 24.5%;
+						width: 33%;
 						font-size: 90%;
 						margin-bottom: 5px;
 						@include ellipsis(no-wrap);
-					}
-					&:nth-child(2){
-						div{
-							width: 33%;
-						}
 					}
 					input[type=radio] + label,
 					input[type=checkbox] + label {
@@ -329,11 +324,11 @@
 					font-weight: bold;
 					font-size: 150%;
 					color: $orange;
-					@include ellipsis(no-wrap);
 				}
 				.body{
-					width: 68%;
+					width: 70%;
 					margin-bottom: 20px;
+					@include ellipsis(no-wrap);
 				}
 				table {
 					width: 100%;

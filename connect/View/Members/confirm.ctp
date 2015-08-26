@@ -1,10 +1,4 @@
-<?php
-	$this->set('title', 'Connect(コネクト) IT/webフリーランスの案件/求人情報');
-	$this->set('keywords', 'フリーランス,エンジニア,デザイナー,web,IT,案件,求人,仕事');
-	$this->set('description', 'Connect(コネクト)はITエンジニア/webデザイナなどのフリーランスと企業を繋ぐ、案件/求人情報サイト。キャリア相談〜案件紹介、アフターフォローまでIT/webフリーランスをトータルサポート！');
-	$this->set('css', 'member');
-	$this->set('js', 'member');
-?>
+
 <main class="main">
 	<div class="container">
 		<div class="main_content">
@@ -20,52 +14,52 @@
 				<div class="contact_inner">
 						<dl class="must">
 							<dt>氏名</dt>
-							<dd><?php echo $member['sei'].' '.$member['mei']; ?></dd>
+							<dd><?php echo h($member['sei']).' '.h($member['mei']); ?></dd>
 						</dl>
 						<dl class="must">
 							<dt>氏名(カナ)</dt>
-							<dd><?php echo $member['sei_kana'].' '.$member['mei_kana']; ?></dd>
+							<dd><?php echo h($member['sei_kana']).' '.h($member['mei_kana']); ?></dd>
 						</dl>
 						<dl class="must">
 							<dt>性別</dt>
-							<dd><?php echo $member['sex'] == 1 ? '男性' : '女性' ; ?></dd>
+							<dd><?php echo h($member['sex']) == 1 ? '男性' : '女性' ; ?></dd>
 						</dl>
 						<dl class="must">
 							<dt>生年月日</dt>
-							<dd><?php echo $member['year'].'年 '.$member['month'].'月 '.$member['day'].'日'; ?></dd>
+							<dd><?php echo h($member['year']).'年 '.h($member['month']).'月 '.h($member['day']).'日'; ?></dd>
 						</dl>
 						<dl class="must">
 							<dt>メールアドレス</dt>
-							<dd><?php echo $member['email']; ?></dd>
+							<dd><?php echo h($member['email']); ?></dd>
 						</dl>
 						<dl class="must">
 							<dt>電話番号</dt>
-							<dd><?php echo $member['tel']; ?></dd>
+							<dd><?php echo h($member['tel']); ?></dd>
 						</dl>
 						<dl class="must">
 							<dt>最寄駅</dt>
-							<dd><?php echo $member['station']; ?></dd>
+							<dd><?php echo h($member['station']); ?></dd>
 						</dl>
 						<dl class="skillsheet">
 							<dt>スキルシート<br>
 								(職務経歴書)
 							</dt>
-							<dd><?php echo $member['File']['name']; ?></dd>
+							<dd><?php echo h($member['File']['name']); ?></dd>
 						</dl>
 						<dl>
 							<dt>
 								得意分野/スキル<br>
 								ポートフォリオ(URL)等
 							</dt>
-							<dd><?php echo $member['have_skill']; ?></dd>
+							<dd><?php echo h($member['have_skill']); ?></dd>
 						</dl>
 						<dl>
 							<dt>ご希望の案件/条件など</dt>
-							<dd><?php echo $member['hope']; ?></dd>
+							<dd><?php echo h($member['hope']); ?></dd>
 						</dl>
 						<dl>
 							<dt>その他</dt>
-							<dd><?php echo $member['other']; ?></dd>
+							<dd><?php echo h($member['other']); ?></dd>
 						</dl>
 				<!-- contact_inner --></div>
 				<div class="entry">

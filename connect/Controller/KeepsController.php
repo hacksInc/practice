@@ -3,8 +3,6 @@
 class KeepsController extends AppController {
 
 	public $uses = array('Project');
-	public $components = array( 'RequestHandler', 'Session');
-	//public $layout = '';
 
 	public function index() {
 
@@ -18,8 +16,8 @@ class KeepsController extends AppController {
 			$keep_id = $this->Session->read('keep_id');
 			$keep_count = $this->Session->read('keep_count');
 			$conditions = array('Project.id' => $keep_id);
-
 		}
+
 
 		// keepしている案件のidリスト
 		$id_list = $this->Project->find('list', array(
@@ -29,8 +27,8 @@ class KeepsController extends AppController {
 
 		// 取得する案件のフィールド
 		$fields = array(
-			'Project.id', 'Project.title', 'Project.station', 'Project.min_price','Project.max_price',
-			'Project.meeting', 'Project.must_skill', 'Project.content','Liquidation.name','Position.name',
+			'Project.id', 'Project.title', 'Project.station','Project.meeting', 'Project.must_skill', 'Project.content',
+			'Liquidation.name','Position.name', 'MinPrice.name','MaxPrice.name',
 		);
 
 		// ページネイト
@@ -42,31 +40,22 @@ class KeepsController extends AppController {
 			'fields' => $fields,
 		);
 
-		// サブ案件のコンディション
-		$sub_conditions = array('Project.primary_skill_id' => array(1,2,3,6,7,8));
+		$this->set('h1', '気になる案件/求人リスト | IT/webフリーランスの案件/求人情報');
+		$this->set('title', '気になる案件/求人リスト |  IT/webフリーランスの案件/求人情報Connect(コネクト)');
+		$this->set('keywords', '気になる,フリーランス,エンジニア,デザイナー,web,IT,案件,求人,仕事');
+		$this->set('description', 'ITエンジニア/webデザイナなどのフリーランスと企業を繋ぐ、案件/求人情報サイトConnect(コネクト)の気になる案件/求人リスト。あなたが気になった案件/求人を一覧で見る事が出来ます。');
+		$this->set('ogtype', 'article');
+		$this->set('ogurl', 'https://connect-job.com/keeps');
+		$this->set('css', 'keep');
+		$this->set('js', 'keep');
 
-		// サブ案件のフィールド
-		$sub_fields = array('Project.id', 'Project.title', 'Project.station', 'Project.min_price', 'Project.max_price', 'Position.name');
-
-		// サブ案件のidリストをランダムで取得
-	 	$sub_id_list = $this->Project->find('list', array(
-	 		'fields' => 'Project.id',
-	 		'order' => 'rand()',
-	 		'conditions' => $sub_conditions,
-	 		'limit' => 4
-	 	));
-
-	 	$this->set('price', $this->Project->price());
 		$this->Set('keep_count', $keep_count);
 		$this->Set('keep_id', $keep_id);
-		$this->set('skills', $this->Project->PrimarySkill->find('list'));
-		$this->set('positions', $this->Project->Position->find('list'));
+		$this->set('price', $this->Project->price_format());
+		$this->set('skills', $this->Project->skills());
+		$this->set('positions', $this->Project->positions());
 		$this->set('project', $this->paginate());
-	 	$this->set('sub_project', $this->Project->find('all', array(
-	 		'recursive' => 1,
-	 		'fields' => $sub_fields,
-	 		'conditions' => array('Project.id' => $sub_id_list),
-	 	)));
+		$this->set('sub_project', $this->Project->sidebar());
     }
 
     public function add() {

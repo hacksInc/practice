@@ -1,10 +1,4 @@
-<?php
-	$this->set('title', 'Connect(コネクト) IT/webフリーランスの案件/求人情報');
-	$this->set('keywords', 'フリーランス,エンジニア,デザイナー,web,IT,案件,求人,仕事');
-	$this->set('description', 'Connect(コネクト)はITエンジニア/webデザイナなどのフリーランスと企業を繋ぐ、案件/求人情報サイト。キャリア相談〜案件紹介、アフターフォローまでIT/webフリーランスをトータルサポート！');
-	$this->set('css', 'home');
-	$this->set('js', 'home');
-?>
+
 
 <main class="main">
 	<div class="topimage">
@@ -17,16 +11,23 @@
 				echo $this->Form->submit('検索', array('div' => false, 'class' => 'submit'));
 				echo $this->Form->end();
 			?>
-			</form>
 		</div>
 	</div>
 	<div class="explain">
 		<section class="message">
-			<h2>ConnectはIT業界の個人事業主様をトータルにサポート！</h2>
-			<p>IT/WEB業界のフリーランスに特化した案件/求人情報を公開しております。<br>
-			キャリア相談〜案件紹介、アフターフォローまであなたをトータルにサポート！<br>
-			WEB系/業務系エンジニア、インフラエンジニアに限らず、デザイナー/ディレクターなどのクリエイティブ案件、プロジェクトマネジメント/ヘルプデスクなどの管理系/事務系案件など幅広く取り扱っております。<br>専属コンサルタントがあなたにピッタリの案件をご紹介致します！
-			</p>
+			<h2><span>＊</span>Connect（コネクト）とは？</h2>
+			<section>
+				<h3>高単価なフリーランス向け案件が豊富！</h3>
+				<p>本来、フリーランスは単価が高くなければいけません。余計なマージンを撤廃しているため高単価な案件が豊富！</p>
+			</section>
+			<section>
+				<h3>IT/web業界のフリーランスをトータルにサポート！</h3>
+				<p>IT/web業界のフリーランスに特化した案件/仕事情報を公開しており、キャリア相談〜案件紹介、アフターフォローまでフリーランスをトータルにサポート！</p>
+			</section>
+			<section>
+				<h3>現役コンサルタントがフリーランスの価値を教えます！</h3>
+				<p>数百人ものフリーランスと会ってきた現役の人材コンサルタントがあなたの価値を市場動向からズバリ教えます！</p>
+			</section>
 		</section>
 		<div class="flow">
 			<img src="img/flow.png" alt="支援サービスの流れ「step1ご登録、step2カウンセリング、step3案件ご紹介、step4面談/参画決定、step5サポート」" width="100%">
@@ -39,45 +40,7 @@
 					＊ 案件検索<br>
 					<span>条件を絞り込んで、あなたに合った案件を見つけよう！</span>
 				</h2>
-				<div class="search_panel">
-					<ul class="search_panel_tab_list">
-						<li class="search_panel_tab on">スキル</li>
-						<li class="search_panel_tab">ポジション</li>
-						<li class="search_panel_tab">金額</li>
-					</ul>
-					<div class="search_panel_box">
-						<?php
-							echo $this->Form->create('Project', array('type' => 'get', 'url' => array('controller' => 'Projects', 'action' => 'index')));
-							$this->Form->inputDefaults(array('div' => false,'label' => false,'id' => false, 'legend' => false, 'hiddenField' => false));
-						?>
-						<div class="search_panel_select">
-							<?php echo $this->Form->input('Skill', array('type' => 'select', 'multiple' => 'checkbox', 'id' => 'skill_')); ?>
-						</div>
-						<div class="search_panel_select">							
-							<?php echo $this->Form->input('Position', array('type' => 'select', 'multiple' => 'checkbox', 'id' => 'position_')); ?>
-						</div>
-						<div class="search_panel_select">
-							<div>
-								<?php echo $this->Form->radio('price', $price, array('div' => false, 'legend' => false, 'separator' => '</div><div>', 'hiddenField' => false, 'id' => 'price_')); ?>
-							</div>
-						</div>
-						<div class="search_panel_selected">
-							<dl class="selected_item_box">
-								<dt>選択した項目</dt>
-								<dd class="selected_item">
-									<p class="selected_item_default">まだ選択されていません</p>
-								</dd>
-								<p class="selected_item_all_delete">
-									<a href="javascript:void(0)">条件をクリア</a>
-								</p>
-							</dl>
-						<!-- search_panel_selected --></div>
-						<div class="submit_area">
-						<?php echo $this->Form->submit('検索', array('div' => false, 'class' => 'submit')); ?>
-						<?php echo $this->Form->end(); ?>
-						</div>
-					<!-- search_panel_box --></div>
-				<!-- search_panel --></div>
+				<?php echo $this->element('search'); ?>
 			<!-- search --></section>
 			<section class="pickup">
 				<h2>
@@ -90,12 +53,19 @@
 							$value = $key['Project'];
 					?>
 					<section>
+						<div class="keep">
+							<?php if( !empty($keep_id) && in_array($value['id'], $keep_id) ) : ?>
+								<a href="javascript:void(0)" class="keep_delete" value="<?php echo h($value['id']); ?>">★ 気になる！</a>
+							<?php else : ?>
+								<a href="javascript:void(0)" class="keep_data" value="<?php echo h($value['id']); ?>">★ 気になる！</a>
+							<?php endif; ?>
+						</div>
 						<a href="/projects/<?php echo h($value['id']); ?>" alt="<?php echo h($value['title']); ?>">
 							<h3 class="title"><?php echo h($value['title']); ?></h3>
 							<table>
 								<tr>
 									<th>金額</th>
-									<td>¥<?php echo h($value['min_price']); ?>〜¥<?php echo h($value['max_price']); ?></td>
+									<td><?php echo "¥".number_format(h($key['MinPrice']['name']))." 〜 ¥".number_format(h($key['MaxPrice']['name'])); ?></td>
 								</tr>
 								<tr>
 									<th>最寄駅</th>
@@ -112,7 +82,11 @@
 									<td>
 									<?php
 										for( $i=0; $i < count($key['Skill']);$i++) {
-											echo h($key['Skill'][$i]['name']).'/';
+											if( ($i+1) == count($key['Skill'])) {
+												echo h($key['Skill'][$i]['name']);
+											} else {
+												echo h($key['Skill'][$i]['name']).'/';
+											}
 										}
 									?>
 									</td>
@@ -125,6 +99,55 @@
 				</div>
 			</section>
 		<!-- main_content --></div>
-		<?php echo $this->element('sidebar'); ?>
+		<div class="sub_content">
+			<section class="sub_keyword">
+				<h3>＊ 人気のキーワード</h3>
+				<ul>
+					<li><a href="/projects?Skill=1" alt="PHP">PHP</a></li>
+					<li><a href="/projects?Skill=2" alt="Ruby">Ruby</a></li>
+					<li><a href="/projects?Skill=3" alt="java">Java</a></li>
+					<li><a href="/projects?Skill=6" alt="HTML5/CSS3">HTML5/CSS3</a></li>
+					<li><a href="/projects?Skill=11" alt="Unity">Unity</a></li>
+					<li><a href="/projects?Skill=7" alt="JavaScript">JavaScript</a></li>
+					<li><a href="/projects?Skill=12" alt="Swift">Swift</a></li>
+					<li><a href="/projects?Skill=11" alt="Android">Android</a></li>
+					<li><a href="/projects?Skill=10" alt="Objective-C">Objective-C</a></li>
+					<li><a href="/projects?Position=6" alt="webデザイナー">webデザイナー</a></li>
+				</ul>
+			</section>
+			<section class="sub_project">
+				<h3>＊ 人気の案件</h3>
+				<ul>
+					<?php
+						foreach($sub_project as $key) :
+							$value = $key['Project'];
+					?>
+					<li>
+					<a href="/projects/<?php echo h($value['id']); ?>" alt="<?php echo h($value['title']); ?>">
+						<h4><?php echo h($value['title']); ?></h4>
+						<p><?php echo h($value['station'])." / ¥".number_format(h($key['MinPrice']['name']))." 〜 ¥".number_format(h($key['MaxPrice']['name'])); ?></p>
+						<p>
+						<?php
+							for( $i=0; $i < count($key['Skill']);$i++) {
+								if( ($i+1) == count($key['Skill'])) {
+									echo h($key['Skill'][$i]['name']);
+								} else {
+									echo h($key['Skill'][$i]['name']).'/';
+								}
+							}
+						?>
+						</p>
+					</a>
+					</li>
+					<?php endforeach; ?>
+				</ul>
+			</section>
+			<div class="sub_partner">
+				<a href="/contacts/company"><img src="img/partner.png" width="100%"></a>
+			</div>
+			<div class="sub_sns">
+				<div class="fb-page" data-href="https://www.facebook.com/pages/Connect/1588548634743761" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/pages/Connect/1588548634743761"><a href="https://www.facebook.com/pages/Connect/1588548634743761">Connect</a></blockquote></div></div>
+			</div>
+		<!-- sub_content --></div>
 	<!-- container --></div>
 </main>

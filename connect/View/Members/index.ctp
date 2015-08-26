@@ -1,10 +1,4 @@
-<?php
-	$this->set('title', 'Connect(コネクト) IT/webフリーランスの案件/求人情報');
-	$this->set('keywords', 'フリーランス,エンジニア,デザイナー,web,IT,案件,求人,仕事');
-	$this->set('description', 'Connect(コネクト)はITエンジニア/webデザイナなどのフリーランスと企業を繋ぐ、案件/求人情報サイト。キャリア相談〜案件紹介、アフターフォローまでIT/webフリーランスをトータルサポート！');
-	$this->set('css', 'member');
-	$this->set('js', 'member');
-?>
+
 <main class="main">
 	<div class="container">
 		<div class="main_content">
@@ -23,7 +17,7 @@
 						<section>
 						<a href="/projects/<?php echo h($value['id']); ?>" alt="<?php echo h($value['title']); ?>">
 							<h3><?php echo h($value['title']); ?></h3>
-							<p><?php echo h($value['station']); ?> / ¥<?php echo h($value['min_price']); ?>〜¥<?php echo h($value['max_price']); ?> / <?php echo h($key['Position']['name']); ?></p>
+							<p><?php echo h($value['station'])." / ¥".number_format(h($key['MinPrice']['name']))." 〜 ¥".number_format(h($key['MaxPrice']['name']))." / ".h($key['Position']['name']); ?></p>
 						</a>
 						<div class="keep_delete_button"><a href="javascript:void(0)" class="keep_delete" value="<?php echo h($value['id']); ?>">削除<span>する</span></a></div>
 						<?php echo $this->Form->hidden('Project][', array('value' => h($value['id']), 'id' => false )); ?>

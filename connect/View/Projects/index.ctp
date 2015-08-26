@@ -1,15 +1,9 @@
-<?php
-	$this->set('title', 'Connect(コネクト) IT/webフリーランスの案件/求人情報');
-	$this->set('keywords', 'フリーランス,エンジニア,デザイナー,web,IT,案件,求人,仕事');
-	$this->set('description', 'Connect(コネクト)はITエンジニア/webデザイナなどのフリーランスと企業を繋ぐ、案件/求人情報サイト。キャリア相談〜案件紹介、アフターフォローまでIT/webフリーランスをトータルサポート！');
-	$this->set('css', 'search');
-	$this->set('js', 'search');
-?>
+
 <main class="main">
 	<div class="container">
 		<ul class="breadcrumb">
 			<li><a href="/" alt="トップ">トップ</a></li>
-			<li><?php echo $this->Paginator->counter('{:count}'); ?>件の案件/求人情報</li>
+			<li><?php echo $this->Paginator->counter('{:count}'); ?>件の<?php echo h($key); ?>案件/求人情報</li>
 		<!-- breadcrumb --></ul>
 		<div class="main_content">
 			<div class="search_header">
@@ -18,7 +12,7 @@
 				<p>
 				<p class="search_panel_open">検索条件を変更する</p>
 			</div>
-			<div class="search">	
+			<div class="search">
 				<section class="freeword_search">
 					<h2>フリーワードで1発検索！</h2>
 					<?php
@@ -32,8 +26,8 @@
 				<section class="search_panel">
 					<h2>条件を絞り込んで検索する</h2>
 					<ul class="search_panel_tab_list">
-						<li class="search_panel_tab on">スキル</li>
-						<li class="search_panel_tab">ポジション</li>
+						<li class="search_panel_tab on">ポジション</li>
+						<li class="search_panel_tab">スキル</li>
 						<li class="search_panel_tab">金額</li>
 					</ul>
 					<div class="search_panel_box">
@@ -41,11 +35,11 @@
 							echo $this->Form->create('Project', array('type' => 'get', 'url' => array('controller' => 'Projects', 'action' => 'index')));
 							$this->Form->inputDefaults(array('div' => false,'label' => false,'id' => false, 'legend' => false, 'hiddenField' => false));
 						?>
-						<div class="search_panel_select">
-							<?php echo $this->Form->input('Skill', array('type' => 'select', 'multiple' => 'checkbox', 'id' => 'skill_')); ?>
-						</div>
 						<div class="search_panel_select">							
 							<?php echo $this->Form->input('Position', array('type' => 'select', 'multiple' => 'checkbox', 'id' => 'position_')); ?>
+						</div>
+						<div class="search_panel_select">
+							<?php echo $this->Form->input('Skill', array('type' => 'select', 'multiple' => 'checkbox', 'id' => 'skill_')); ?>
 						</div>
 						<div class="search_panel_select">
 							<div>
@@ -81,13 +75,20 @@
 						$value = $key['Project'];
 				?>
 				<section>
+					<div class="keep">
+						<?php if( !empty($keep_id) && in_array($value['id'], $keep_id) ) : ?>
+							<a href="javascript:void(0)" class="keep_delete" value="<?php echo h($value['id']); ?>">★ 気になる！</a>
+						<?php else : ?>
+							<a href="javascript:void(0)" class="keep_data" value="<?php echo h($value['id']); ?>">★ 気になる！</a>
+						<?php endif; ?>
+					</div>
 					<a class="project_inner" href="/projects/<?php echo h($value['id']); ?>" alt="<?php echo h($value['title']); ?>">
 						<h3 class="title"><?php echo h($value['title']); ?></h3>
 						<p class="body"><?php echo h($value['content']); ?></p>
 						<table>
 							<tr>
 								<th>金額</th>
-								<td>¥<?php echo h($value['min_price']); ?>〜¥<?php echo h($value['max_price']); ?></td>
+								<td><?php echo "¥".number_format(h($key['MinPrice']['name']))." 〜 ¥".number_format(h($key['MaxPrice']['name'])); ?></td>
 							</tr>
 							<tr>
 								<th>最寄駅</th>
@@ -104,7 +105,11 @@
 								<td>
 								<?php
 									for( $i=0; $i < count($key['Skill']);$i++) {
-										echo h($key['Skill'][$i]['name']).' / ';
+										if( ($i+1) == count($key['Skill'])) {
+											echo h($key['Skill'][$i]['name']);
+										} else {
+											echo h($key['Skill'][$i]['name']).'/';
+										}
 									}
 								?>
 								</td>
@@ -112,13 +117,6 @@
 						</table>
 						<div class="project_overlay"></div>
 					</a>
-					<div class="keep">
-						<?php if( !empty($keep_id) && in_array($value['id'], $keep_id) ) : ?>
-							<a href="javascript:void(0)" class="keep_delete" value="<?php echo h($value['id']); ?>">★ 気になる！</a>
-						<?php else : ?>
-							<a href="javascript:void(0)" class="keep_data" value="<?php echo h($value['id']); ?>">★ 気になる！</a>
-						<?php endif; ?>
-					</div>
 				</section>
 				<?php endforeach; endif; ?>
 			<!-- project_list --></div>
@@ -126,9 +124,9 @@
 			<?php
 			    if($this->Paginator->hasPrev()) print $this->Paginator->prev('<' , array());
 			    print $this->Paginator->numbers(array(
-			    'modulus' => 4,
-			    'first'=>2,
-			    'last'=>2,
+			    'modulus' => 2,
+			    'first'=>1,
+			    'last'=>1,
 			    'currentClass'=>'now',
 			    'separator'=>null,
 			    'ellipsis' => '...'

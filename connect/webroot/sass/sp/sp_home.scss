@@ -3,7 +3,7 @@
 .topimage{
 	position: relative;
 	width: 100%;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	background-image: url(/img/topimage.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
@@ -23,6 +23,8 @@
 		width:80%;
 		white-space:nowrap;
 		overflow:hidden;
+		font-size: 85%;
+		font-weight: bold;
 		color: $white1;
 		@extend .clearfix;
 		@include animation(typing 4s steps(100, end) );
@@ -48,43 +50,53 @@
 			width: 75%;
 			height: 100%;
 			font-size: 140%;
-			padding: 4px 0;
+			padding: 4px 1%;
 			@include border-radius(3px 0 0 3px);
-			@include box-shadow(0 3px 0 #bbb);
+			@include box-shadow(0 1px 0 #ccc);
 		}
 		.submit{
 			position: absolute;
-			top:2%;
+			top:-3%;
 			right:0;
 			width: 25%;
-			font-size: 130%;
-			padding: 4px 0;
+			font-size: 115%;
+			font-weight: bold;
+			padding: 3px 0;
 			text-align: center;
 			background: $orange;
 			color: $white1;
 			border: none;
 			@include border-radius(0 3px 3px 0);
 			@include box-shadow(0 3px 0 $orange4);
-			&:hover{
-				@include filter(opacity(0.9));
-			}
 		}
 	}
 }
 .explain {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	@extend .wrapper;
 	.message{
 		width: 100%;
-		margin-bottom: 20px;
+		margin-bottom: 15px;
 		h2{
-			display: block;
+			text-align: center;
+			font-size: 120%;
 			font-weight: bold;
 			margin-bottom: 10px;
+			span{
+				display: none;
+			}
 		}
-		p{
-			font-size: 75%;
-			line-height: 1.2;
+		section{
+			margin-bottom: 6px;
+			h3{
+				font-size: 90%;
+				font-weight: bold;
+				margin-bottom: 3px;
+			}
+				p{
+				font-size: 80%;
+				line-height: 1.2;
+			}
 		}
 	}
 	.flow{
@@ -111,6 +123,7 @@
 		.search_panel{
 			width: 100%;
 			margin-top: 10px;
+			font-weight: bold;
 			.search_panel_tab_list{
 				@extend .clearfix;
 				.search_panel_tab{
@@ -124,9 +137,6 @@
 					cursor: pointer;
 					border-right: 2px solid rgba(205,205,205,0.6);
 					@include border-radius(3px 3px 0 0);
-					&:hover{
-						@include filter(opacity(0.9));
-					}
 				}
 				.on {
 					background: $white1;
@@ -181,9 +191,6 @@
 								        border-radius: 30px;
 								        @include box-sizing(border-box);
 								    }
-								    &:hover:before{
-								    	border: 2px solid $orange;
-								    }
 						    	}
 						    }
 						    input[type=checkbox] {
@@ -202,9 +209,6 @@
 								        margin-top: -10px;
 								        border: 2px solid #ccc;
 								        @include box-sizing(border-box);
-								    }
-								    &:hover:before{
-								    	border: 2px solid $orange;
 								    }
 								}
 							}
@@ -247,6 +251,13 @@
 						}
 					}
 				}
+				.search_panel_select:first-child{
+					div{
+						display: block;
+						width: 100%;
+						margin-right: 0;
+					}
+				}
 				.search_panel_selected{
 					width: 96%;
 					padding: 10px 2%;
@@ -254,40 +265,36 @@
 						position: relative;
 						width: 100%;
 						border: 1px solid rgba(205,205,205,0.8);
-						display: table;
 						@extend .clearfix;
 						dt {
-							display: table-cell;
-							vertical-align: middle;
-							width: 16%;
-							padding: 25px 2%;
+							width: 96%;
+							padding: 5px 2%;
 							text-align: center;
+							font-weight: bold;
 							background: $orange;
 							color: $white1;
 						}
 						dd{
-							display: table-cell;
-							width: 78%;
-							padding: 5px 1% 30px;
+							width: 96%;
+							font-weight: bold;
+							padding: 5px 2% 30px;
 							.selected_item_default{
 								position: absolute;
-								top: 40%;
-								left: 30%
+								top: 60%;
+								width: 100%;
+								text-align: center;
 							}
 							span{
 								display: inline-block;
-								margin-right: 10px;
-								margin-bottom: 10px;
-								padding: 8px;
+								margin-right: 5px;
+								margin-bottom: 5px;
+								padding: 5px;
 								cursor: pointer;
 								color: $white1;
 								font-size: 90%;
 								border-radius: 4px;
 								border: 1px solid $orange;
 								@include background(linear-gradient($orange2, $orange));
-								&:hover{
-									@include background(linear-gradient($orange3, $orange));
-								}
 							}
 						}
 						.selected_item_all_delete{
@@ -306,28 +313,23 @@
 									content: "×";
 									margin-right: 5px;
 								}
-								&:hover{
-									@include background(linear-gradient($black3,$black));
-								}
 							}
 						}
 					}
 				}
 				.submit_area {
 					margin: 0 auto;
-					padding: 20px 15%;
+					padding: 10px 20%;
 					.submit{
 						width: 100%;
-						padding: 10px 0;
+						padding: 8px 0;
 						font-weight: bold;
-						font-size: 120%;
+						font-size: 140%;
 						color: $white1;
-						background: $black;
+						background: $black2;
 						border:none;
-						@include background(linear-gradient($black2,$black));
-						&:hover{
-							@include background(linear-gradient($black3,$black));
-						}
+						@include border-radius(3px);
+						@include box-shadow(0 3px 0 $black);
 					}
 				}
 			}
@@ -336,37 +338,35 @@
 			width: 100%;
 			margin-top: 10px;
 			section {
-				width: 100%;
 				margin-bottom: 20px;
 				background: $white1;
-				@include box-shadow(1px 1px 1px 1px rgba(205,205,205,0.8));
+				@extend .wrapper;
 				a{
-					padding: 10px 5%;
-					&:hover{
-						@include opacity(0.8);
-					}
+					width: 100%;
 					.title{
 						width: 100%;
-						margin-bottom: 20px;
+						padding: 5px 0;
 						font-weight: bold;
-						font-size: 120%;
+						font-size: 110%;
+						line-height: 1.2;
 						color: $orange;
 					}
 					table {
 						width: 100%;
 						table-layout: fixed;
-						font-size: 70%;
 						tr {
+							font-size: 85%;
 							border-bottom: 2px solid rgba(225,225,225,0.8);
 							th{
-								width: 33%;
-								padding: 10px 0;
+								width: 30%;
+								padding: 6px 0;
 								background: $black;
 								color: $white1;
+								font-weight: bold;
 								text-align: center;
 							}
 							td{
-								width: 65%;
+								width: 68%;
 								padding-left: 2%;
 								@include ellipsis(no-wrap);
 							}
@@ -380,6 +380,22 @@
 						text-align: center;
 						color: $white1;
 						@include background(linear-gradient($black2,$black));
+					}
+				}
+				.keep{
+					float: right;
+					z-index: 9;
+					font-size: 100%;
+					margin-left: 10px;
+					.keep_data{
+						padding-top: 5px;
+						color: $black3;
+						font-weight: bold;
+					}
+					.keep_delete{
+						padding-top: 5px;
+						color: $keep;
+						font-weight: bold;
 					}
 				}
 			}

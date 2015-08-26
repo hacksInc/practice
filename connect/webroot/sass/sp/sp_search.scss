@@ -3,15 +3,14 @@
 .main_content{
 	@extend .wrapper;
 	.search_header{
-		margin: 20px 0;
+		margin: 15px 0 20px;
 		@extend .clearfix;
 		.search_result{
-			margin-bottom: 30px;
+			margin-bottom: 10px;
 			font-weight: bold;
 			span{
 				display: inline-block;
-				font-weight: normal;
-				font-size: 90%;
+				font-size: 80%;
 				margin-left:10px;
 				&:first-child{
 					color:$orange;
@@ -26,12 +25,13 @@
 			width: 60%;
 			padding: 10px 0;
 			text-align: center;
+			font-weight: bold;
 			color: $white1;
 			background: $black;
 			cursor: pointer;
 			background: $black2;
 			@include box-shadow(0 3px 0 $black4);
-			@include border-radius(2px 2px 4px 4px);
+			@include border-radius(3px);
 		}
 	}
 	.search{
@@ -40,32 +40,38 @@
 		margin-bottom: 30px;
 		h2{
 			font-weight: bold;
-			margin-bottom: 5px;
+			margin-bottom: 15px;
 		}
 		.freeword_search{
 			width: 100%;
 			margin-bottom: 30px;
 			.freeword_search_form{
-				width: 80%;
-				padding: 15px 10%;
-				background: $white1;
-				@include box-shadow(1px 1px 1px 1px rgba(205,205,205,0.8));
+				position: relative;
+				width: 96%;
+				padding: 0 2%;
 				.freeword{
-					width: 80%;
+					border: none;
+					width: 76%;
 					height: 100%;
-					font-size: 100%;
-					padding: 5px 0;
-					@include border-radius(3px 0 0 3px);
+					font-size: 140%;
+					padding: 6px 1%;
+					background: $white1;
+					@include border-radius(2px 0 0 2px);
+					@include box-shadow(0 3px 0 rgba(205,205,205,0.8));
+//					@include box-shadow(1px 1px 1px 1px rgba(205,205,205,0.8) inset);
 				}
 				.submit{
-					float: right;
-					width: 20%;
-					font-size: 100%;
-					padding: 3px 5%;
+					position: absolute;
+					top: -2px;
+					right:0;
+					width: 25%;
+					font-size: 115%;
+					padding: 5px 0;
 					color: $white1;
 					border: none;
+					font-weight: bold;
 					background: $orange;
-					@include border-radius(0 3px 3px 0);					
+					@include border-radius(0 2px 2px 0);					
 					@include box-shadow(0 3px 0 $orange4);
 				}
 			}
@@ -73,6 +79,7 @@
 		.search_panel{
 			width: 100%;
 			margin-top: 10px;
+			font-weight: bold;
 			.search_panel_tab_list{
 				@extend .clearfix;
 				.search_panel_tab{
@@ -86,9 +93,6 @@
 					cursor: pointer;
 					border-right: 2px solid rgba(205,205,205,0.6);
 					@include border-radius(3px 3px 0 0);
-					&:hover{
-						@include filter(opacity(0.9));
-					}
 				}
 				.on {
 					background: $white1;
@@ -115,7 +119,6 @@
 						float:left;
 						width: 48%;
 						margin-right: 2%;
-						font-size: 110%;
 						margin-bottom: 10px;
 						@include ellipsis(no-wrap);
 						input[type=radio] + label,
@@ -144,9 +147,6 @@
 								        border-radius: 30px;
 								        @include box-sizing(border-box);
 								    }
-								    &:hover:before{
-								    	border: 2px solid $orange;
-								    }
 						    	}
 						    }
 						    input[type=checkbox] {
@@ -165,9 +165,6 @@
 								        margin-top: -10px;
 								        border: 2px solid #ccc;
 								        @include box-sizing(border-box);
-								    }
-								    &:hover:before{
-								    	border: 2px solid $orange;
 								    }
 								}
 							}
@@ -210,6 +207,13 @@
 						}
 					}
 				}
+				.search_panel_select:first-child{
+					div{
+						display: block;
+						width: 100%;
+						margin-right: 0;
+					}
+				}
 				.search_panel_selected{
 					width: 96%;
 					padding: 10px 2%;
@@ -217,40 +221,36 @@
 						position: relative;
 						width: 100%;
 						border: 1px solid rgba(205,205,205,0.8);
-						display: table;
 						@extend .clearfix;
 						dt {
-							display: table-cell;
-							vertical-align: middle;
-							width: 16%;
-							padding: 25px 2%;
+							width: 96%;
+							padding: 5px 2%;
 							text-align: center;
+							font-weight: bold;
 							background: $orange;
 							color: $white1;
 						}
 						dd{
-							display: table-cell;
-							width: 78%;
-							padding: 5px 1% 30px;
+							width: 96%;
+							font-weight: bold;
+							padding: 5px 2% 30px;
 							.selected_item_default{
 								position: absolute;
-								top: 40%;
-								left: 30%
+								top: 60%;
+								width: 100%;
+								text-align: center;
 							}
 							span{
 								display: inline-block;
-								margin-right: 10px;
-								margin-bottom: 10px;
-								padding: 8px;
+								margin-right: 5px;
+								margin-bottom: 5px;
+								padding: 5px;
 								cursor: pointer;
 								color: $white1;
 								font-size: 90%;
 								border-radius: 4px;
 								border: 1px solid $orange;
 								@include background(linear-gradient($orange2, $orange));
-								&:hover{
-									@include background(linear-gradient($orange3, $orange));
-								}
 							}
 						}
 						.selected_item_all_delete{
@@ -263,9 +263,7 @@
 								color: $white1;
 								font-size: 90%;
 								border-radius: 4px;
-								background: $black2;
-								@include box-shadow(0 3px 0 $black4);
-								@include border-radius(2px 2px 4px 4px);
+								@include background(linear-gradient($black2,$black));
 								&:before{
 									display: inline-block;
 									content: "×";
@@ -277,18 +275,17 @@
 				}
 				.submit_area {
 					margin: 0 auto;
-					padding: 20px 15%;
+					padding: 10px 20%;
 					.submit{
 						width: 100%;
-						padding: 10px 0;
+						padding: 8px 0;
 						font-weight: bold;
-						font-size: 120%;
+						font-size: 140%;
 						color: $white1;
-						background: $black;
-						border:none;
 						background: $black2;
-						@include box-shadow(0 3px 0 $black4);
-						@include border-radius(2px 2px 4px 4px);
+						border:none;
+						@include border-radius(3px);
+						@include box-shadow(0 3px 0 $black);
 					}
 				}
 			}
@@ -299,36 +296,33 @@
 		section {
 			position: relative;
 			width: 100%;
-			margin-bottom: 20px;
+			margin-bottom: 15px;
 			background: $white1;
-			@include box-shadow(1px 1px 1px 1px rgba(205,205,205,0.8));
 			.project_inner{
-				width: 96%;
-				padding: 10px;
+				width: 100%;
 				.title{
-					width: 70%;
-					margin-bottom: 20px;
+					width: 100%;
+					padding: 5px 0;
 					font-weight: bold;
-					font-size: 140%;
+					font-size: 110%;
+					line-height: 1.2;
 					color: $orange;
-					@include ellipsis(no-wrap);
 				}
 				.body{
-					width: 100%;
-					margin-bottom: 20px;
-					@include ellipsis(no-wrap);
+					display: none;
 				}
 				table {
 					width: 100%;
 					table-layout: fixed;
 					tr {
-						font-size: 90%;
+						font-size: 85%;
 						border-bottom: 2px solid rgba(225,225,225,0.8);
 						th{
 							width: 30%;
-							padding: 8px 0;
+							padding: 6px 0;
 							background: $black;
 							color: $white1;
+							font-weight: bold;
 							text-align: center;
 						}
 						td{
@@ -343,20 +337,17 @@
 				}
 			}
 			.keep{
-				position: absolute;
-				top: 5px;
-				right: 10px;
+				float: right;
 				z-index: 9;
-				font-size: 110%;
+				font-size: 100%;
+				margin-left: 10px;
 				.keep_data{
-					padding: 10px 0;
-					text-align: center;
+					padding-top: 5px;
 					color: $black3;
 					font-weight: bold;
 				}
 				.keep_delete{
-					padding: 10px 0;
-					text-align: center;
+					padding-top: 5px;
 					color: $keep;
 					font-weight: bold;
 				}
@@ -372,13 +363,14 @@
 			padding: 10px;
 			color: #fff;
 			text-align: center;
-			background: $black3;
-			border: 1px solid #eee;
-			border-radius: 4px;
+			background: $black2;
+			font-weight: bold;
+			@include border-radius(3px);
+			@include box-shadow(0 1px 0 $black);
 		}
 		span{
 			display: inline-block;
-			margin-right: 15px;
+			margin-right: 10px;
 			&:last-child{
 				margin-right:0;
 			}
@@ -387,12 +379,11 @@
 				padding: 10px;
 				color: $white1;
 				text-align: center;
+				font-weight: bold;
 				border-radius: 4px;
-				@include background(linear-gradient($orange2, $orange));
-				&:hover{
-					@include background(linear-gradient($orange3, $orange));
-				}
-
+				background: $orange;
+				@include border-radius(3px);
+				@include box-shadow(0 1px 0 $orange4);
 			}
 		}
 	}

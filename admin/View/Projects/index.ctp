@@ -8,6 +8,7 @@
 				<th>案件名</th>
 				<th>単価</th>
 				<th>最寄駅</th>
+				<th>スキル</th>
 				<th>更新日</th>
 				<th>削除</th>
 			</tr>
@@ -16,8 +17,9 @@
 			<tr>
 				<td><?php echo h($value['id']); ?></td>
 				<td><?php echo $this->Html->link($value['title'], '/projects/edit/' .$value['id']); ?></td>
-				<td><?php echo h($value['min_price']); ?> 〜 <?php echo h($value['max_price']); ?> 万円</td>
+				<td><?php echo '￥'.number_format(h($key['MinPrice']['name'])).' 〜 ￥'.number_format(h($key['MaxPrice']['name'])); ?></td>
 				<td><?php echo h($value['station']); ?></td>
+				<td><?php echo h($key['PrimarySkill']['name']); ?></td>
 				<td><?php echo date('Y/m/d', strtotime($value['modified'])); ?></td>
 				<td><?php echo $this->Form->postlink('削除', array('action'=>'delete', $value['id']), array('confirm'=>'本当に削除してよろしいですか？')); ?></td>
 			</tr>

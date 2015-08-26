@@ -6,11 +6,11 @@ class UsersController extends AppController {
 
 	}
 
-    public function beforeFilter() {
+/*    public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add');
     }
-
+*/
 	public function users() {
 		$this->paginate = array(
 			'limit' => 20,

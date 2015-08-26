@@ -3,15 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>管理画面 | 株式会社hacks</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<?php echo $this->fetch('meta'); ?>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="format-detection" content="telephone=no, email=no">
-<?php echo $this->fetch('css'); ?>
+<link rel="stylesheet" href="/css/<?php echo $css; ?>.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<?php echo $this->Html->script('admin'); ?>
-<?php echo $this->fetch('script'); ?>
+<script src="/js/admin.js"></script>
 </head>
 <body>
 <div id="header">
@@ -32,7 +28,7 @@
 			</ul>
 		</li>
 		<li>
-			<a href="">フリーランス</a>
+			<a href="/members">フリーランス</a>
 			<ul class="menuList">
 			</ul>
 		</li>
@@ -42,8 +38,9 @@
 			</ul>
 		</li>
 		<li>
-			<a href="">パートナー</a>
+			<a href="/partners">パートナー</a>
 			<ul class="menuList">
+				<li><a href="/partners/add">新規登録</a></li>
 			</ul>
 		</li>
 	</ul>

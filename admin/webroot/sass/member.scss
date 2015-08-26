@@ -1,0 +1,181 @@
+@import "admin";
+
+.content{
+	float:left;
+	width: 88%;
+	height: 84%;
+	overflow: scroll;
+	@extend .clearfix;
+	.project {
+		margin: 0 auto;
+		width: 96%;
+		margin-top: 20px;
+		.count{
+			margin-bottom: 10px;
+			font-size: 70%;
+			span{
+				display: inline-block;
+				margin-right: 10px;
+				font-size: 130%;
+				color:$hover;
+			}
+		}
+		table{
+			width: 100%;
+			tr{
+				border-bottom: 2px solid rgba(240,240,240,1);
+				th{
+					padding: 7px 0;
+					text-align: center;
+					background: #fff;
+					font-size: 80%;
+					border-right:2px solid rgba(240,240,240,1);
+				}
+				td {
+					padding: 7px 0;
+					text-align: center;
+					background: #fff;
+					font-size: 70%;
+					border-right:2px solid rgba(240,240,240,1);
+					a:hover{
+						width: 100%;
+						height: 100%;
+						color: rgba(250,150,100,1);
+					}
+				}
+			}
+		}
+	}
+}
+.pagenate {
+	float:left;
+	width: 88%;
+	margin-top: 15px;
+	text-align: center;
+	.now {
+		display: inline-block;
+		padding: 7px;
+		font-size: 70%;
+		color: #fff;
+		text-align: center;
+		background: rgba(130,130,130,1);
+		border: 1px solid #eee;
+		border-radius: 4px;
+	}
+	span{
+		display: inline-block;
+		margin-right: 10px;
+		a{
+			display: inline-block;
+			padding: 7px;
+			font-size: 70%;
+			color: #fff;
+			text-align: center;
+			background: rgba(10,150,220,1);
+			border: 1px solid #eee;
+			border-radius: 4px;
+			&:hover{
+				color:$hover;
+			}
+		}
+	}
+}
+.project_add {
+	float:left;
+	width: 86%;
+	height: 86%;
+	overflow: scroll;
+	padding: 1%;
+	.form_area{
+		width: 100%;
+		margin-bottom: 30px;
+		@extend .clearfix;
+		dl{
+			display: table;
+			width:100%;
+			border-bottom: 2px solid rgba(240,240,240,1);
+			dt{
+				display: table-cell;
+				vertical-align: middle;
+				width: 20%;
+				padding: 10px 0;
+				text-align: center;
+				background: #fff;
+				font-size: 70%;
+				border-right:2px solid rgba(240,240,240,1);
+			}
+			dd {
+				display: table-cell;
+				vertical-align: middle;
+				width: 76%;
+				padding: 12px 3%;
+				background: #fff;
+				font-size: 70%;
+				border-right:2px solid rgba(240,240,240,1);
+				.skillsheet{
+					float:right;
+					padding-right: 5%;
+					text-decoration: underline;
+					color: rgba(100,100,200,1);
+					&:hover{
+						color:rgba(200,100,100,1);
+					}
+				}
+				input[type="text"]{
+					width: 25%;
+					margin-right: 2%;
+					border: none;
+					background: $contact;
+					padding: 5px;
+					font-size: 110%;
+				}
+				select{
+					width: 15%;
+					border: none;
+					background: $contact;
+					padding: 5px;
+					margin-right: 2%;
+					font-size: 100%;
+				}
+				input[type="email"],
+				input[type="tel"]{
+					width: 70%;
+					border: none;
+					background: $contact;
+					padding: 5px;
+					font-size: 110%;
+				}
+				input[type="file"]{
+					font-size: 100%;
+				}
+				textarea {
+					width: 98%;
+					padding: 5px 1%;
+					border:none;
+					background: $contact;
+					font-size: 100%;
+				}
+			}
+		}
+	}
+    .submitForm{
+        margin: 0 auto;
+        width: 40%;
+        text-align: center;
+     	margin-top: 20px;
+     	margin-bottom: 20px;
+        .submit{
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            color: #fff;
+            font-size: 100%;
+            background: rgba(20,100,150,0.9);
+            @include border-radius(4px);
+            @include box-shadow(0 3px 0 rgba(20,90,140,1));
+            &:hover {
+                @include opacity(0.9);
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-<?php $this->Html->css('project', array('inline' => false)); ?>
+
 <div class="project_add">
 <?php
 	echo $this->Form->create('Project', array('action'=>'edit'));
@@ -49,7 +49,7 @@
 		</tr>
 		<tr>
 			<th>単価</th>
-			<td><?php echo $this->Form->input('min_price', array( 'class' => 'min_price', 'placeholder' => '50')); ?> 〜 <?php echo $this->Form->input('max_price', array( 'class' => 'max_price', 'placeholder' => '80')); ?> 万円</td>
+			<td>￥<?php echo $this->Form->select('min_price_id', array($minPrice), array('empty' => '選択してください')); ?> 〜 ￥<?php echo $this->Form->select('max_price_id', array($maxPrice), array('empty' => '選択してください')); ?></td>
 		</tr>
 		<tr>
 			<th>服装</th>
@@ -67,6 +67,10 @@
 			<th>ポジション</th>
 			<td><?php echo $this->Form->select('position_id', array($position), array('empty' => '選択してください', 'id' => false)); ?></td>
 		</tr>
+		<tr>
+			<th>主要スキル</th>
+			<td><?php echo $this->Form->select('primary_skill_id', array($primarySkill), array('empty' => '選択してください', 'id' => false)); ?></td>
+		</tr>
 	</table>
 	<table>
 		<tr>
@@ -78,10 +82,6 @@
 			<td><?php echo $this->Form->input('more_skill'); ?></td>
 		</tr>
 		<tr>
-			<th>開発環境</th>
-			<td><?php echo $this->Form->input('dev_envi', array('placeholder' => 'LAMP / Git / CakePHP / HTML5 / CSS / jQuery', 'rows' => '5')); ?></td>
-		</tr>
-		<tr>
 			<th>職場環境</th>
 			<td><?php echo $this->Form->input('work_envi', array('placeholder' => '若い人が中心の職場', 'rows' => '5')); ?></td>
 		</tr>
@@ -89,36 +89,19 @@
 			<th>業務内容</th>
 			<td><?php echo $this->Form->input('content', array('placeholde' => 'ソーシャルゲームの開発をしていただきます。')); ?></td>
 		</tr>
+		<tr>
+			<th>備考</th>
+			<td><?php echo $this->Form->input('other', array()); ?></td>
+		</tr>
 	</table>
 	</div>
 	<div class="form_area2">
+	<p>開発環境</p>
 	<table>
 		<tr>
 			<th>スキル</th>
 			<td>
 			<?php echo $this->Form->input('Skill', array('type' => 'select', 'multiple' => 'checkbox', 'class'=> 'check')); ?>
-			</td>
-		</tr>
-		<tr>
-			<th>フレームワーク</th>
-			<td>
-			<?php
-				echo $this->Form->input('Framework', array('type' => 'select', 'multiple' => 'checkbox', 'class'=> 'check'));
-			?>
-			</td>
-		</tr>
-		<tr>
-			<th>DB</th>
-			<td>
-			<?php echo $this->Form->input('Db', array('type' => 'select', 'multiple' => 'checkbox', 'class'=> 'check'));
-			?>
-			</td>
-		</tr>
-		<tr>
-			<th>ツール</th>
-			<td>
-			<?php echo $this->Form->input('Tool', array('type' => 'select', 'multiple' => 'checkbox', 'class'=> 'check'));
-			?>
 			</td>
 		</tr>
 	</table>

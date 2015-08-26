@@ -32,10 +32,10 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-/*	public function appError($error) {
+	public function appError($error) {
  		$this->redirect(array('controller' => 'users', 'action' => 'login'));
 	}
-*/
+
 	public $components = array(
 		'Session',
 		'Auth' => array(

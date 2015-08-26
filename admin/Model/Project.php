@@ -13,38 +13,8 @@ class Project extends AppModel {
 			'associationForeignKey' => 'skill_id',
 			'with' => 'ProjectsSkill',
 			'unique' => true,
-			'conditions' => 'ProjectsSkill.skill_id = Skill.id',
+//			'conditions' => 'ProjectsSkill.skill_id = Skill.id',
 			'fields' => array('Skill.id', 'Skill.name')
-		),
-		'Db' => array(
-			'className' => 'Db',
-			'joinTable' => 'dbs_projects',
-			'foreignKey' => 'project_id',
-			'associationForeignKey' => 'db_id',
-			'with' => 'DbsProject',
-			'unique' => true,
-			'conditions' => 'DbsProject.db_id = Db.id',
-			'fields' => array('Db.id', 'Db.name')
-		),
-		'Framework' => array(
-			'className' => 'Framework',
-			'joinTable' => 'frameworks_projects',
-			'foreignKey' => 'project_id',
-			'associationForeignKey' => 'framework_id',
-			'with' => 'FrameworksProject',
-			'unique' => true,
-			'conditions' => 'FrameworksProject.framework_id = Framework.id',
-			'fields' => array('Framework.id', 'Framework.name')
-		),
-		'Tool' => array(
-			'className' => 'Tool',
-			'joinTable' => 'projects_tools',
-			'foreignKey' => 'project_id',
-			'associationForeignKey' => 'tool_id',
-			'with' => 'ProjectsTool',
-			'unique' => true,
-			'conditions' => 'ProjectsTool.tool_id = Tool.id',
-			'fields' => array('Tool.id', 'Tool.name')
 		),
 		'Contract' => array(
 			'className' => 'Contract',
@@ -53,7 +23,7 @@ class Project extends AppModel {
 			'associationForeignKey' => 'contract_id',
 			'with' => 'ContractsProject',
 			'unique' => true,
-			'conditions' => 'ContractsProject.contract_id = Contract.id',
+//			'conditions' => 'ContractsProject.contract_id = Contract.id',
 			'fields' => array('Contract.id', 'Contract.name')
 		),
 	);
@@ -82,6 +52,14 @@ class Project extends AppModel {
 		'PrimarySkill' => array(
 			'className' => 'PrimarySkill',
 			'foreignKey' => 'primary_skill_id'
+		),
+		'MinPrice' => array(
+			'className' => 'MinPrice',
+			'foreignKey' => 'min_price_id',
+		),
+		'MaxPrice' => array(
+			'className' => 'MaxPrice',
+			'foreignKey' => 'max_price_id',
 		),
 	);
 

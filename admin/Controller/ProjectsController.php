@@ -2,18 +2,19 @@
 
 class ProjectsController extends AppController {
 
-	public $uses = array('Project', 'Skill', 'Tool', 'Framework', 'Db', 'Contract', 'Position', 'Service', 'Prefecture', 'City', 'Liquidation', 'PrimarySkill' );
+	public $uses = array('Project');
 	public $helpers = array('Html', 'Form');
 
 	public function index() {
 		$this->set('title_for_layout', '案件一覧');
 		$this->paginate = array(
 			'Project' => array(
-				'fields' => array('Project.id', 'Project.title', 'Project.min_price', 'Project.max_price', 'Project.station', 'Project.modified'),
+				'fields' => array('Project.id', 'Project.title',  'Project.station', 'Project.modified', 'MinPrice.name', 'MaxPrice.name', 'PrimarySkill.name'),
+				'recursive' => 1,
 				'limit' => 18,
-				'order' => array('Project.id' => 'desc')
 			)
 		);
+		$this->set('css', 'project');
 		$this->set('projects', $this->paginate());
 	}
 
@@ -29,19 +30,19 @@ class ProjectsController extends AppController {
 			}
 		}
 
+		$this->set('css', 'project');
+
 		$this->set('skills', $this->Project->Skill->find('list'));
-		$this->set('tools', $this->Project->Tool->find('list'));
-		$this->set('frameworks', $this->Project->Framework->find('list'));
-		$this->set('dbs', $this->Project->Db->find('list'));
 		$this->set('contracts', $this->Project->Contract->find('list'));
 
-		$this->set('service', $this->Service->find('list'));
-		$this->set('position', $this->Position->find('list'));
-		$this->set('prefecture', $this->Prefecture->find('list'));
-		$this->set('city', $this->City->find('list'));
-		$this->set('liquidation', $this->Liquidation->find('list'));
-		$this->set('primarySkill', $this->PrimarySkill->find('list'));
-
+		$this->set('service', $this->Project->Service->find('list'));
+		$this->set('position', $this->Project->Position->find('list'));
+		$this->set('prefecture', $this->Project->Prefecture->find('list'));
+		$this->set('city', $this->Project->City->find('list'));
+		$this->set('liquidation', $this->Project->Liquidation->find('list'));
+		$this->set('primarySkill', $this->Project->PrimarySkill->find('list'));
+		$this->set('minPrice', $this->Project->MinPrice->find('list'));
+		$this->set('maxPrice', $this->Project->MaxPrice->find('list'));
 
 	}
 
@@ -57,18 +58,20 @@ class ProjectsController extends AppController {
     		'recursive' => 1
     	));
 
+    	$this->set('css', 'project');
+
     	$this->set('id', $post);
 		$this->set('skills', $this->Project->Skill->find('list'));
-		$this->set('tools', $this->Project->Tool->find('list'));
-		$this->set('frameworks', $this->Project->Framework->find('list'));
-		$this->set('dbs', $this->Project->Db->find('list'));
 		$this->set('contracts', $this->Project->Contract->find('list'));
 
-		$this->set('service', $this->Service->find('list'));
-		$this->set('position', $this->Position->find('list'));
-		$this->set('prefecture', $this->Prefecture->find('list'));
-		$this->set('city', $this->City->find('list'));
-		$this->set('liquidation', $this->Liquidation->find('list'));
+		$this->set('service', $this->Project->Service->find('list'));
+		$this->set('position', $this->Project->Position->find('list'));
+		$this->set('prefecture', $this->Project->Prefecture->find('list'));
+		$this->set('city', $this->Project->City->find('list'));
+		$this->set('liquidation', $this->Project->Liquidation->find('list'));
+		$this->set('primarySkill', $this->Project->PrimarySkill->find('list'));
+		$this->set('minPrice', $this->Project->MinPrice->find('list'));
+		$this->set('maxPrice', $this->Project->MaxPrice->find('list'));
 
 		if (!$post) {
         	throw new NotFoundException(__('Invalid post'));
